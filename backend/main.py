@@ -79,9 +79,11 @@ app.include_router(dashboard.router, prefix="/api/dashboard", tags=["Dashboard"]
 app.include_router(copilot.router, prefix="/api/copilot", tags=["Copilot"])
 app.include_router(voice.router, prefix="/api/voice", tags=["Voice"])
 
-
-
-
+# ─────────────────────────────────────────────────────────────
+# Serve frontend static assets (images, css, js, html inside frontend/)
+# ─────────────────────────────────────────────────────────────
+FRONTEND_DIR = PROJECT_ROOT / "frontend"
+app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
 
 # ─────────────────────────────────────────────────────────────
 # Health check

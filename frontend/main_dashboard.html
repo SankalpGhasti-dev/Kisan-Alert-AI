@@ -136,9 +136,9 @@
     </div>
     
     <div class="hidden lg:flex gap-md h-full items-center">
-        <a href="dashboard.html" class="h-full flex items-center border-b-2 border-primary text-primary px-xs font-label-md transition-colors nav-link" data-path="/dashboard">Dashboard</a>
-        <a href="disease-detection.html" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/disease-detection">Disease Detection</a>
-        <a href="weather.html" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/weather">Weather</a>
+        <a href="dashboard.html" class="h-full flex items-center border-b-2 border-primary text-primary px-xs font-label-md transition-colors nav-link" data-path="dashboard.html">Dashboard</a>
+        <a href="disease-detection.html" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="disease-detection.html">Disease Detection</a>
+        <a href="weather.html" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="weather.html">Weather</a>
         <a href="/market" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/market">Market Analysis ★</a>
     </div>
     
@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (footer) footer.style.transition = 'opacity 0.5s ease';
         }, 200);
         setTimeout(() => {
-          window.location.href = '/copilot';
+          window.location.href = 'copilot.html';
         }, 700);
       });
     })();
@@ -843,7 +843,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (diagnoseBtn && diagnoseBtn.textContent.includes('Diagnose')) {
                 diagnoseBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    window.location.href = '/disease-detection';
+                    window.location.href = 'disease-detection.html';
                 });
             }
 
@@ -860,9 +860,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const navLinks = document.querySelectorAll('nav a');
             navLinks.forEach(link => {
                 if (link.textContent.includes('Disease Detection')) {
-                    link.href = '/disease-detection';
+                    link.href = 'disease-detection.html';
                 } else if (link.textContent.includes('Dashboard')) {
-                    link.href = '/dashboard';
+                    link.href = 'dashboard.html';
                 }
             });
 

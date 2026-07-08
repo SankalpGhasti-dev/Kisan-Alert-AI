@@ -135,9 +135,9 @@
         </div>
         
         <div class="hidden lg:flex gap-md h-full items-center">
-            <a href="dashboard.html" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/dashboard">Dashboard</a>
-            <a href="disease-detection.html" class="h-full flex items-center border-b-2 border-primary text-primary px-xs font-label-md transition-colors nav-link" data-path="/disease-detection">Disease Detection</a>
-            <a href="weather.html" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/weather">Weather</a>
+            <a href="dashboard.html" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="dashboard.html">Dashboard</a>
+            <a href="disease-detection.html" class="h-full flex items-center border-b-2 border-primary text-primary px-xs font-label-md transition-colors nav-link" data-path="disease-detection.html">Disease Detection</a>
+            <a href="weather.html" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="weather.html">Weather</a>
             <a href="/market" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/market">Market Analysis ★</a>
         </div>
         
@@ -690,8 +690,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // ── Nav links ──
         document.querySelectorAll('nav a').forEach(link => {
-            if (link.textContent.includes('Dashboard')) link.href = '/dashboard';
-            if (link.textContent.includes('Disease')) link.href = '/disease-detection';
+            if (link.textContent.includes('Dashboard')) link.href = 'dashboard.html';
+            if (link.textContent.includes('Disease')) link.href = 'disease-detection.html';
         });
     </script>
 <script src="assets/js/firebase-config.js"></script>
