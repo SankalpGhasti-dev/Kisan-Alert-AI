@@ -12,8 +12,7 @@ from contextlib import asynccontextmanager
 
 import pandas as pd
 from fastapi import FastAPI, Request
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse, FileResponse
+
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
@@ -79,11 +78,7 @@ app.include_router(dashboard.router, prefix="/api/dashboard", tags=["Dashboard"]
 app.include_router(copilot.router, prefix="/api/copilot", tags=["Copilot"])
 app.include_router(voice.router, prefix="/api/voice", tags=["Voice"])
 
-# ─────────────────────────────────────────────────────────────
-# Serve frontend static assets (images, css, js, html inside frontend/)
-# ─────────────────────────────────────────────────────────────
-FRONTEND_DIR = PROJECT_ROOT / "frontend"
-app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
+
 
 # ─────────────────────────────────────────────────────────────
 # Health check
