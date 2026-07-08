@@ -5,408 +5,868 @@
 
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Kisan Alert AI | Farmer Dashboard</title>
+<title>Kisan Alert AI | Professional Farmer Dashboard</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Hanken+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Hanken+Grotesk:wght@500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "surface-container-high": "#262b29",
-                        "on-error-container": "#ffdad6",
-                        "on-primary-container": "#003c0b",
-                        "tertiary-container": "#89a18a",
-                        "on-tertiary-fixed": "#0b2010",
-                        "on-secondary": "#432c00",
-                        "tertiary-fixed-dim": "#b4cdb4",
-                        "on-secondary-container": "#6a4800",
-                        "on-surface": "#dfe3e1",
-                        "secondary": "#ffd799",
-                        "secondary-fixed-dim": "#ffba38",
-                        "primary-fixed": "#94f990",
-                        "inverse-surface": "#dfe3e1",
-                        "secondary-fixed": "#ffdeac",
-                        "inverse-on-surface": "#2d3130",
-                        "surface-dim": "#101413",
-                        "secondary-container": "#feb300",
-                        "surface": "#101413",
-                        "on-primary": "#00390a",
-                        "on-tertiary-container": "#223726",
-                        "error-container": "#93000a",
-                        "surface-container-low": "#181d1b",
-                        "outline": "#899484",
-                        "on-surface-variant": "#becab9",
-                        "surface-bright": "#353a38",
-                        "primary-fixed-dim": "#78dc77",
-                        "on-error": "#690005",
-                        "inverse-primary": "#006e1c",
-                        "surface-container": "#1c211f",
-                        "on-primary-fixed-variant": "#005313",
-                        "on-tertiary": "#203523",
-                        "on-secondary-fixed": "#281900",
-                        "primary-container": "#4caf50",
-                        "on-primary-fixed": "#002204",
-                        "surface-variant": "#313634",
-                        "tertiary-fixed": "#d0e9cf",
-                        "on-background": "#dfe3e1",
-                        "outline-variant": "#3f4a3c",
-                        "error": "#ffb4ab",
-                        "background": "#101413",
-                        "primary": "#78dc77",
-                        "surface-container-highest": "#313634",
-                        "on-secondary-fixed-variant": "#604100",
-                        "surface-tint": "#78dc77",
-                        "tertiary": "#b4cdb4",
-                        "surface-container-lowest": "#0a0f0e",
-                        "on-tertiary-fixed-variant": "#364c39"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "lg": "32px",
-                        "xl": "48px",
-                        "margin-desktop": "40px",
-                        "base": "4px",
-                        "margin-mobile": "16px",
-                        "xs": "8px",
-                        "sm": "16px",
-                        "gutter": "20px",
-                        "md": "24px"
-                    },
-                    "fontFamily": {
-                        "body-lg": ["Manrope"],
-                        "headline-lg": ["Manrope"],
-                        "label-md": ["Hanken Grotesk"],
-                        "body-md": ["Manrope"],
-                        "label-sm": ["Hanken Grotesk"],
-                        "headline-md": ["Manrope"],
-                        "display-lg": ["Manrope"]
-                    },
-                    "fontSize": {
-                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-                    }
-                },
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#89a18a",
+                    "inverse-on-surface": "#2d3130",
+                    "on-surface-variant": "#becab9",
+                    "on-tertiary": "#203523",
+                    "on-tertiary-fixed": "#0b2010",
+                    "background": "#101413",
+                    "on-primary-fixed-variant": "#005313",
+                    "surface-container-low": "#181d1b",
+                    "on-error": "#690005",
+                    "surface-bright": "#353a38",
+                    "on-secondary": "#432c00",
+                    "tertiary-fixed-dim": "#b4cdb4",
+                    "outline": "#899484",
+                    "tertiary": "#b4cdb4",
+                    "surface-container-lowest": "#0a0f0e",
+                    "surface": "#101413",
+                    "secondary-container": "#feb300",
+                    "on-surface": "#dfe3e1",
+                    "primary-container": "#4caf50",
+                    "on-primary-container": "#003c0b",
+                    "secondary-fixed": "#ffdeac",
+                    "on-secondary-fixed": "#281900",
+                    "tertiary-fixed": "#d0e9cf",
+                    "on-tertiary-container": "#223726",
+                    "on-primary-fixed": "#002204",
+                    "on-error-container": "#ffdad6",
+                    "on-background": "#dfe3e1",
+                    "inverse-primary": "#006e1c",
+                    "surface-container-high": "#262b29",
+                    "on-tertiary-fixed-variant": "#364c39",
+                    "inverse-surface": "#dfe3e1",
+                    "on-secondary-container": "#6a4800",
+                    "surface-dim": "#101413",
+                    "outline-variant": "#3f4a3c",
+                    "surface-container-highest": "#313634",
+                    "surface-variant": "#313634",
+                    "surface-tint": "#78dc77",
+                    "primary": "#78dc77",
+                    "on-secondary-fixed-variant": "#604100",
+                    "secondary": "#ffd799",
+                    "on-primary": "#00390a",
+                    "primary-fixed": "#94f990",
+                    "surface-container": "#1c211f",
+                    "error-container": "#93000a",
+                    "primary-fixed-dim": "#78dc77",
+                    "error": "#ffb4ab",
+                    "secondary-fixed-dim": "#ffba38"
             },
-        }
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "20px",
+                    "lg": "32px",
+                    "xl": "48px",
+                    "margin-mobile": "16px",
+                    "base": "4px",
+                    "sm": "16px",
+                    "margin-desktop": "40px",
+                    "xs": "8px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "label-md": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "headline-md": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
     </script>
 <style>
-        body {
-            background-color: #101413;
-            color: #dfe3e1;
-            font-family: 'Manrope', sans-serif;
-            overflow-x: hidden;
-        }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        .glass-card {
-            background: #152E1B;
+        .premium-card {
+            background-color: #152E1B;
             border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .premium-card:hover {
+            background-color: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .glass-panel {
+            background: rgba(21, 46, 27, 0.6);
             backdrop-filter: blur(12px);
-        }
-        .premium-border {
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-        .animate-glow {
-            animation: glow 4s ease-in-out infinite;
-        }
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.1); }
-            50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.25); }
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
-<body class="flex min-h-screen">
-<!-- SideNavBar -->
-<aside class="hidden md:flex flex-col h-screen w-64 left-0 top-0 bg-surface-container-low border-r border-outline-variant p-md gap-xs sticky top-0">
-<div class="mb-lg px-xs">
-<h1 class="font-headline-sm text-headline-sm font-black text-primary">Kisan Alert AI</h1>
-<p class="font-label-md text-label-md text-on-surface-variant">Enterprise Portal</p>
-</div>
-<nav class="flex-1 space-y-1">
-<a class="flex items-center gap-sm px-sm py-xs bg-primary-container text-on-primary-container rounded-lg transition-all active:scale-98" href="#">
-<span class="material-symbols-outlined">home</span>
-<span class="font-label-md text-label-md">Home</span>
-</a>
-<a class="flex items-center gap-sm px-sm py-xs text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all" href="#">
-<span class="material-symbols-outlined">query_stats</span>
-<span class="font-label-md text-label-md">Disease Map</span>
-</a>
-<a class="flex items-center gap-sm px-sm py-xs text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all" href="#">
-<span class="material-symbols-outlined">potted_plant</span>
-<span class="font-label-md text-label-md">Crop Health</span>
-</a>
-<a class="flex items-center gap-sm px-sm py-xs text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all" href="#">
-<span class="material-symbols-outlined">agriculture</span>
-<span class="font-label-md text-label-md">Soil Metrics</span>
-</a>
-<a class="flex items-center gap-sm px-sm py-xs text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-</nav>
-<div class="mt-auto space-y-md">
-<button class="w-full py-sm bg-secondary-container text-on-secondary-fixed font-semibold rounded-lg hover:brightness-110 transition-all flex items-center justify-center gap-xs">
-<span class="material-symbols-outlined">add_circle</span>
-                Connect Sensor
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden min-h-screen">
+<!-- TopNavBar -->
+<nav class="w-full h-16 bg-surface-container border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop sticky top-0 z-50">
+    <div class="flex items-center gap-sm">
+        <a href="dashboard.html" class="flex items-center gap-sm hover:opacity-90 transition-opacity">
+            <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+                <span class="material-symbols-outlined text-on-primary-container">agriculture</span>
+            </div>
+            <span class="font-headline-md text-body-lg font-bold text-on-surface hidden md:block">Kisan Alert AI</span>
+        </a>
+    </div>
+    
+    <div class="hidden lg:flex gap-md h-full items-center">
+        <a href="dashboard.html" class="h-full flex items-center border-b-2 border-primary text-primary px-xs font-label-md transition-colors nav-link" data-path="dashboard.html">Dashboard</a>
+        <a href="disease-detection.html" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="disease-detection.html">Disease Detection</a>
+        <a href="weather.html" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="weather.html">Weather</a>
+        <a href="/market" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/market">Market Analysis ★</a>
+    </div>
+    
+    <div class="flex items-center gap-sm">
+        <div class="relative group" id="alert-dropdown-container">
+            <button class="relative flex items-center gap-xs px-sm py-xs rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" id="alerts-btn">
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="font-label-md text-label-md">Alerts</span>
+                <span class="absolute top-1 right-2 w-2 h-2 bg-error rounded-full border border-surface-container"></span>
             </button>
-<div class="flex items-center gap-sm p-xs bg-surface-container rounded-xl border border-outline-variant">
-<div class="w-10 h-10 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed">
-<span class="material-symbols-outlined">account_circle</span>
+            
+            <div id="notification-panel" class="absolute right-0 top-full mt-2 w-80 bg-surface-container-high border border-outline-variant rounded-xl shadow-2xl overflow-hidden hidden z-[100] flex flex-col">
+                <div class="p-sm border-b border-outline-variant bg-surface-container flex justify-between items-center">
+                    <span class="font-headline-sm text-on-surface font-bold">Notifications</span>
+                    <button class="text-primary text-label-sm font-bold hover:underline">Mark all read</button>
+                </div>
+                
+                <div class="max-h-80 overflow-y-auto" id="notification-list">
+                    <!-- REAL Alerts -->
+                    <div class="p-xs text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Real-time Alerts</div>
+                    <a href="#" class="flex gap-sm p-sm hover:bg-white/5 transition-colors border-l-2 border-error">
+                        <span class="material-symbols-outlined text-error">warning</span>
+                        <div class="flex flex-col">
+                            <span class="font-label-sm text-on-surface font-bold" id="alert-dryspell-title">Dry Spell Alert</span>
+                            <span class="text-[12px] text-on-surface-variant" id="alert-dryspell-msg">Checking...</span>
+                        </div>
+                    </a>
+                    <a href="#" class="flex gap-sm p-sm hover:bg-white/5 transition-colors border-l-2 border-secondary">
+                        <span class="material-symbols-outlined text-secondary">water_drop</span>
+                        <div class="flex flex-col">
+                            <span class="font-label-sm text-on-surface font-bold">Irrigation Advisory</span>
+                            <span class="text-[12px] text-on-surface-variant" id="alert-irrig-msg">Checking...</span>
+                        </div>
+                    </a>
+                    <a href="#" class="flex gap-sm p-sm hover:bg-white/5 transition-colors border-l-2 border-tertiary">
+                        <span class="material-symbols-outlined text-tertiary">storm</span>
+                        <div class="flex flex-col">
+                            <span class="font-label-sm text-on-surface font-bold">Weather Warning</span>
+                            <span class="text-[12px] text-on-surface-variant">No severe warnings active.</span>
+                        </div>
+                    </a>
+                    
+                    <!-- FUTURE Modules -->
+                    <div class="p-xs text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mt-sm border-t border-outline-variant pt-sm">Future Capabilities</div>
+                    <div class="flex gap-sm p-sm opacity-60">
+                        <span class="material-symbols-outlined text-on-surface-variant">pest_control</span>
+                        <span class="font-label-sm text-on-surface">Disease Risk ★</span>
+                    </div>
+                    <div class="flex gap-sm p-sm opacity-60">
+                        <span class="material-symbols-outlined text-on-surface-variant">bug_report</span>
+                        <span class="font-label-sm text-on-surface">Pest Spread ★</span>
+                    </div>
+                    <div class="flex gap-sm p-sm opacity-60">
+                        <span class="material-symbols-outlined text-on-surface-variant">policy</span>
+                        <span class="font-label-sm text-on-surface">Government Advisory ★</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="flex items-center gap-sm cursor-pointer hover:bg-white/5 p-xs rounded-lg transition-colors" id="nav-profile-btn">
+            <div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+                <img class="w-full h-full object-cover" data-alt="Profile Picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYhbJrJcMI0Be-QX8VgDtnbaE3g_RyVKDTLq_W4EcQzS9cJZXjwTmnUB2g-kJI03LULxn50myUF4WQgWvr6eum1qOl6gcC-ugy8bDqGKa7XH0PGNZRUQXiNahIWBqrPg15bmJr4jqq4PMKt71dWRD32QBc2ropZF_1_jPv9mG8lpVembMIhnOCq7iAJNIhMIgRJ8mRn8nB1LSinBXSrs5vqE81TZ_oQfBR7Jf3zrY8T6ZWu8IcSn_pvJCtTtd9NRLDBdvKGn4zkTob"/>
+            </div>
+            <span class="font-label-md text-on-surface hidden md:block" id="nav-profile-name">Farmer</span>
+        </button>
+    </div>
+</nav>
+
+<!-- Profile Modal (Hidden by default) -->
+<div id="profile-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] hidden items-center justify-center p-md">
+    <div class="bg-surface-container rounded-2xl w-full max-w-md overflow-hidden shadow-2xl border border-outline-variant flex flex-col">
+        <div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-high">
+            <h2 class="font-headline-sm font-bold text-on-surface">Edit Profile</h2>
+            <button id="close-profile-modal" class="material-symbols-outlined text-on-surface-variant hover:text-on-surface">close</button>
+        </div>
+        <div class="p-md space-y-md overflow-y-auto max-h-[70vh]">
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-sm text-on-surface-variant">Name</label>
+                <input type="text" id="prof-name" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-sm py-xs focus:border-primary text-on-surface outline-none">
+            </div>
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-sm text-on-surface-variant">Phone</label>
+                <input type="text" id="prof-phone" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-sm py-xs focus:border-primary text-on-surface outline-none">
+            </div>
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-sm text-on-surface-variant">Village</label>
+                <input type="text" id="prof-village" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-sm py-xs focus:border-primary text-on-surface outline-none">
+            </div>
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-sm text-on-surface-variant">Preferred Crop</label>
+                <input type="text" id="prof-crop" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-sm py-xs focus:border-primary text-on-surface outline-none">
+            </div>
+        </div>
+        <div class="p-md border-t border-outline-variant bg-surface-container-high flex justify-end gap-sm">
+            <button id="cancel-profile" class="px-md py-sm rounded-lg font-label-md text-on-surface hover:bg-surface-variant transition-colors">Cancel</button>
+            <button id="save-profile" class="px-md py-sm bg-primary text-on-primary-container rounded-lg font-bold hover:brightness-110 transition-colors">Save Changes</button>
+        </div>
+    </div>
 </div>
-<div class="overflow-hidden">
-<p class="font-label-sm text-label-sm font-bold truncate">Farmer Rajesh</p>
-<p class="text-[10px] text-on-surface-variant truncate">ID: KA-9421-B</p>
+
+<!-- Navbar & Profile Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Alerts Dropdown Toggle
+    const alertsBtn = document.getElementById('alerts-btn');
+    const notificationPanel = document.getElementById('notification-panel');
+    if (alertsBtn && notificationPanel) {
+        alertsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notificationPanel.classList.toggle('hidden');
+        });
+        document.addEventListener('click', (e) => {
+            if (!alertsBtn.contains(e.target) && !notificationPanel.contains(e.target)) {
+                notificationPanel.classList.add('hidden');
+            }
+        });
+    }
+
+    // 2. Profile Management
+    const profileModal = document.getElementById('profile-modal');
+    const navProfileBtn = document.getElementById('nav-profile-btn');
+    const closeProfileModal = document.getElementById('close-profile-modal');
+    const cancelProfile = document.getElementById('cancel-profile');
+    const saveProfile = document.getElementById('save-profile');
+    const navProfileName = document.getElementById('nav-profile-name');
+
+    const profName = document.getElementById('prof-name');
+    const profPhone = document.getElementById('prof-phone');
+    const profVillage = document.getElementById('prof-village');
+    const profCrop = document.getElementById('prof-crop');
+
+    function loadProfile() {
+        const stored = localStorage.getItem('kisan_user_profile');
+        if (stored) {
+            try {
+                const profile = JSON.parse(stored);
+                if (profName) profName.value = profile.name || '';
+                if (profPhone) profPhone.value = profile.phone || '';
+                if (profVillage) profVillage.value = profile.village || '';
+                if (profCrop) profCrop.value = profile.crop || '';
+                if (navProfileName && profile.name) {
+                    navProfileName.textContent = profile.name.split(' ')[0];
+                }
+            } catch(e) { console.error("Error parsing profile", e); }
+        }
+    }
+
+    function saveProfileData() {
+        const profile = {
+            name: profName.value,
+            phone: profPhone.value,
+            village: profVillage.value,
+            crop: profCrop.value
+        };
+        localStorage.setItem('kisan_user_profile', JSON.stringify(profile));
+        loadProfile();
+        profileModal.classList.add('hidden');
+    }
+
+    if (profileModal && navProfileBtn) {
+        navProfileBtn.addEventListener('click', () => {
+            loadProfile();
+            profileModal.classList.remove('hidden');
+            profileModal.classList.add('flex');
+        });
+        closeProfileModal.addEventListener('click', () => profileModal.classList.add('hidden'));
+        cancelProfile.addEventListener('click', () => profileModal.classList.add('hidden'));
+        saveProfile.addEventListener('click', saveProfileData);
+    }
+
+    loadProfile();
+    
+    // 3. Set Active Nav Link
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if (currentPath.includes(link.dataset.path) || (currentPath === '/' && link.dataset.path === '/dashboard')) {
+            link.classList.remove('border-transparent', 'text-on-surface-variant');
+            link.classList.add('border-primary', 'text-primary');
+        } else {
+            link.classList.add('border-transparent', 'text-on-surface-variant');
+            link.classList.remove('border-primary', 'text-primary');
+        }
+    });
+});
+</script>
+
+<main class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Dashboard Header -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-end mb-xl gap-md">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight">Maharashtra, <span class="text-primary">Kolhapur</span></h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">
+                    Current Season: <span class="text-on-surface font-semibold">Kharif</span> | Live Weather Active
+                </p>
 </div>
-</div>
-</div>
-</aside>
-<!-- Main Content -->
-<main class="flex-1 min-w-0 bg-background relative">
-<!-- Top Navigation (Mobile/Breadcrumb) -->
-<header class="w-full top-0 h-16 bg-surface-container border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop sticky z-10">
-<div class="flex items-center gap-md">
-<div class="md:hidden">
-<span class="material-symbols-outlined text-primary">menu</span>
-</div>
-<div class="flex items-center gap-xs">
-<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">location_on</span>
-<h2 class="font-headline-md text-headline-md font-bold text-primary">Maharashtra, Nashik</h2>
-</div>
-</div>
-<div class="flex items-center gap-md">
-<div class="hidden lg:flex gap-sm">
-<button class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1">Dashboard</button>
-<button class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface">Weather</button>
-<button class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface">Market</button>
-</div>
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-on-surface-variant p-xs hover:bg-white/5 rounded-full cursor-pointer">notifications</span>
-<span class="material-symbols-outlined text-on-surface-variant p-xs hover:bg-white/5 rounded-full cursor-pointer">search</span>
-</div>
+<div class="flex gap-sm">
+<button class="bg-transparent border border-primary text-primary px-lg py-sm rounded-lg font-label-md text-label-md hover:bg-primary/5 transition-all flex items-center gap-xs">
+<span class="material-symbols-outlined">location_on</span>
+                    Update Location
+                </button>
+<button class="bg-secondary-container text-on-secondary-container px-xl py-sm rounded-lg font-headline-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all shadow-lg flex items-center gap-xs">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">scan_delete</span>
+                    Diagnose Crop Disease
+                </button>
 </div>
 </header>
-<div class="p-margin-mobile md:p-margin-desktop max-w-[1440px] mx-auto space-y-md">
-<!-- Dashboard Hero: Bento Grid Layout -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-md">
-<!-- Weather Snapshot (Large Card) -->
-<section class="lg:col-span-8 glass-card premium-border rounded-xl p-md overflow-hidden relative">
-<div class="absolute -top-12 -right-12 w-48 h-48 bg-primary/10 blur-[80px] rounded-full"></div>
-<div class="flex justify-between items-start mb-md">
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-md">
+<!-- Weather Snapshot (Compact Row) -->
+<div class="col-span-12 grid grid-cols-2 md:grid-cols-4 gap-md">
+<div class="premium-card p-md rounded-xl flex items-center gap-md">
+<div class="bg-primary/10 p-sm rounded-lg">
+<span class="material-symbols-outlined text-primary">device_thermostat</span>
+</div>
 <div>
-<p class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Atmospheric Snapshot</p>
-<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Real-time Weather Data</h3>
-</div>
-<span class="material-symbols-outlined text-on-surface-variant">cloud_sync</span>
-</div>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-sm">
-<div class="bg-surface-container-high p-sm rounded-lg border border-outline-variant">
-<span class="material-symbols-outlined text-secondary mb-xs">thermostat</span>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Temperature</p>
-<p class="font-headline-md text-headline-md font-bold">32°C</p>
-</div>
-<div class="bg-surface-container-high p-sm rounded-lg border border-outline-variant">
-<span class="material-symbols-outlined text-primary mb-xs">humidity_mid</span>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Humidity</p>
-<p class="font-headline-md text-headline-md font-bold">45%</p>
-</div>
-<div class="bg-surface-container-high p-sm rounded-lg border border-outline-variant">
-<span class="material-symbols-outlined text-tertiary mb-xs">air</span>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Wind Speed</p>
-<p class="font-headline-md text-headline-md font-bold">12 km/h</p>
-</div>
-<div class="bg-surface-container-high p-sm rounded-lg border border-outline-variant">
-<span class="material-symbols-outlined text-error mb-xs">umbrella</span>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Precipitation</p>
-<p class="font-headline-md text-headline-md font-bold">0%</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Temperature</p>
+<p class="font-headline-md text-headline-md text-on-surface">32°C</p>
 </div>
 </div>
-</section>
-<!-- Soil Profile (Compact Stats) -->
-<section class="lg:col-span-4 glass-card premium-border rounded-xl p-md">
-<div class="flex items-center gap-xs mb-md">
-<span class="material-symbols-outlined text-primary">grass</span>
-<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Soil Health (NPK)</h3>
+<div class="premium-card p-md rounded-xl flex items-center gap-md">
+<div class="bg-primary/10 p-sm rounded-lg">
+<span class="material-symbols-outlined text-primary">humidity_percentage</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Humidity</p>
+<p class="font-headline-md text-headline-md text-on-surface">45%</p>
+</div>
+</div>
+<div class="premium-card p-md rounded-xl flex items-center gap-md">
+<div class="bg-primary/10 p-sm rounded-lg">
+<span class="material-symbols-outlined text-primary">rainy</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Rainfall</p>
+<p class="font-headline-md text-headline-md text-on-surface">12mm</p>
+</div>
+</div>
+<div class="premium-card p-md rounded-xl flex items-center gap-md">
+<div class="bg-primary/10 p-sm rounded-lg">
+<span class="material-symbols-outlined text-primary">emoji_transportation</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">ET0</p>
+<p class="font-headline-md text-headline-md text-on-surface">4.5<span class="text-body-md font-normal">mm/d</span></p>
+</div>
+</div>
+</div>
+<!-- Left Column: Soil & Irrigation -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-md">
+<!-- Soil Profile Card -->
+<div class="premium-card p-md rounded-xl h-full">
+<div class="flex items-center gap-xs mb-md border-b border-outline-variant pb-sm">
+<span class="material-symbols-outlined text-primary">landscape</span>
+<h2 class="font-headline-md text-body-lg">Soil Profile: <span class="text-primary">Black Soil</span></h2>
 </div>
 <div class="space-y-sm">
-<div class="space-y-1">
-<div class="flex justify-between text-label-sm font-label-sm">
-<span>Nitrogen (N)</span>
-<span class="text-primary">Optimum</span>
+<div class="flex justify-between items-center text-label-md mb-xs">
+<span class="text-on-surface-variant">Nitrogen (N)</span>
+<span class="text-on-surface font-semibold">High</span>
 </div>
-<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
-<div class="h-full bg-primary" style="width: 72%;"></div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[82%]"></div>
 </div>
+<div class="flex justify-between items-center text-label-md mb-xs pt-xs">
+<span class="text-on-surface-variant">Phosphorus (P)</span>
+<span class="text-on-surface font-semibold">Optimal</span>
 </div>
-<div class="space-y-1">
-<div class="flex justify-between text-label-sm font-label-sm">
-<span>Phosphorus (P)</span>
-<span class="text-secondary">Low</span>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
 </div>
-<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
-<div class="h-full bg-secondary" style="width: 34%;"></div>
+<div class="flex justify-between items-center text-label-md mb-xs pt-xs">
+<span class="text-on-surface-variant">Potassium (K)</span>
+<span class="text-on-surface font-semibold">Moderate</span>
 </div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[48%]"></div>
 </div>
-<div class="space-y-1">
-<div class="flex justify-between text-label-sm font-label-sm">
-<span>Potassium (K)</span>
-<span class="text-primary">Optimum</span>
-</div>
-<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
-<div class="h-full bg-primary" style="width: 88%;"></div>
-</div>
-</div>
-<p class="text-[11px] text-on-surface-variant italic pt-xs border-t border-outline-variant mt-sm">Last updated: 2 hours ago via LoRaWAN node #12</p>
-</div>
-</section>
-</div>
-<!-- Second Row: Recommendations & Alerts -->
-<div class="grid grid-cols-1 xl:grid-cols-12 gap-md">
-<!-- Top Crop Recommendations -->
-<section class="xl:col-span-8">
-<div class="flex justify-between items-end mb-sm px-xs">
-<h3 class="font-headline-md text-headline-md font-bold">Top Crop Recommendations</h3>
-<button class="text-primary font-label-md text-label-md hover:underline">View All Analysis</button>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-<!-- Recommendation Card 1 -->
-<div class="glass-card premium-border rounded-xl p-sm flex flex-col hover:bg-white/5 transition-all cursor-pointer group">
-<div class="w-full h-32 rounded-lg mb-sm overflow-hidden bg-surface-container-highest">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up macro photography of high-quality red onion crops in a sunny field in Nashik, Maharashtra. The lighting is warm and golden-hour style, highlighting the organic textures of the crop. The background is a soft, professional blur of lush green agricultural land. Photorealistic, technical, premium agritech aesthetic with deep forest greens and amber accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsTWYpHVPvJVlv44Eq2z7qbt27-xT9itCzxCNdVJVe_m5ONtJOqkqS0ztI8mFk3x9O1-dL_C1xxnjg8nkS0FBSezzewO2FziwrSRL1U1eAAHaVVTzG9glhO1x36tQbEB27Lly-3w03WEHDox39TQDn6CBuNrpcgzbNT6VWahDeEi17l2uBciV0ouFXbrOspUNqTNQySF6U2dj53j_76KqEZFYCWderFPq0Xg7NFZ92tjHoidGuPim_SKn4wj1usub-Cz0y7JAv3i-N"/>
-</div>
-<div class="flex justify-between items-start mb-xs">
-<h4 class="font-label-md text-label-md font-bold">Red Onions</h4>
-<span class="bg-primary/10 text-primary px-xs py-0.5 rounded text-[10px] font-bold">94% MATCH</span>
-</div>
-<p class="text-[12px] text-on-surface-variant mb-md leading-relaxed">High suitability due to current soil pH (6.5) and predicted low rainfall next week.</p>
-<button class="mt-auto w-full py-1.5 border border-outline-variant text-[12px] rounded font-bold hover:bg-surface-variant transition-colors">Details</button>
-</div>
-<!-- Recommendation Card 2 -->
-<div class="glass-card premium-border rounded-xl p-sm flex flex-col hover:bg-white/5 transition-all cursor-pointer group">
-<div class="w-full h-32 rounded-lg mb-sm overflow-hidden bg-surface-container-highest">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Overhead professional drone shot of a neat tomato vineyard in India. The plants are healthy and vibrantly green with small ripening tomatoes. The soil is dark and moist, showing expert precision irrigation. High-end agricultural photography for a corporate SaaS interface. Lighting is bright and clear." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZCyDpitmWudeiTcbiQkX4_zBYgUc6YfDurrhKVtKH6oTeA7pNjSTpbRTG7RBMeyivcsWGvAx8tMFdblvvWZgRB-Wam_i__5fXO2mPv0iRBH4zLX4fz1EpWPE76UItdm_GcK2CoR1NYPhl1VUgYzwq7nZ9DZ5ym6EKYmtbz3I4ACQ-rSAVT3RdidFipnkJTQTvhywqSRRK6eeCyOKQ69xPEbnIJqz44fpRRdGuqNfbNfbm1XHXH4W6RnRbwtC4kV5BSL0-9dLijCMa"/>
-</div>
-<div class="flex justify-between items-start mb-xs">
-<h4 class="font-label-md text-label-md font-bold">Vine Tomatoes</h4>
-<span class="bg-primary/10 text-primary px-xs py-0.5 rounded text-[10px] font-bold">88% MATCH</span>
-</div>
-<p class="text-[12px] text-on-surface-variant mb-md leading-relaxed">Moderate Nitrogen levels and consistent daytime heat favor rapid growth cycle.</p>
-<button class="mt-auto w-full py-1.5 border border-outline-variant text-[12px] rounded font-bold hover:bg-surface-variant transition-colors">Details</button>
-</div>
-<!-- Recommendation Card 3 -->
-<div class="glass-card premium-border rounded-xl p-sm flex flex-col hover:bg-white/5 transition-all cursor-pointer group">
-<div class="w-full h-32 rounded-lg mb-sm overflow-hidden bg-surface-container-highest">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Macro view of green soybean leaves with water droplets in a modern experimental farm. Tech-driven agriculture style with soft ambient focus. Colors are natural but saturated, focusing on health and vitality. Clean, corporate visual for agritech monitoring." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3FV1ie1Nr7NA6_qKZ54uhxBUhFuurkxD3ZpUplFLi5laTtbVZOqzW-P6NK5_4A_KGGSZOnOS2LfiHd6P-vMn884RVHooisUer641Rg7_PMer7dlrjg2DfNZTO3xp5LP2_U8pII3UgNigzhdXdcDU-ueVAuungZujjaFrRRukqUNSfX8u88IboMEqkCGVcYRKapMG3BvuQ9WhmZOSubexfCDmOKgsCdDt5N8GB9IWdt-J1OcLxigtl5yloTJiPE7BmW5HRP6ebwNy5"/>
-</div>
-<div class="flex justify-between items-start mb-xs">
-<h4 class="font-label-md text-label-md font-bold">Soybeans</h4>
-<span class="bg-secondary/10 text-secondary px-xs py-0.5 rounded text-[10px] font-bold">82% MATCH</span>
-</div>
-<p class="text-[12px] text-on-surface-variant mb-md leading-relaxed">Requires Phosphorus supplement. Predicted wind patterns are favorable.</p>
-<button class="mt-auto w-full py-1.5 border border-outline-variant text-[12px] rounded font-bold hover:bg-surface-variant transition-colors">Details</button>
+<div class="mt-lg pt-md border-t border-outline-variant flex items-center justify-between">
+<span class="text-label-md text-on-surface-variant">Soil pH Level</span>
+<div class="flex items-center gap-xs">
+<span class="px-sm py-xs bg-primary/10 text-primary rounded-lg font-bold">7.2</span>
+<span class="text-label-sm text-on-surface-variant">Neutral</span>
 </div>
 </div>
-</section>
-<!-- Irrigation & Alerts (Urgent Sidebar) -->
-<section class="xl:col-span-4 space-y-md">
+</div>
+</div>
+<!-- Dry Spell Alert -->
+<div class="bg-primary-container/10 border border-primary-container/30 p-md rounded-xl flex items-center gap-md">
+<div class="bg-primary-container text-on-primary-container p-sm rounded-full shrink-0">
+<span class="material-symbols-outlined">verified</span>
+</div>
 <div>
-<h3 class="font-headline-sm text-headline-sm font-bold mb-sm px-xs">Critical Advisories</h3>
+<p class="font-label-md text-label-md font-bold text-primary">No Dry Spell Risks</p>
+<p class="text-label-sm text-on-surface-variant">Atmospheric moisture levels are stable for the next 10 days.</p>
+</div>
+</div>
+</div>
+<!-- Middle Column: Crop Recommendations -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-md">
+<div class="premium-card p-md rounded-xl h-full">
+<div class="flex items-center justify-between mb-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary">potted_plant</span>
+<h2 class="font-headline-md text-body-lg">Top Crop Recommendations</h2>
+</div>
+<span class="text-label-sm text-on-surface-variant font-medium">Confidence based on Soil + Weather</span>
+</div>
 <div class="space-y-sm">
-<!-- Urgent Card 1 -->
-<div class="bg-error-container/20 border border-error/30 rounded-xl p-md animate-glow">
-<div class="flex items-start gap-sm">
-<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+<!-- Cotton -->
+<div class="premium-card p-sm rounded-lg flex items-center justify-between hover:bg-primary/5 cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up macro photography of a blooming white cotton flower in a vibrant green field. The morning dew drops are visible on the fibers, reflecting the bright sunlight. High fidelity agricultural photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCklVvO184BDlEscgITl8rpj17SG5AfbJk1RCrkYcvx0FoSYFOUU10hcnk-zLIBwQyJVXIDltQ3fApst1UhvFRg4kilXqwYMCfWThwkE4u_9Nyxm7OD7OdF-gTcmRSe7EyhbrZuaF2eANojMrmg96sc-gMzxjt0uMqLVJxyGL0x_NN5c6sGMtI399R0BQwA3aKFQC9Pwb9-hmM-ub5UtVCxRvOYST58Y1OW2b23zryWUoeAinY-k5ADTlPUpbjl996V-_gH9pM8GlxA"/>
+</div>
 <div>
-<p class="font-label-md text-label-md font-bold text-error">Dry Spell Alert</p>
-<p class="text-[13px] text-on-error-container mt-1">High probability of zero rainfall for the next 10 days. Increase reservoir storage by 15% immediately.</p>
+<h3 class="font-bold text-on-surface">Cotton</h3>
+<p class="text-label-sm text-on-surface-variant">Kharif • Low Water Need</p>
 </div>
 </div>
+<div class="text-right">
+<p class="text-headline-md font-bold text-primary">89%</p>
+<p class="text-label-sm text-primary/70 uppercase">Match</p>
 </div>
-<!-- Urgent Card 2 -->
-<div class="bg-secondary-container/10 border border-secondary/30 rounded-xl p-md">
-<div class="flex items-start gap-sm">
-<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<!-- Soybean -->
+<div class="premium-card p-sm rounded-lg flex items-center justify-between hover:bg-primary/5 cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Rows of healthy green soybean plants growing in rich dark soil during the peak of summer. The perspective is from ground level looking down the row, with soft background bokeh. Cinematic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5nMXjsoZuIRVRtQVVEQB54YQpGAZUBDAOI_chkAIvNPrgzzLBMu02RM_eZijghOk_iV2-Hr6CPQVxdNtx8fs5tGLLnDYfHiYfpKU5zXcaTaT4Jmyqn0Hr4OwUsM0T3mKblnOde1Ajipjwg1P796grZvoffcgW1RceqLxYQ9nKAI5cpKpKIWhx5lE-d3Eg7UrslOTXhnYIxyzjj19jNzTDTDgWE6jD9ZHBmSJanw0ZFzoCDG9iL6Gq-ifjhypKCJXR8cLXMenEMJlQ"/>
+</div>
 <div>
-<p class="font-label-md text-label-md font-bold text-secondary">Irrigation Schedule</p>
-<p class="text-[13px] text-on-secondary-container mt-1">AI recommends drip irrigation activation today at 18:00 IST for Block A-4 to mitigate heat stress.</p>
+<h3 class="font-bold text-on-surface">Soybean</h3>
+<p class="text-label-sm text-on-surface-variant">Kharif • Moderate Water Need</p>
 </div>
 </div>
-<button class="mt-md w-full py-2 bg-secondary-container text-on-secondary-fixed font-bold rounded-lg text-sm transition-transform active:scale-95">Enable Auto-Flow</button>
+<div class="text-right">
+<p class="text-headline-md font-bold text-primary">76%</p>
+<p class="text-label-sm text-primary/70 uppercase">Match</p>
+</div>
+</div>
+<!-- Sugarcane -->
+<div class="premium-card p-sm rounded-lg flex items-center justify-between hover:bg-primary/5 cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Dense sugarcane plantation with tall, green leaves reaching towards a clear blue sky. The thick stalks are visible in the foreground. High-resolution textures of the agricultural landscape." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0b5vKW_iJCwWWumZ7kEusfuS3s6kXxO0-9BGZvM_tiWtM4e3XxiHBUPTtavIvyP_6KHvcXl1uYysyTYoiAnj6JiFK8DmYlLFMgTfpli4qZhXZDdlIqqiir-4Jy92Eo9Wy3baRdc-XXAdHHV7Q-VNjNT2kNeGYJok5Yny1_P1LzV8LOQcAvdT720ivrik2yPdA_HALx6_rgGq7JfxNpzateIVnC_I8GH5OoF9KetatGywjnM9Gblqsq9tQwAIsgDAqrfTNPLxzfX0S"/>
+</div>
+<div>
+<h3 class="font-bold text-on-surface">Sugarcane</h3>
+<p class="text-label-sm text-on-surface-variant">Year-round • Moderate Water</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-bold text-on-surface-variant">61%</p>
+<p class="text-label-sm text-on-surface-variant uppercase">Match</p>
 </div>
 </div>
 </div>
-</section>
 </div>
 </div>
-<!-- Floating Action Button -->
-<button class="fixed bottom-lg right-lg md:bottom-xl md:right-xl z-50 flex items-center gap-sm bg-primary-container text-on-primary-container px-lg py-md rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden">
-<span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform">camera</span>
-<span class="font-label-md text-label-md font-bold">Diagnose Crop Disease</span>
-<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-</button>
+<!-- Right Column: Irrigation Advisory -->
+<div class="col-span-12 lg:col-span-3 flex flex-col gap-md">
+<div class="premium-card p-md rounded-xl bg-gradient-to-br from-[#152E1B] to-[#0B2010] h-full flex flex-col">
+<div class="flex items-center gap-xs mb-lg">
+<span class="material-symbols-outlined text-primary">water_drop</span>
+<h2 class="font-headline-md text-body-lg">Irrigation Advisory</h2>
+</div>
+<div class="space-y-lg flex-grow">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-widest mb-1">Current Crop Stage</p>
+<p class="text-headline-md text-on-surface font-bold">Vegetative</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-widest mb-1">Daily Water Demand</p>
+<div class="flex items-baseline gap-xs">
+<p class="text-display-lg text-primary leading-none">0.97</p>
+<p class="text-body-md text-on-surface-variant">mm/day</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md pt-md border-t border-outline-variant">
+<div>
+<p class="text-label-sm text-on-surface-variant mb-1">7-day Deficit</p>
+<p class="text-body-lg font-bold text-on-surface">0.0mm</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant mb-1">Urgency</p>
+<p class="text-body-lg font-bold text-primary">Low</p>
+</div>
+</div>
+</div>
+<div class="mt-xl pt-md">
+<button class="w-full bg-primary/10 border border-primary/20 text-primary py-sm rounded-lg hover:bg-primary/20 transition-all font-label-md">
+                            View Irrigation History
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Bottom Action Area -->
+<div class="mt-xl p-lg rounded-2xl glass-panel relative overflow-hidden">
+<div class="absolute right-0 top-0 w-1/3 h-full opacity-10 pointer-events-none">
+
+</div>
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-lg text-center md:text-left">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Precision Farming at Your Fingertips</h3>
+<p class="text-body-md text-on-surface-variant mt-xs">Integrate IoT soil sensors to get real-time NPK and moisture alerts directly to your dashboard.</p>
+</div>
+<button class="bg-primary text-on-primary-container px-xl py-md rounded-xl font-bold hover:brightness-105 active:scale-95 transition-all shrink-0">
+                    Connect IoT Sensor
+                </button>
+</div>
+</div>
+</main>
 <!-- Footer -->
-<footer class="mt-xl border-t border-outline-variant bg-surface-container-lowest py-md">
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant w-full py-md mt-xl">
 <div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop w-full max-w-[1440px] mx-auto gap-md">
-<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Kisan Alert AI. Precision Agriculture Systems.</p>
+<div class="flex flex-col md:flex-row items-center gap-lg">
+<span class="font-label-md text-label-md font-bold text-on-surface">Kisan Alert AI</span>
 <div class="flex gap-md">
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Privacy Policy</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Terms of Service</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Help Center</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Help Center</a>
 </div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-80">© 2024 Kisan Alert AI. Precision Agriculture Systems.</p>
 </div>
 </footer>
-</main>
-<!-- Mobile Navigation Shell -->
-<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-surface-container border-t border-outline-variant flex justify-around items-center z-40 px-sm">
-<button class="flex flex-col items-center gap-1 text-primary">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
-<span class="text-[10px] font-bold">Home</span>
-</button>
-<button class="flex flex-col items-center gap-1 text-on-surface-variant">
-<span class="material-symbols-outlined">query_stats</span>
-<span class="text-[10px]">Stats</span>
-</button>
-<button class="flex flex-col items-center gap-1 text-on-surface-variant">
-<span class="material-symbols-outlined">analytics</span>
-<span class="text-[10px]">Crop</span>
-</button>
-<button class="flex flex-col items-center gap-1 text-on-surface-variant">
-<span class="material-symbols-outlined">settings</span>
-<span class="text-[10px]">Menu</span>
-</button>
-</nav>
+
+<!-- Floating AI Copilot Button -->
+<div class="fixed bottom-8 right-8 z-50 flex flex-col items-center gap-sm">
+  <div class="bg-surface-bright/80 backdrop-blur-sm text-primary px-3 py-1 rounded-full text-label-sm font-medium border border-outline-variant animate-pulse">
+    🟢 AI Ready
+  </div>
+  <button id="ai-copilot-launcher" class="relative w-[72px] h-[72px] rounded-full bg-[#101413]/80 backdrop-blur-md border border-[#4caf50]/50 shadow-[0_0_20px_rgba(76,175,80,0.3)] flex items-center justify-center transition-all hover:scale-105 hover:brightness-110 active:scale-95 group">
+    <div class="absolute inset-0 rounded-full bg-primary/10 animate-ping opacity-20"></div>
+    <span class="material-symbols-outlined text-primary text-[32px] relative z-10">mic</span>
+  </button>
+  <div id="copilot-ripple" class="fixed inset-0 bg-primary rounded-full scale-0 pointer-events-none z-[60] transition-transform duration-700 ease-in-out"></div>
+  <script>
+    (function() {
+      const btn = document.getElementById('ai-copilot-launcher');
+      const ripple = document.getElementById('copilot-ripple');
+      const main = document.querySelector('main');
+      const nav = document.querySelector('nav');
+      const footer = document.querySelector('footer');
+
+      btn.addEventListener('click', () => {
+        ripple.style.transform = 'scale(100)';
+        setTimeout(() => {
+          if (main) main.style.opacity = '0';
+          if (nav) nav.style.opacity = '0';
+          if (footer) footer.style.opacity = '0';
+          if (main) main.style.transition = 'opacity 0.5s ease';
+          if (nav) nav.style.transition = 'opacity 0.5s ease';
+          if (footer) footer.style.transition = 'opacity 0.5s ease';
+        }, 200);
+        setTimeout(() => {
+          window.location.href = 'copilot.html';
+        }, 700);
+      });
+    })();
+  </script>
+</div>
+
 <script>
-        // Micro-interactions for the dashboard
-        document.querySelectorAll('.glass-card').forEach(card => {
+        // Micro-interaction for cards
+        document.querySelectorAll('.premium-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
-                card.style.borderColor = 'rgba(120, 220, 119, 0.4)';
+                card.style.transform = 'translateY(-2px)';
             });
             card.addEventListener('mouseleave', () => {
-                card.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                card.style.transform = 'translateY(0px)';
             });
         });
 
-        // Diagnostic Action Trigger
-        const diagnosticBtn = document.querySelector('button[class*="fixed"]');
-        diagnosticBtn.addEventListener('click', () => {
-            console.log('Diagnostic Module Initializing...');
-            // In a real app, this would trigger the camera/upload UI
-            alert('Disease Detection Module: Please upload or capture an image of the affected crop area.');
-        });
+        // ═══════════════════════════════════════════════════════════════
+        // API INTEGRATION — Populate Dashboard from localStorage
+        // ═══════════════════════════════════════════════════════════════
+
+        (function populateDashboard() {
+            const raw = localStorage.getItem('kisan_dashboard_data');
+            if (!raw) {
+                // No data — redirect to location setup
+                window.location.href = 'location-setup.html';
+                return;
+            }
+
+            const data = JSON.parse(raw);
+            const loc = data.location || {};
+            const soil = data.soil || {};
+            const weather = data.weather || {};
+            const crops = (data.crop_recommendations || {}).recommendations || [];
+            const irrig = data.irrigation || {};
+            const drySpell = data.dry_spell || {};
+            const season = data.season || 'Kharif';
+
+            // ── Header: Location & Season ──
+            const headerH1 = document.querySelector('main header h1');
+            if (headerH1) {
+                headerH1.innerHTML = `${loc.state || 'India'}, <span class="text-primary">${loc.district || 'District'}</span>`;
+            }
+            const headerP = document.querySelector('main header p');
+            if (headerP) {
+                headerP.innerHTML = `Current Season: <span class="text-on-surface font-semibold">${season}</span> | Live Weather Active`;
+            }
+
+            // ── User Profile ──
+            const rawProfile = localStorage.getItem('kisan_user_profile');
+            if (rawProfile) {
+                const profile = JSON.parse(rawProfile);
+                const navProfileName = document.getElementById('nav-profile-name');
+                if (navProfileName) navProfileName.textContent = profile.name;
+            }
+
+            // ── Notifications Panel ──
+            const alertsBtn = document.getElementById('alerts-btn');
+            const notifPanel = document.getElementById('notification-panel');
+            const notifList = document.getElementById('notification-list');
+            
+            alertsBtn.addEventListener('click', () => {
+                notifPanel.classList.toggle('hidden');
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!alertsBtn.contains(e.target) && !notifPanel.contains(e.target)) {
+                    notifPanel.classList.add('hidden');
+                }
+            });
+
+            // Populate Notifications
+            const notifications = [];
+            
+            // 1. Real Weather/Dry Spell Alert
+            if (drySpell.alert) {
+                notifications.push(`
+                    <div class="p-md border-b border-outline-variant hover:bg-surface-container-highest cursor-pointer flex gap-sm">
+                        <span class="material-symbols-outlined text-error mt-1">warning</span>
+                        <div>
+                            <p class="font-label-md text-on-surface font-bold">Dry Spell Alert</p>
+                            <p class="text-label-sm text-on-surface-variant">${drySpell.message || 'Irrigation needed.'}</p>
+                        </div>
+                    </div>
+                `);
+            } else {
+                notifications.push(`
+                    <div class="p-md border-b border-outline-variant hover:bg-surface-container-highest cursor-pointer flex gap-sm">
+                        <span class="material-symbols-outlined text-primary mt-1">verified</span>
+                        <div>
+                            <p class="font-label-md text-on-surface font-bold">Weather Stable</p>
+                            <p class="text-label-sm text-on-surface-variant">No immediate weather threats detected.</p>
+                        </div>
+                    </div>
+                `);
+            }
+
+            // 2. Dummy Alerts (Future Modules)
+            const futureModules = [
+                { title: "Pest Spread Prediction ★", desc: "Future Module: AI-driven local pest spread." },
+                { title: "Government Scheme Intelligence ★", desc: "Future Module: New subsidy matching your profile." }
+            ];
+
+            futureModules.forEach(mod => {
+                notifications.push(`
+                    <div class="p-md border-b border-outline-variant hover:bg-surface-container-highest cursor-pointer flex gap-sm opacity-70">
+                        <span class="material-symbols-outlined text-secondary mt-1">explore</span>
+                        <div>
+                            <p class="font-label-md text-on-surface font-bold">${mod.title}</p>
+                            <p class="text-label-sm text-on-surface-variant">${mod.desc}</p>
+                        </div>
+                    </div>
+                `);
+            });
+
+            notifList.innerHTML = notifications.join('');
+
+            // ── Weather Snapshot Cards ──
+            const weatherCards = document.querySelectorAll('.col-span-12.grid .premium-card');
+            if (weatherCards.length >= 4) {
+                // Temperature
+                weatherCards[0].querySelector('.font-headline-md:last-child, p.font-headline-md').textContent = `${Math.round(weather.current_temp || 0)}°C`;
+                // Humidity
+                weatherCards[1].querySelector('.font-headline-md:last-child, p.font-headline-md').textContent = `${Math.round(weather.current_humidity || 0)}%`;
+                // Rainfall
+                weatherCards[2].querySelector('.font-headline-md:last-child, p.font-headline-md').textContent = `${Math.round(weather.total_7day_rain || 0)}mm`;
+                // ET0
+                const daily = weather.daily || [];
+                const avgET0 = daily.length > 0
+                    ? (daily.reduce((sum, d) => sum + (d.et0 || 0), 0) / daily.length).toFixed(1)
+                    : '0.0';
+                const et0El = weatherCards[3].querySelector('.font-headline-md:last-child, p.font-headline-md');
+                if (et0El) et0El.innerHTML = `${avgET0}<span class="text-body-md font-normal">mm/d</span>`;
+            }
+
+            // ── Soil Profile Card ──
+            const soilHeader = document.querySelector('h2 .text-primary');
+            if (soilHeader && soilHeader.closest('h2').textContent.includes('Soil')) {
+                soilHeader.textContent = soil.soil_type || 'Unknown';
+            }
+
+            // NPK progress bars
+            const soilBars = document.querySelectorAll('.lg\\:col-span-4 .premium-card .w-full.bg-surface-container-high .bg-primary');
+            if (soilBars.length >= 3) {
+                const nPercent = Math.min(100, Math.round((soil.N || 0) / 300 * 100));
+                const pPercent = Math.min(100, Math.round((soil.P || 0) / 50 * 100));
+                const kPercent = Math.min(100, Math.round((soil.K || 0) / 300 * 100));
+                soilBars[0].style.width = `${nPercent}%`;
+                soilBars[1].style.width = `${pPercent}%`;
+                soilBars[2].style.width = `${kPercent}%`;
+            }
+
+            // NPK labels
+            const npkLabels = document.querySelectorAll('.lg\\:col-span-4 .premium-card .flex.justify-between .text-on-surface.font-semibold');
+            if (npkLabels.length >= 3) {
+                npkLabels[0].textContent = soil.N > 200 ? 'High' : soil.N > 100 ? 'Moderate' : 'Low';
+                npkLabels[1].textContent = soil.P > 30 ? 'High' : soil.P > 15 ? 'Optimal' : 'Low';
+                npkLabels[2].textContent = soil.K > 200 ? 'High' : soil.K > 100 ? 'Moderate' : 'Low';
+            }
+
+            // pH value
+            const phBadge = document.querySelector('.px-sm.py-xs.bg-primary\\/10.text-primary.rounded-lg.font-bold');
+            if (phBadge) phBadge.textContent = (soil.pH || 7.0).toFixed(1);
+            const phLabel = phBadge?.nextElementSibling;
+            if (phLabel) {
+                const ph = soil.pH || 7.0;
+                phLabel.textContent = ph < 6.5 ? 'Acidic' : ph > 7.5 ? 'Alkaline' : 'Neutral';
+            }
+
+            // ── Dry Spell Alert ──
+            const drySpellCard = document.querySelector('.bg-primary-container\\/10');
+            if (drySpellCard) {
+                const severity = drySpell.severity || 'LOW';
+                const isAlert = drySpell.alert || false;
+                const msg = drySpell.message || 'No data available.';
+                const labelEl = drySpellCard.querySelector('.font-label-md.font-bold');
+                const msgEl = drySpellCard.querySelector('.text-label-sm');
+                const iconEl = drySpellCard.querySelector('.material-symbols-outlined');
+
+                if (isAlert) {
+                    drySpellCard.className = drySpellCard.className
+                        .replace('bg-primary-container/10', 'bg-error-container/20')
+                        .replace('border-primary-container/30', 'border-error/30');
+                    if (labelEl) { labelEl.textContent = `${severity} Dry Spell Risk`; labelEl.classList.replace('text-primary', 'text-error'); }
+                    if (iconEl) { iconEl.textContent = 'warning'; iconEl.closest('div').classList.replace('bg-primary-container', 'bg-error-container'); }
+                } else {
+                    if (labelEl) labelEl.textContent = 'No Dry Spell Risks';
+                }
+                if (msgEl) msgEl.textContent = msg;
+            }
+
+            // ── Crop Recommendations ──
+            const cropCards = document.querySelectorAll('.lg\\:col-span-5 .premium-card.p-sm');
+            const cropEmojis = {
+                'Wheat': '🌾', 'Rice': '🌾', 'Maize': '🌽', 'Cotton': '☁️', 'Sugarcane': '🎋',
+                'Soybean': '🌱', 'Chickpea': '🌱', 'Mustard': '🌼', 'Potato': '🥔', 'Coconut': '🥥',
+                'Banana': '🍌', 'Groundnut': '🥜', 'Mungbean': '🌱', 'Watermelon': '🍉', 'Lentil': '🌱',
+                'Mothbeans': '🌱', 'Bajra': '🌾'
+            };
+
+            crops.slice(0, 3).forEach((crop, i) => {
+                if (cropCards[i]) {
+                    const nameEl = cropCards[i].querySelector('h3');
+                    const seasonEl = cropCards[i].querySelector('.text-label-sm');
+                    const confEl = cropCards[i].querySelector('.text-headline-md');
+                    const matchLabel = cropCards[i].querySelector('.text-label-sm.uppercase');
+
+                    if (nameEl) nameEl.textContent = crop.crop || 'Unknown';
+                    if (seasonEl) {
+                        const waterNeed = crop.water_need || 'Medium';
+                        seasonEl.textContent = `${crop.season || season} • ${waterNeed} Water Need`;
+                    }
+                    if (confEl) confEl.textContent = `${Math.round((crop.confidence || 0) * 100)}%`;
+                }
+            });
+
+            // ── Irrigation Advisory ──
+            const irrigSection = document.querySelector('.lg\\:col-span-3 .premium-card');
+            if (irrigSection) {
+                const stageEl = irrigSection.querySelector('.text-headline-md.text-on-surface.font-bold');
+                if (stageEl) stageEl.textContent = 'Vegetative';
+
+                const demandEl = irrigSection.querySelector('.text-display-lg');
+                if (demandEl) demandEl.textContent = (irrig.etc_daily || 0).toFixed(2);
+
+                const gridItems = irrigSection.querySelectorAll('.grid-cols-2 > div');
+                if (gridItems.length >= 2) {
+                    const deficitEl = gridItems[0].querySelector('.text-body-lg');
+                    const urgencyEl = gridItems[1].querySelector('.text-body-lg');
+                    if (deficitEl) deficitEl.textContent = `${(irrig.water_deficit_7day || 0).toFixed(1)}mm`;
+                    if (urgencyEl) {
+                        urgencyEl.textContent = irrig.urgency || 'Low';
+                        urgencyEl.className = urgencyEl.className.replace('text-primary', '');
+                        const urgColor = { HIGH: 'text-error', MEDIUM: 'text-secondary', LOW: 'text-primary', NONE: 'text-primary' };
+                        urgencyEl.classList.add(urgColor[irrig.urgency] || 'text-primary');
+                    }
+                }
+            }
+
+            // ── Navigation: Disease Detection button ──
+            const diagnoseBtn = document.querySelector('button .material-symbols-outlined[style*="FILL"]')?.closest('button');
+            if (diagnoseBtn && diagnoseBtn.textContent.includes('Diagnose')) {
+                diagnoseBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.location.href = 'disease-detection.html';
+                });
+            }
+
+            // ── Navigation: Update Location button ──
+            const updateLocBtn = Array.from(document.querySelectorAll('button')).find(b => b.textContent.includes('Update Location'));
+            if (updateLocBtn) {
+                updateLocBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.location.href = 'location-setup.html';
+                });
+            }
+
+            // ── Nav links ──
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                if (link.textContent.includes('Disease Detection')) {
+                    link.href = 'disease-detection.html';
+                } else if (link.textContent.includes('Dashboard')) {
+                    link.href = 'dashboard.html';
+                }
+            });
+
+        })();
     </script>
 <script src="assets/js/firebase-config.js"></script>
 <script type="module" src="assets/js/protect-route.js"></script>
