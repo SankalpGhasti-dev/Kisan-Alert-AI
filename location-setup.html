@@ -299,7 +299,7 @@
             const state = stateSelect.value;
             districtSelect.innerHTML = '<option disabled selected value="">Loading...</option>';
             try {
-                const resp = await fetch(`/api/dashboard/districts?state=${encodeURIComponent(state)}`);
+                const resp = await fetch(window.API_BASE_URL + `/api/dashboard/districts?state=${encodeURIComponent(state)}`);
                 const data = await resp.json();
                 if (data.success && data.districts) {
                     districtSelect.innerHTML = '<option disabled selected value="">Select District</option>';
