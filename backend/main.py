@@ -79,70 +79,8 @@ app.include_router(dashboard.router, prefix="/api/dashboard", tags=["Dashboard"]
 app.include_router(copilot.router, prefix="/api/copilot", tags=["Copilot"])
 app.include_router(voice.router, prefix="/api/voice", tags=["Voice"])
 
-# ─────────────────────────────────────────────────────────────
-# Serve frontend static assets (images, css, js inside frontend/)
-# ─────────────────────────────────────────────────────────────
-FRONTEND_DIR = PROJECT_ROOT / "frontend"
-app.mount("/static/frontend", StaticFiles(directory=str(FRONTEND_DIR)), name="frontend_static")
-
-# ─────────────────────────────────────────────────────────────
-# HTML Page Routes — FastAPI serves the frontend directly
-# ─────────────────────────────────────────────────────────────
-
-@app.get("/", response_class=HTMLResponse)
-async def page_auth_landing():
-    """Auth Landing Page — entry point of the application."""
-    html_path = FRONTEND_DIR / "kisan_alert_ai_auth_landing" / "code.html"
-    return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
 
 
-@app.get("/location-setup", response_class=HTMLResponse)
-async def page_location_setup():
-    """Location Setup Page — user selects state, district."""
-    html_path = FRONTEND_DIR / "kisan_alert_ai_location_setup" / "code.html"
-    return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
-
-
-@app.get("/dashboard", response_class=HTMLResponse)
-async def page_main_dashboard():
-    """Primary User Dashboard — permanent dashboard after setup."""
-    html_path = FRONTEND_DIR / "kisan_alert_ai_main_dashboard" / "code.html"
-    return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
-
-
-@app.get("/copilot", response_class=HTMLResponse)
-async def page_copilot():
-    """Kisan AI Copilot Page."""
-    html_path = FRONTEND_DIR / "copilot kisan" / "code.html"
-    return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
-
-
-@app.get("/dashboard-admin", response_class=HTMLResponse)
-async def page_admin_dashboard():
-    """Secondary / Admin Dashboard — optional alternative view."""
-    html_path = FRONTEND_DIR / "kisan_alert_ai_dashboard" / "code.html"
-    return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
-
-
-@app.get("/disease-detection", response_class=HTMLResponse)
-async def page_disease_detection():
-    """Disease Detection Page — upload crop image for diagnosis."""
-    html_path = FRONTEND_DIR / "kisan_alert_ai_disease_detection" / "code.html"
-    return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
-
-
-@app.get("/weather", response_class=HTMLResponse)
-async def page_weather():
-    """Weather Intelligence Center."""
-    html_path = FRONTEND_DIR / "kisan_alert_ai_weather_intelligence_center" / "code.html"
-    return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
-
-
-@app.get("/profile", response_class=HTMLResponse)
-async def page_profile():
-    """Farmer Profile Page."""
-    html_path = FRONTEND_DIR / "kisan_alert_ai_farmer_profile" / "code.html"
-    return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
 
 
 # ─────────────────────────────────────────────────────────────

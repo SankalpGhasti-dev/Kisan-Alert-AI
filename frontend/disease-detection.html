@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
 <html class="dark" lang="en"><head>
+    <script src="assets/js/config.js"></script>
+
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Kisan Alert AI - Disease Detection</title>
@@ -120,25 +122,203 @@
 </head>
 <body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
 <!-- TopNavBar (Derived from JSON) -->
-<nav class="bg-surface-container border-b border-outline-variant w-full top-0 z-50 flex justify-between items-center px-margin-desktop h-16 w-full max-w-[1440px] mx-auto">
-<div class="flex items-center gap-md">
-<span class="font-headline-md text-headline-md font-bold text-primary">Kisan Alert AI</span>
-<div class="hidden md:flex items-center gap-sm ml-lg">
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors" href="#">Dashboard</a>
-<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1" href="#">Disease Detection</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors" href="#">Weather</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors" href="#">Market</a>
-</div>
-</div>
-<div class="flex items-center gap-sm">
-<button class="bg-primary-container text-on-primary-container px-md py-xs rounded-lg font-label-md flex items-center gap-xs transition-transform active:scale-95">
-<span class="material-symbols-outlined text-[20px]">notifications</span>
-                Alerts
+<!-- TopNavBar -->
+<nav class="w-full bg-surface-container border-b border-outline-variant sticky top-0 z-50">
+    <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full max-w-[1440px] mx-auto">
+        <div class="flex items-center gap-sm">
+            <a href="dashboard.html" class="flex items-center gap-sm hover:opacity-90 transition-opacity">
+                <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+                    <span class="material-symbols-outlined text-on-primary-container">agriculture</span>
+                </div>
+                <span class="font-headline-md text-body-lg font-bold text-on-surface hidden md:block">Kisan Alert AI</span>
+            </a>
+        </div>
+        
+        <div class="hidden lg:flex gap-md h-full items-center">
+            <a href="dashboard.html" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/dashboard">Dashboard</a>
+            <a href="disease-detection.html" class="h-full flex items-center border-b-2 border-primary text-primary px-xs font-label-md transition-colors nav-link" data-path="/disease-detection">Disease Detection</a>
+            <a href="weather.html" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/weather">Weather</a>
+            <a href="/market" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/market">Market Analysis ★</a>
+        </div>
+        
+        <div class="flex items-center gap-sm">
+            <div class="relative group" id="alert-dropdown-container">
+                <button class="relative flex items-center gap-xs px-sm py-xs rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" id="alerts-btn">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="font-label-md text-label-md hidden sm:block">Alerts</span>
+                    <span class="absolute top-1 right-2 w-2 h-2 bg-error rounded-full border border-surface-container"></span>
+                </button>
+                
+                <div id="notification-panel" class="absolute right-0 top-full mt-2 w-80 bg-surface-container-high border border-outline-variant rounded-xl shadow-2xl overflow-hidden hidden z-[100] flex flex-col">
+                    <div class="p-sm border-b border-outline-variant bg-surface-container flex justify-between items-center">
+                        <span class="font-headline-sm text-on-surface font-bold">Notifications</span>
+                        <button class="text-primary text-label-sm font-bold hover:underline">Mark all read</button>
+                    </div>
+                    
+                    <div class="max-h-80 overflow-y-auto" id="notification-list">
+                        <!-- REAL Alerts -->
+                        <div class="p-xs text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Real-time Alerts</div>
+                        <a href="#" class="flex gap-sm p-sm hover:bg-white/5 transition-colors border-l-2 border-error">
+                            <span class="material-symbols-outlined text-error">warning</span>
+                            <div class="flex flex-col">
+                                <span class="font-label-sm text-on-surface font-bold" id="alert-dryspell-title">Dry Spell Alert</span>
+                                <span class="text-[12px] text-on-surface-variant" id="alert-dryspell-msg">Checking...</span>
+                            </div>
+                        </a>
+                        <a href="#" class="flex gap-sm p-sm hover:bg-white/5 transition-colors border-l-2 border-secondary">
+                            <span class="material-symbols-outlined text-secondary">water_drop</span>
+                            <div class="flex flex-col">
+                                <span class="font-label-sm text-on-surface font-bold">Irrigation Advisory</span>
+                                <span class="text-[12px] text-on-surface-variant" id="alert-irrig-msg">Checking...</span>
+                            </div>
+                        </a>
+                        
+                        <!-- FUTURE Modules -->
+                        <div class="p-xs text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mt-sm border-t border-outline-variant pt-sm">Future Capabilities</div>
+                        <div class="flex gap-sm p-sm opacity-60">
+                            <span class="material-symbols-outlined text-on-surface-variant">pest_control</span>
+                            <span class="font-label-sm text-on-surface">Disease Risk ★</span>
+                        </div>
+                        <div class="flex gap-sm p-sm opacity-60">
+                            <span class="material-symbols-outlined text-on-surface-variant">bug_report</span>
+                            <span class="font-label-sm text-on-surface">Pest Spread ★</span>
+                        </div>
+                        <div class="flex gap-sm p-sm opacity-60">
+                            <span class="material-symbols-outlined text-on-surface-variant">policy</span>
+                            <span class="font-label-sm text-on-surface">Government Advisory ★</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="flex items-center gap-sm cursor-pointer hover:bg-white/5 p-xs rounded-lg transition-colors" id="nav-profile-btn">
+                <div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+                    <img class="w-full h-full object-cover" data-alt="Profile Picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYhbJrJcMI0Be-QX8VgDtnbaE3g_RyVKDTLq_W4EcQzS9cJZXjwTmnUB2g-kJI03LULxn50myUF4WQgWvr6eum1qOl6gcC-ugy8bDqGKa7XH0PGNZRUQXiNahIWBqrPg15bmJr4jqq4PMKt71dWRD32QBc2ropZF_1_jPv9mG8lpVembMIhnOCq7iAJNIhMIgRJ8mRn8nB1LSinBXSrs5vqE81TZ_oQfBR7Jf3zrY8T6ZWu8IcSn_pvJCtTtd9NRLDBdvKGn4zkTob"/>
+                </div>
+                <span class="font-label-md text-on-surface hidden md:block" id="nav-profile-name">Farmer</span>
             </button>
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-on-surface">account_circle</span>
-</div>
+        </div>
+    </div>
 </nav>
-<main class="flex-grow w-full max-w-[1440px] mx-auto px-margin-desktop py-lg">
+
+<!-- Profile Modal (Hidden by default) -->
+<div id="profile-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] hidden items-center justify-center p-md">
+    <div class="bg-surface-container rounded-2xl w-full max-w-md overflow-hidden shadow-2xl border border-outline-variant flex flex-col">
+        <div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-high">
+            <h2 class="font-headline-sm font-bold text-on-surface">Edit Profile</h2>
+            <button id="close-profile-modal" class="material-symbols-outlined text-on-surface-variant hover:text-on-surface">close</button>
+        </div>
+        <div class="p-md space-y-md overflow-y-auto max-h-[70vh]">
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-sm text-on-surface-variant">Name</label>
+                <input type="text" id="prof-name" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-sm py-xs focus:border-primary text-on-surface outline-none">
+            </div>
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-sm text-on-surface-variant">Phone</label>
+                <input type="text" id="prof-phone" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-sm py-xs focus:border-primary text-on-surface outline-none">
+            </div>
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-sm text-on-surface-variant">Village</label>
+                <input type="text" id="prof-village" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-sm py-xs focus:border-primary text-on-surface outline-none">
+            </div>
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-sm text-on-surface-variant">Preferred Crop</label>
+                <input type="text" id="prof-crop" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-sm py-xs focus:border-primary text-on-surface outline-none">
+            </div>
+        </div>
+        <div class="p-md border-t border-outline-variant bg-surface-container-high flex justify-end gap-sm">
+            <button id="cancel-profile" class="px-md py-sm rounded-lg font-label-md text-on-surface hover:bg-surface-variant transition-colors">Cancel</button>
+            <button id="save-profile" class="px-md py-sm bg-primary text-on-primary-container rounded-lg font-bold hover:brightness-110 transition-colors">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<!-- Navbar & Profile Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Alerts Dropdown Toggle
+    const alertsBtn = document.getElementById('alerts-btn');
+    const notificationPanel = document.getElementById('notification-panel');
+    if (alertsBtn && notificationPanel) {
+        alertsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notificationPanel.classList.toggle('hidden');
+        });
+        document.addEventListener('click', (e) => {
+            if (!alertsBtn.contains(e.target) && !notificationPanel.contains(e.target)) {
+                notificationPanel.classList.add('hidden');
+            }
+        });
+    }
+
+    // 2. Profile Management
+    const profileModal = document.getElementById('profile-modal');
+    const navProfileBtn = document.getElementById('nav-profile-btn');
+    const closeProfileModal = document.getElementById('close-profile-modal');
+    const cancelProfile = document.getElementById('cancel-profile');
+    const saveProfile = document.getElementById('save-profile');
+    const navProfileName = document.getElementById('nav-profile-name');
+
+    const profName = document.getElementById('prof-name');
+    const profPhone = document.getElementById('prof-phone');
+    const profVillage = document.getElementById('prof-village');
+    const profCrop = document.getElementById('prof-crop');
+
+    function loadProfile() {
+        const stored = localStorage.getItem('kisan_user_profile');
+        if (stored) {
+            try {
+                const profile = JSON.parse(stored);
+                if (profName) profName.value = profile.name || '';
+                if (profPhone) profPhone.value = profile.phone || '';
+                if (profVillage) profVillage.value = profile.village || '';
+                if (profCrop) profCrop.value = profile.crop || '';
+                if (navProfileName && profile.name) {
+                    navProfileName.textContent = profile.name.split(' ')[0];
+                }
+            } catch(e) { console.error("Error parsing profile", e); }
+        }
+    }
+
+    function saveProfileData() {
+        const profile = {
+            name: profName.value,
+            phone: profPhone.value,
+            village: profVillage.value,
+            crop: profCrop.value
+        };
+        localStorage.setItem('kisan_user_profile', JSON.stringify(profile));
+        loadProfile();
+        profileModal.classList.add('hidden');
+    }
+
+    if (profileModal && navProfileBtn) {
+        navProfileBtn.addEventListener('click', () => {
+            loadProfile();
+            profileModal.classList.remove('hidden');
+            profileModal.classList.add('flex');
+        });
+        closeProfileModal.addEventListener('click', () => profileModal.classList.add('hidden'));
+        cancelProfile.addEventListener('click', () => profileModal.classList.add('hidden'));
+        saveProfile.addEventListener('click', saveProfileData);
+    }
+
+    loadProfile();
+    
+    // 3. Set Active Nav Link
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if (currentPath.includes(link.dataset.path) || (currentPath === '/' && link.dataset.path === '/dashboard')) {
+            link.classList.remove('border-transparent', 'text-on-surface-variant');
+            link.classList.add('border-primary', 'text-primary');
+        } else {
+            link.classList.add('border-transparent', 'text-on-surface-variant');
+            link.classList.remove('border-primary', 'text-primary');
+        }
+    });
+});
+</script>
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-lg">
 <!-- Header with Back Button -->
 <div class="flex flex-col md:flex-row md:items-center justify-between mb-xl gap-md">
 <div>
@@ -194,7 +374,7 @@
 </div>
 </div>
 <!-- Right Column: Results & Actions (5 Cols) -->
-<div class="lg:col-span-5 flex flex-col gap-md">
+<div class="lg:col-span-5 flex flex-col gap-md hidden" id="diagnosis-results-container">
 <!-- Diagnosis Result Card -->
 <div class="glass-panel rounded-xl overflow-hidden border border-outline-variant glow-amber">
 <div class="bg-secondary-container/10 p-md border-b border-outline-variant flex justify-between items-center">
@@ -244,8 +424,8 @@
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
 </div>
 <div class="flex-grow">
-<p class="font-label-md text-on-surface">Need Expert Advice?</p>
-<p class="text-label-sm text-on-surface-variant">Contact local KVK Center helpdesk</p>
+<p class="font-label-md text-on-surface">Expert Consultation ★</p>
+<p class="text-label-sm text-on-surface-variant">Future Module: Connect with KVK experts.</p>
 </div>
 <button class="text-primary font-label-md border border-primary/30 px-md py-xs rounded-lg hover:bg-primary/10 transition-all">
                                     Call Now
@@ -353,7 +533,7 @@
             formData.append('state', userState);
 
             try {
-                const resp = await fetch('/api/disease/diagnose', {
+                const resp = await fetch(window.API_BASE_URL + '/api/disease/diagnose', {
                     method: 'POST',
                     body: formData,
                 });
@@ -371,6 +551,11 @@
         }
 
         function updateDiagnosisUI(diag, file) {
+            console.log("================================");
+            console.log("FRONTEND UPDATE DIAGNOSIS UI");
+            console.log("Disease API Response:", diag);
+            console.log("Health Status:", diag.health_status);
+            console.log("================================");
             // ── Update drop zone with uploaded image preview ──
             const imageUrl = URL.createObjectURL(file);
             dropZone.innerHTML = `
@@ -384,6 +569,12 @@
             dropZone.classList.remove('upload-dashed');
             dropZone.style.cursor = 'default';
 
+            // ── Show Results Container ──
+            const resultsContainer = document.getElementById('diagnosis-results-container');
+            if (resultsContainer) {
+                resultsContainer.classList.remove('hidden');
+            }
+
             // ── Update result card header ──
             const status = diag.health_status || 'Uncertain';
             const headerDiv = document.querySelector('.glow-amber .bg-secondary-container\\/10');
@@ -395,7 +586,13 @@
                 if (resultTitle) { resultTitle.textContent = 'Healthy Crop'; resultTitle.className = resultTitle.className.replace('text-secondary-fixed-dim', 'text-primary'); }
                 if (statusIcon) { statusIcon.textContent = 'verified'; statusIcon.className = statusIcon.className.replace('text-secondary-fixed-dim', 'text-primary'); }
                 if (badge) { badge.textContent = 'All Clear'; badge.className = badge.className.replace('bg-secondary-container', 'bg-primary-container').replace('text-on-secondary-fixed', 'text-on-primary-container'); }
-            } else if (status === 'Diseased') {
+            } else if (
+                status === 'Diseased' ||
+                status === 'Likely Diseased' ||
+                status === 'Possibly Diseased' ||
+                status === 'Suspected Disease' ||
+                status === 'Disease Suspected'
+            ) {
                 if (resultTitle) resultTitle.textContent = `Detected: ${diag.disease_name || 'Unknown Disease'}`;
                 if (badge) badge.textContent = (diag.severity || 'Unknown') + ' Severity';
             } else {
@@ -487,7 +684,7 @@
         if (backBtn) {
             backBtn.removeAttribute('onclick');
             backBtn.addEventListener('click', () => {
-                window.location.href = '/dashboard';
+                window.location.href = 'dashboard.html';
             });
         }
 
@@ -497,4 +694,6 @@
             if (link.textContent.includes('Disease')) link.href = '/disease-detection';
         });
     </script>
+<script src="assets/js/firebase-config.js"></script>
+<script type="module" src="assets/js/protect-route.js"></script>
 </body></html>

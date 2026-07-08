@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
 <html class="dark" lang="en"><head>
+    <script src="assets/js/config.js"></script>
+
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -137,17 +139,13 @@
 <span class="material-symbols-outlined">location_on</span>
                 Select Your Region
             </h2>
-<div class="grid grid-cols-1 gap-md">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
 <!-- State Selector -->
 <div class="flex flex-col gap-xs inner-glow">
 <label class="font-label-sm text-label-sm text-on-surface-variant ml-base" for="state">STATE / REGION</label>
 <div class="relative">
 <select class="w-full bg-surface-dim border border-outline-variant rounded-lg px-md py-sm appearance-none focus:outline-none focus:border-primary text-on-surface" id="state">
 <option disabled="" selected="" value="">Select State</option>
-<option value="punjab">Punjab</option>
-<option value="haryana">Haryana</option>
-<option value="maharashtra">Maharashtra</option>
-<option value="karnataka">Karnataka</option>
 </select>
 <span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
 </div>
@@ -158,13 +156,40 @@
 <div class="relative">
 <select class="w-full bg-surface-dim border border-outline-variant rounded-lg px-md py-sm appearance-none focus:outline-none focus:border-primary text-on-surface" id="district">
 <option disabled="" selected="" value="">Select District</option>
-<option value="ludhiana">Ludhiana</option>
-<option value="amritsar">Amritsar</option>
-<option value="nashik">Nashik</option>
-<option value="dharwad">Dharwad</option>
 </select>
 <span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
 </div>
+</div>
+<!-- Village Input -->
+<div class="flex flex-col gap-xs inner-glow">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-base" for="village">VILLAGE</label>
+<input type="text" id="village" placeholder="Enter Village" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-md py-sm focus:outline-none focus:border-primary text-on-surface">
+</div>
+<!-- Soil Type Selector -->
+<div class="flex flex-col gap-xs inner-glow">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-base" for="soil_type">SOIL TYPE</label>
+<div class="relative">
+<select class="w-full bg-surface-dim border border-outline-variant rounded-lg px-md py-sm appearance-none focus:outline-none focus:border-primary text-on-surface" id="soil_type">
+<option disabled="" selected="" value="">Select Soil Type</option>
+<option value="Alluvial">Alluvial</option>
+<option value="Black">Black</option>
+<option value="Red">Red</option>
+<option value="Laterite">Laterite</option>
+<option value="Sandy">Sandy</option>
+<option value="Clay">Clay</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- Farm Size Input -->
+<div class="flex flex-col gap-xs inner-glow">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-base" for="farm_size">FARM SIZE (ACRES)</label>
+<input type="number" step="0.1" id="farm_size" placeholder="e.g. 5.5" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-md py-sm focus:outline-none focus:border-primary text-on-surface">
+</div>
+<!-- Preferred Crop Input -->
+<div class="flex flex-col gap-xs inner-glow">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-base" for="preferred_crop">PREFERRED CROP</label>
+<input type="text" id="preferred_crop" placeholder="e.g. Wheat" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-md py-sm focus:outline-none focus:border-primary text-on-surface">
 </div>
 </div>
 <!-- Primary Action -->
@@ -243,12 +268,16 @@
 
         const stateSelect = document.getElementById('state');
         const districtSelect = document.getElementById('district');
+        const villageInput = document.getElementById('village');
+        const soilTypeSelect = document.getElementById('soil_type');
+        const farmSizeInput = document.getElementById('farm_size');
+        const preferredCropInput = document.getElementById('preferred_crop');
         const saveBtn = document.querySelector('button.bg-secondary-container');
 
         // 1. Fetch states on page load
         async function loadStates() {
             try {
-                const resp = await fetch('/api/dashboard/states');
+                const resp = await fetch(window.API_BASE_URL + '/api/dashboard/states');
                 const data = await resp.json();
                 if (data.success && data.states) {
                     // Clear existing hardcoded options
@@ -304,7 +333,7 @@
             saveBtn.style.opacity = '0.7';
 
             try {
-                const resp = await fetch('/api/dashboard/generate', {
+                const resp = await fetch(window.API_BASE_URL + '/api/dashboard/generate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ state, district }),
@@ -316,12 +345,26 @@
                     localStorage.setItem('kisan_dashboard_data', JSON.stringify(data));
                     localStorage.setItem('kisan_user_state', state);
                     localStorage.setItem('kisan_user_district', district);
+                    
+                    // Create and store user profile
+                    const userProfile = {
+                        name: "Kisan User", // Default until edited
+                        email: "user@example.com",
+                        phone: "+91 0000000000",
+                        state: state,
+                        district: district,
+                        village: villageInput.value || "Unknown",
+                        soil_type: soilTypeSelect.value || "Unknown",
+                        farm_size: farmSizeInput.value || "0",
+                        preferred_crop: preferredCropInput.value || "Unknown"
+                    };
+                    localStorage.setItem('kisan_user_profile', JSON.stringify(userProfile));
 
                     showToast('Location updated successfully');
 
                     // Redirect to main dashboard after brief delay
                     setTimeout(() => {
-                        window.location.href = '/dashboard';
+                        window.location.href = 'dashboard.html';
                     }, 800);
                 } else {
                     showToast('Error: ' + (data.detail || 'Failed to generate dashboard'));
@@ -341,4 +384,6 @@
         // Load states on page ready
         loadStates();
     </script>
+<script src="assets/js/firebase-config.js"></script>
+<script type="module" src="assets/js/protect-route.js"></script>
 </body></html>

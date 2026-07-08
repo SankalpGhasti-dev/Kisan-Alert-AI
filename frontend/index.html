@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 
 <html class="dark" lang="en"><head>
+    <script src="assets/js/config.js"></script>
+
+<script>
+        if (window.location.hostname === '127.0.0.1') {
+            window.location.hostname = 'localhost';
+        }
+    </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Login | Kisan Alert AI</title>
@@ -185,8 +192,8 @@
 </div>
 <div class="w-full max-w-[420px] space-y-lg py-md my-auto">
 <header class="text-center md:text-left">
-<h3 class="font-headline-lg text-headline-lg text-on-surface mb-xs mt-0">Welcome back</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Access your farm's digital twin and AI advisor.</p>
+<h3 id="auth-title" class="font-headline-lg text-headline-lg text-on-surface mb-xs mt-0">Welcome back</h3>
+<p id="auth-subtitle" class="font-body-md text-body-md text-on-surface-variant">Access your farm's digital twin and AI advisor.</p>
 </header>
 <!-- Auth Provider Buttons (Firebase Inspired) -->
 <div class="space-y-sm">
@@ -211,12 +218,13 @@
 <div class="flex-grow border-t border-outline-variant"></div>
 </div>
 <!-- Email Form -->
-<form class="space-y-md" onsubmit="return false;">
+<form class="space-y-md" id="auth-form" onsubmit="return false;">
+<div id="auth-error" class="hidden font-label-sm text-label-sm text-error mb-2 p-2 bg-error-container rounded"></div>
 <div class="space-y-xs">
 <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Work Email</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">mail</span>
-<input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline" placeholder="name@farm.com" type="email"/>
+<input id="email-input" class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline" placeholder="name@farm.com" type="email" required/>
 </div>
 </div>
 <div class="space-y-xs">
@@ -226,25 +234,186 @@
 </div>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">lock</span>
-<input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline" placeholder="••••••••" type="password"/>
+<input id="password-input" class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline" placeholder="••••••••" type="password" required/>
 </div>
 </div>
-<button class="w-full py-md bg-secondary-container text-on-secondary-fixed font-semibold rounded-lg hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-xs">
+<button id="auth-submit-btn" class="w-full py-md bg-secondary-container text-on-secondary-fixed font-semibold rounded-lg hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-xs">
                         Login to Dashboard
                         <span class="material-symbols-outlined">trending_flat</span>
 </button>
 </form>
 <footer class="text-center pt-xl">
 <p class="font-label-md text-label-md text-on-surface-variant">
-                        New to Kisan Alert AI? 
-                        <a class="text-primary font-bold hover:underline ml-1" href="#">Create an account</a>
+                        <span id="toggle-text">New to Kisan Alert AI?</span> 
+                        <a id="toggle-btn" class="text-primary font-bold hover:underline ml-1 cursor-pointer" href="#">Create an account</a>
 </p>
 </footer>
 </div>
 </section>
 </main>
-<!-- Micro-interaction Scripts -->
-<script>
+    <!-- Include Firebase config -->
+    <script src="assets/js/firebase-config.js"></script>
+
+    <!-- Firebase Auth Logic -->
+    <script type="module">
+        import { auth, db, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, doc, setDoc, getDoc, updateDoc, serverTimestamp } from 'assets/js/firebase-auth.js';
+
+        // State to track if we're in login or signup mode
+        let isLoginMode = true;
+
+        const authTitle = document.getElementById('auth-title');
+        const authSubtitle = document.getElementById('auth-subtitle');
+        const authSubmitBtn = document.getElementById('auth-submit-btn');
+        const toggleText = document.getElementById('toggle-text');
+        const toggleBtn = document.getElementById('toggle-btn');
+        const authForm = document.getElementById('auth-form');
+        const emailInput = document.getElementById('email-input');
+        const passwordInput = document.getElementById('password-input');
+        const errorDiv = document.getElementById('auth-error');
+
+        // Check if user is already logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Redirect if authenticated
+                window.location.href = 'dashboard.html';
+            }
+        });
+
+        const showError = (msg) => {
+            errorDiv.textContent = msg;
+            errorDiv.classList.remove('hidden');
+        };
+
+        const hideError = () => {
+            errorDiv.classList.add('hidden');
+            errorDiv.textContent = '';
+        };
+
+        // Toggle Login / Sign Up modes
+        toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideError();
+            isLoginMode = !isLoginMode;
+            if (isLoginMode) {
+                authTitle.textContent = "Welcome back";
+                authSubtitle.textContent = "Access your farm's digital twin and AI advisor.";
+                authSubmitBtn.innerHTML = `Login to Dashboard <span class="material-symbols-outlined">trending_flat</span>`;
+                toggleText.textContent = "New to Kisan Alert AI?";
+                toggleBtn.textContent = "Create an account";
+            } else {
+                authTitle.textContent = "Create Account";
+                authSubtitle.textContent = "Join Kisan Alert AI to monitor your farm.";
+                authSubmitBtn.innerHTML = `Sign Up <span class="material-symbols-outlined">trending_flat</span>`;
+                toggleText.textContent = "Already have an account?";
+                toggleBtn.textContent = "Login here";
+            }
+        });
+
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideError();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+
+            if (!email || !password) {
+                showError("Please enter email and password.");
+                return;
+            }
+
+            // Disable button during request
+            authSubmitBtn.disabled = true;
+            authSubmitBtn.style.opacity = '0.7';
+
+            try {
+                if (isLoginMode) {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    const user = userCredential.user;
+                    // Update lastLogin in Firestore
+                    const userRef = doc(db, 'users', user.uid);
+                    await updateDoc(userRef, {
+                        lastLogin: serverTimestamp()
+                    }).catch(err => console.log('Update lastLogin error (might not exist yet):', err));
+                    
+                    window.location.href = 'dashboard.html';
+                } else {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    const user = userCredential.user;
+                    
+                    // Create Firestore Document on Sign Up
+                    const userRef = doc(db, 'users', user.uid);
+                    await setDoc(userRef, {
+                        uid: user.uid,
+                        name: null,
+                        email: user.email,
+                        phone: null,
+                        state: null,
+                        district: null,
+                        createdAt: serverTimestamp(),
+                        lastLogin: serverTimestamp()
+                    });
+                    
+                    window.location.href = 'location-setup.html';
+                }
+            } catch (error) {
+                console.error("Auth error:", error);
+                let displayError = "Authentication failed.";
+                if (error.code === 'auth/invalid-email') displayError = "Invalid email address.";
+                else if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') displayError = "Invalid email or password.";
+                else if (error.code === 'auth/user-not-found') displayError = "User not found.";
+                else if (error.code === 'auth/weak-password') displayError = "Password should be at least 6 characters.";
+                else if (error.code === 'auth/email-already-in-use') displayError = "Email already exists.";
+                else if (error.code === 'auth/network-request-failed') displayError = "Network error. Please check your connection.";
+                else if (error.code === 'auth/user-disabled') displayError = "This account has been disabled.";
+                showError(displayError);
+            } finally {
+                authSubmitBtn.disabled = false;
+                authSubmitBtn.style.opacity = '1';
+            }
+        });
+
+        // Google Sign-in button → Handle Google Auth
+        const googleBtn = document.querySelector('button svg')?.closest('button');
+        if (googleBtn) {
+            googleBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                hideError();
+                try {
+                    const provider = new GoogleAuthProvider();
+                    const result = await signInWithPopup(auth, provider);
+                    const user = result.user;
+                    
+                    // Check if user already exists in Firestore
+                    const userRef = doc(db, 'users', user.uid);
+                    const docSnap = await getDoc(userRef);
+                    
+                    if (docSnap.exists()) {
+                        // User exists, update lastLogin
+                        await updateDoc(userRef, {
+                            lastLogin: serverTimestamp()
+                        }).catch(err => console.log('Update lastLogin error:', err));
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        // New user, create document
+                        await setDoc(userRef, {
+                            uid: user.uid,
+                            name: user.displayName || null,
+                            email: user.email,
+                            phone: user.phoneNumber || null,
+                            state: null,
+                            district: null,
+                            createdAt: serverTimestamp(),
+                            lastLogin: serverTimestamp()
+                        });
+                        window.location.href = 'location-setup.html';
+                    }
+                } catch (error) {
+                    console.error("Google Sign-In Error:", error);
+                    showError("Google Sign-In failed. " + error.message);
+                }
+            });
+        }
+    </script>
+    <script>
         // Subtle Mouse Movement Background Effect
         const hero = document.querySelector('.hero-gradient');
         document.addEventListener('mousemove', (e) => {
@@ -265,44 +434,12 @@
             });
         });
 
-        // ═══════════════════════════════════════════════════════════════
-        // API INTEGRATION — Auth Landing → Location Setup redirect
-        // Firebase Authentication will be integrated in a future phase.
-        // ═══════════════════════════════════════════════════════════════
-
-        // Login form submission → redirect to location setup
-        const loginForm = document.querySelector('form');
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            window.location.href = '/location-setup';
-        });
-
-        // "Login to Dashboard" button (inside form) — handled by form submit above
-
-        // Google Sign-in button → redirect to location setup
-        const googleBtn = document.querySelector('button svg')?.closest('button');
-        if (googleBtn) {
-            googleBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.location.href = '/location-setup';
-            });
-        }
-
-        // Phone Sign-in button → redirect to location setup
+        // Phone Sign-in button → redirect to location setup (Placeholder logic remains for now)
         const phoneBtn = document.querySelectorAll('button')[1];
         if (phoneBtn && phoneBtn.textContent.includes('Phone')) {
             phoneBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                window.location.href = '/location-setup';
-            });
-        }
-
-        // "Create an account" link → redirect to location setup
-        const createAccountLink = document.querySelector('footer a');
-        if (createAccountLink) {
-            createAccountLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.location.href = '/location-setup';
+                alert("Phone Sign-In is not fully integrated yet.");
             });
         }
     </script>

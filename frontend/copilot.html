@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
+    <script src="assets/js/config.js"></script>
+
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Kisan Alert AI | Copilot Workspace</title>
@@ -93,7 +95,7 @@
     <!-- Navigation Bar -->
     <header class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-md border-b border-white/10">
         <div class="max-w-[1440px] mx-auto px-6 py-4 flex justify-between items-center">
-            <a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="/dashboard">
+            <a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="dashboard.html">
                 <span class="material-symbols-outlined">arrow_back</span>
                 <span>Back to Dashboard</span>
             </a>
@@ -378,7 +380,7 @@
             console.log(`[FRONTEND METRIC] Record Stop -> Upload Start: ${(t_upload_start - t_record_stop).toFixed(0)} ms`);
 
             try {
-                const response = await fetch('/api/voice/stream', {
+                const response = await fetch(window.API_BASE_URL + '/api/voice/stream', {
                     method: 'POST',
                     body: formData
                 });
@@ -488,7 +490,7 @@
             
             try {
                 // First call copilot
-                const chatRes = await fetch('/api/copilot/chat', {
+                const chatRes = await fetch(window.API_BASE_URL + '/api/copilot/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
@@ -515,7 +517,7 @@
                         synthData.append('gender', voiceGender.value);
                         synthData.append('speed', voiceSpeed.value);
 
-                        const synthRes = await fetch('/api/voice/synthesize', {
+                        const synthRes = await fetch(window.API_BASE_URL + '/api/voice/synthesize', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                             body: synthData
@@ -645,5 +647,7 @@
         });
 
     </script>
+<script src="assets/js/firebase-config.js"></script>
+<script type="module" src="assets/js/protect-route.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@ pandas
 scikit-learn
 joblib
 requests
-google-generativeai
+google-genai
 Pillow
 python-dotenv
 numpy
