@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kisan Alert AI - Disease Detection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Hanken+Grotesk:wght@500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=Manrope:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#262b29",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-container": "#003c0b",
+                    "tertiary-container": "#89a18a",
+                    "on-tertiary-fixed": "#0b2010",
+                    "on-secondary": "#432c00",
+                    "tertiary-fixed-dim": "#b4cdb4",
+                    "on-secondary-container": "#6a4800",
+                    "on-surface": "#dfe3e1",
+                    "secondary": "#ffd799",
+                    "secondary-fixed-dim": "#ffba38",
+                    "primary-fixed": "#94f990",
+                    "inverse-surface": "#dfe3e1",
+                    "secondary-fixed": "#ffdeac",
+                    "inverse-on-surface": "#2d3130",
+                    "surface-dim": "#101413",
+                    "secondary-container": "#feb300",
+                    "surface": "#101413",
+                    "on-primary": "#00390a",
+                    "on-tertiary-container": "#223726",
+                    "error-container": "#93000a",
+                    "surface-container-low": "#181d1b",
+                    "outline": "#899484",
+                    "on-surface-variant": "#becab9",
+                    "surface-bright": "#353a38",
+                    "primary-fixed-dim": "#78dc77",
+                    "on-error": "#690005",
+                    "inverse-primary": "#006e1c",
+                    "surface-container": "#1c211f",
+                    "on-primary-fixed-variant": "#005313",
+                    "on-tertiary": "#203523",
+                    "on-secondary-fixed": "#281900",
+                    "primary-container": "#4caf50",
+                    "on-primary-fixed": "#002204",
+                    "surface-variant": "#313634",
+                    "tertiary-fixed": "#d0e9cf",
+                    "on-background": "#dfe3e1",
+                    "outline-variant": "#3f4a3c",
+                    "error": "#ffb4ab",
+                    "background": "#101413",
+                    "primary": "#78dc77",
+                    "surface-container-highest": "#313634",
+                    "on-secondary-fixed-variant": "#604100",
+                    "surface-tint": "#78dc77",
+                    "tertiary": "#b4cdb4",
+                    "surface-container-lowest": "#0a0f0e",
+                    "on-tertiary-fixed-variant": "#364c39"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "32px",
+                    "xl": "48px",
+                    "margin-desktop": "40px",
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "xs": "8px",
+                    "sm": "16px",
+                    "gutter": "20px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Hanken Grotesk"],
+                    "body-md": ["Manrope"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "headline-md": ["Manrope"],
+                    "display-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(21, 46, 27, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .upload-dashed {
+            border: 2px dashed rgba(76, 175, 80, 0.3);
+        }
+        .glow-amber {
+            box-shadow: 0 0 20px rgba(255, 179, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar (Derived from JSON) -->
+<header class="sticky top-0 z-40 bg-surface-container border-b border-outline-variant px-margin-desktop h-16 flex justify-between items-center w-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-xl">
+<div class="md:hidden">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Kisan Alert AI</h2>
+</div>
+<div class="hidden md:flex items-center gap-lg">
+<span class="font-headline-md text-headline-md font-bold text-primary">Kisan Alert AI</span>
+<div class="hidden md:flex items-center gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="/dashboard">Dashboard</a>
+<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1" href="/disease-detection">Disease Detection</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="/weather">Weather</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Market Analysis ★</a>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="flex items-center gap-xs text-primary font-body-md transition-transform active:scale-95">
+<span class="material-symbols-outlined">campaign</span>
+Alerts
+</button>
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-on-surface">notifications</span>
+<a href="/profile"><span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-on-surface">account_circle</span></a>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-margin-desktop py-lg">
+<!-- Header with Back Button -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-xl gap-md">
+<div>
+<button class="group flex items-center gap-xs text-primary font-label-md mb-xs hover:translate-x-[-4px] transition-transform" onclick="window.history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+                    Back to Dashboard
+                </button>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">AI Disease Detection</h1>
+<p class="text-on-surface-variant font-body-md">Upload a clear photo of the affected crop leaf for instant diagnosis.</p>
+</div>
+<div class="flex gap-sm">
+<div class="flex items-center gap-xs px-md py-sm bg-surface-container-high rounded-xl border border-outline-variant">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span class="font-label-md text-on-surface">Precision AI v4.2</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-md">
+<!-- Left Column: Upload Zone (6 Cols) -->
+<div class="lg:col-span-7 flex flex-col gap-md">
+<div class="glass-panel upload-dashed rounded-xl p-xl flex flex-col items-center justify-center min-h-[400px] cursor-pointer hover:bg-surface-container-highest/20 transition-all group" id="drop-zone">
+<input accept="image/*" class="hidden" id="file-input" type="file"/>
+<div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-[48px]" style="font-variation-settings: 'FILL' 0;">add_photo_alternate</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Drag & Drop Image</h3>
+<p class="text-on-surface-variant text-center max-w-sm mb-lg">Support for JPG, PNG. Ensure the leaf is centered and well-lit for better accuracy.</p>
+<button class="bg-secondary-container text-on-secondary-fixed font-semibold px-xl py-sm rounded-lg hover:brightness-110 transition-all" onclick="document.getElementById('file-input').click()">
+                        Browse Files
+                    </button>
+</div>
+<!-- Example Images / Tips -->
+<div class="grid grid-cols-3 gap-sm">
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-sm flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">light_mode</span>
+</div>
+<span class="text-label-sm text-on-surface-variant">Good Lighting</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-sm flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">center_focus_strong</span>
+</div>
+<span class="text-label-sm text-on-surface-variant">Centered leaf</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-sm flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">high_res</span>
+</div>
+<span class="text-label-sm text-on-surface-variant">High Resolution</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Results & Actions (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-md">
+<!-- Diagnosis Result Card -->
+<div class="glass-panel rounded-xl overflow-hidden border border-outline-variant glow-amber">
+<div class="bg-secondary-container/10 p-md border-b border-outline-variant flex justify-between items-center">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary-fixed-dim" style="font-variation-settings: 'FILL' 1;">warning</span>
+<h2 class="font-headline-md text-headline-md text-secondary-fixed-dim">Detected: Early Blight</h2>
+</div>
+<div class="px-sm py-1 bg-secondary-container text-on-secondary-fixed text-label-sm rounded-full">
+                            Urgent Action
+                        </div>
+</div>
+<div class="p-md space-y-md">
+<!-- Confidence Score -->
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-label-md">AI Confidence</span>
+<span class="text-primary font-bold text-headline-sm">94.2%</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full transition-all duration-1000" style="width: 94.2%;"></div>
+</div>
+<div class="border-t border-outline-variant pt-md">
+<h4 class="font-label-md text-on-surface mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">medical_services</span>
+                                Recommended Treatment
+                            </h4>
+<ul class="space-y-sm">
+<li class="flex items-start gap-sm bg-surface-container-high p-sm rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-secondary mt-0.5">science</span>
+<div>
+<p class="font-label-md text-on-surface">Apply Copper-based Fungicide</p>
+<p class="text-label-sm text-on-surface-variant">Apply early morning or late evening to prevent leaf burn.</p>
+</div>
+</li>
+<li class="flex items-start gap-sm bg-surface-container-high p-sm rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-secondary mt-0.5">opacity</span>
+<div>
+<p class="font-label-md text-on-surface">Water Adjustment</p>
+<p class="text-label-sm text-on-surface-variant">Switch to drip irrigation; avoid wetting foliage to reduce spread.</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Help Section -->
+<div class="mt-lg p-md bg-surface-container-highest/30 rounded-xl border border-white/5">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-on-primary shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-on-surface">Expert Consultation ★</p>
+<p class="text-label-sm text-on-surface-variant">Future Module: Connect with KVK experts.</p>
+</div>
+<button class="text-primary font-label-md border border-primary/30 px-md py-xs rounded-lg hover:bg-primary/10 transition-all">
+                                    Call Now
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Preview Card -->
+<div class="glass-panel rounded-xl p-md border border-outline-variant">
+<h4 class="font-label-md text-on-surface mb-md">Scan Preview</h4>
+<div class="aspect-video rounded-lg overflow-hidden bg-surface-container relative">
+<img class="w-full h-full object-cover opacity-60" data-alt="A high-resolution, macro photograph of a tomato plant leaf showing clear signs of Early Blight disease with concentric dark brown rings. The background is a soft-focus agricultural setting with deep green foliage. The lighting is bright and natural, casting crisp details on the leaf texture. The image follows a professional agritech UI style with a focus on biological detail and high-contrast diagnostic clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOE2AniwRox5eEUZqi8VMsAjzSG6HuPb75ETppONczDT6Mm_h6T3VO8GLtv0ZeKhd90ECuRK8xcQ_H8L0gh4xrcBT8FwZna716Yzyd13PjRtQp2KSY5helG-b0Zend_N5xfnuTLATe4yyfPy3XYMvXrNiLcyzjeu1gfuB85iSLBCO9V9VA77HyZGUDMM0DttujH4ZFz1g7C3A8OyJOp4J8PEU9S4lMwC8GgqpyRc4obVFTs7N1GHNB1XHXMEM1PsHOy1CwRKKs4Q1a"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-3/4 h-3/4 border-2 border-primary/50 rounded flex items-center justify-center">
+<div class="w-full h-[2px] bg-primary/40 animate-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Derived from JSON) -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full py-md mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop w-full max-w-[1440px] mx-auto gap-md">
+<div class="text-left">
+<span class="font-label-md text-label-md font-bold text-on-surface block mb-base">Kisan Alert AI</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Kisan Alert AI. Precision Agriculture Systems.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Help Center</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+<script>
+        // ═══════════════════════════════════════════════════════════════
+        // API INTEGRATION — Disease Detection
+        // ═══════════════════════════════════════════════════════════════
+
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+
+        // Retrieve stored context from localStorage
+        const dashData = JSON.parse(localStorage.getItem('kisan_dashboard_data') || '{}');
+        const userState = localStorage.getItem('kisan_user_state') || 'Unknown';
+        const userDistrict = localStorage.getItem('kisan_user_district') || 'Unknown';
+        const topCrop = ((dashData.crop_recommendations || {}).recommendations || [])[0]?.crop || 'Unknown';
+
+        // Prevent defaults for drag events
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+            }, false);
+        });
+
+        // Visual feedback for drag
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => {
+                dropZone.classList.add('bg-primary/5');
+                dropZone.classList.add('border-primary');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => {
+                dropZone.classList.remove('bg-primary/5');
+                dropZone.classList.remove('border-primary');
+            }, false);
+        });
+
+        // Handle drop
+        dropZone.addEventListener('drop', (e) => {
+            const files = e.dataTransfer.files;
+            if (files.length > 0) uploadAndDiagnose(files[0]);
+        }, false);
+
+        // Handle file input change
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) uploadAndDiagnose(fileInput.files[0]);
+        });
+
+        // Click to browse
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        async function uploadAndDiagnose(file) {
+            // Show loading state in drop zone
+            dropZone.innerHTML = `
+                <div class="flex flex-col items-center">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-md"></div>
+                    <p class="text-primary font-label-md">Analyzing Crop Health with Gemini AI...</p>
+                    <p class="text-on-surface-variant text-label-sm mt-xs">This may take a few seconds</p>
+                </div>
+            `;
+
+            // Build FormData with image + context
+            const formData = new FormData();
+            formData.append('image', file);
+            formData.append('crop_name', topCrop);
+            formData.append('district', userDistrict);
+            formData.append('state', userState);
+
+            try {
+                const resp = await fetch('/api/disease/diagnose', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const result = await resp.json();
+
+                if (result.success && result.data) {
+                    updateDiagnosisUI(result.data, file);
+                } else {
+                    showError('Diagnosis failed — please try again');
+                }
+            } catch (err) {
+                console.error('Diagnosis error:', err);
+                showError('Network error — please check your connection');
+            }
+        }
+
+        function updateDiagnosisUI(diag, file) {
+            // ── Update drop zone with uploaded image preview ──
+            const imageUrl = URL.createObjectURL(file);
+            dropZone.innerHTML = `
+                <div class="w-full h-full flex flex-col items-center justify-center">
+                    <img src="${imageUrl}" class="max-h-[350px] rounded-xl object-contain mb-md" alt="Uploaded crop image"/>
+                    <button onclick="location.reload()" class="bg-primary/10 border border-primary/20 text-primary px-lg py-xs rounded-lg hover:bg-primary/20 transition-all font-label-md mt-sm">
+                        Scan Another Image
+                    </button>
+                </div>
+            `;
+            dropZone.classList.remove('upload-dashed');
+            dropZone.style.cursor = 'default';
+
+            // ── Update result card header ──
+            const status = diag.health_status || 'Uncertain';
+            const headerDiv = document.querySelector('.glow-amber .bg-secondary-container\\/10');
+            const resultTitle = headerDiv?.querySelector('h2');
+            const statusIcon = headerDiv?.querySelector('.material-symbols-outlined');
+            const badge = headerDiv?.querySelector('.px-sm');
+
+            if (status === 'Healthy') {
+                if (resultTitle) { resultTitle.textContent = 'Healthy Crop'; resultTitle.className = resultTitle.className.replace('text-secondary-fixed-dim', 'text-primary'); }
+                if (statusIcon) { statusIcon.textContent = 'verified'; statusIcon.className = statusIcon.className.replace('text-secondary-fixed-dim', 'text-primary'); }
+                if (badge) { badge.textContent = 'All Clear'; badge.className = badge.className.replace('bg-secondary-container', 'bg-primary-container').replace('text-on-secondary-fixed', 'text-on-primary-container'); }
+            } else if (status === 'Diseased') {
+                if (resultTitle) resultTitle.textContent = `Detected: ${diag.disease_name || 'Unknown Disease'}`;
+                if (badge) badge.textContent = (diag.severity || 'Unknown') + ' Severity';
+            } else {
+                if (resultTitle) resultTitle.textContent = 'Uncertain — Manual Review Needed';
+                if (badge) badge.textContent = 'Needs Expert Review';
+            }
+
+            // ── Update confidence ──
+            const confLabel = document.querySelector('.glow-amber .text-primary.font-bold.text-headline-sm');
+            const confBar = document.querySelector('.glow-amber .bg-primary.h-full');
+            const confMap = { 'High': 92, 'Medium': 70, 'Low': 40 };
+            const confPercent = confMap[diag.confidence] || 50;
+            if (confLabel) confLabel.textContent = `${confPercent}%`;
+            if (confBar) confBar.style.width = `${confPercent}%`;
+
+            // ── Update treatment recommendations ──
+            const treatmentList = document.querySelector('.glow-amber ul');
+            if (treatmentList) {
+                treatmentList.innerHTML = '';
+
+                // Treatment
+                if (diag.treatment) {
+                    treatmentList.innerHTML += `
+                        <li class="flex items-start gap-sm bg-surface-container-high p-sm rounded-lg border border-outline-variant">
+                            <span class="material-symbols-outlined text-secondary mt-0.5">science</span>
+                            <div>
+                                <p class="font-label-md text-on-surface">Treatment</p>
+                                <p class="text-label-sm text-on-surface-variant">${diag.treatment}</p>
+                            </div>
+                        </li>
+                    `;
+                }
+
+                // Symptoms
+                if (diag.symptoms_observed) {
+                    treatmentList.innerHTML += `
+                        <li class="flex items-start gap-sm bg-surface-container-high p-sm rounded-lg border border-outline-variant">
+                            <span class="material-symbols-outlined text-secondary mt-0.5">visibility</span>
+                            <div>
+                                <p class="font-label-md text-on-surface">Symptoms Observed</p>
+                                <p class="text-label-sm text-on-surface-variant">${diag.symptoms_observed}</p>
+                            </div>
+                        </li>
+                    `;
+                }
+
+                // Market product
+                if (diag.market_product) {
+                    treatmentList.innerHTML += `
+                        <li class="flex items-start gap-sm bg-surface-container-high p-sm rounded-lg border border-outline-variant">
+                            <span class="material-symbols-outlined text-secondary mt-0.5">shopping_bag</span>
+                            <div>
+                                <p class="font-label-md text-on-surface">Recommended Product</p>
+                                <p class="text-label-sm text-on-surface-variant">${diag.market_product}</p>
+                            </div>
+                        </li>
+                    `;
+                }
+            }
+
+            // ── Update KVK help section ──
+            if (diag.kvk_url) {
+                const callBtn = document.querySelector('.glow-amber button[class*="border-primary"]');
+                if (callBtn) {
+                    callBtn.onclick = () => window.open(diag.kvk_url, '_blank');
+                }
+            }
+
+            // ── Update scan preview image ──
+            const previewImg = document.querySelector('.aspect-video img');
+            if (previewImg) {
+                previewImg.src = imageUrl;
+                previewImg.classList.remove('opacity-60');
+            }
+        }
+
+        function showError(message) {
+            dropZone.innerHTML = `
+                <div class="flex flex-col items-center">
+                    <span class="material-symbols-outlined text-error text-[48px] mb-md">error</span>
+                    <p class="text-error font-label-md">${message}</p>
+                    <button onclick="location.reload()" class="mt-md bg-primary/10 border border-primary/20 text-primary px-lg py-xs rounded-lg">Try Again</button>
+                </div>
+            `;
+        }
+
+        // ── Navigation: Back to Dashboard ──
+        const backBtn = document.querySelector('button[onclick*="history.back"]');
+        if (backBtn) {
+            backBtn.removeAttribute('onclick');
+            backBtn.addEventListener('click', () => {
+                window.location.href = '/dashboard';
+            });
+        }
+
+        // ── Nav links ──
+        document.querySelectorAll('nav a').forEach(link => {
+            if (link.textContent.includes('Dashboard')) link.href = '/dashboard';
+            if (link.textContent.includes('Disease')) link.href = '/disease-detection';
+        });
+    </script>
+</body></html>

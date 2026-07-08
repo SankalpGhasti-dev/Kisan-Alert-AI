@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | Kisan Alert AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#262b29",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#003c0b",
+                        "tertiary-container": "#89a18a",
+                        "on-tertiary-fixed": "#0b2010",
+                        "on-secondary": "#432c00",
+                        "tertiary-fixed-dim": "#b4cdb4",
+                        "on-secondary-container": "#6a4800",
+                        "on-surface": "#dfe3e1",
+                        "secondary": "#ffd799",
+                        "secondary-fixed-dim": "#ffba38",
+                        "primary-fixed": "#94f990",
+                        "inverse-surface": "#dfe3e1",
+                        "secondary-fixed": "#ffdeac",
+                        "inverse-on-surface": "#2d3130",
+                        "surface-dim": "#101413",
+                        "secondary-container": "#feb300",
+                        "surface": "#101413",
+                        "on-primary": "#00390a",
+                        "on-tertiary-container": "#223726",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#181d1b",
+                        "outline": "#899484",
+                        "on-surface-variant": "#becab9",
+                        "surface-bright": "#353a38",
+                        "primary-fixed-dim": "#78dc77",
+                        "on-error": "#690005",
+                        "inverse-primary": "#006e1c",
+                        "surface-container": "#1c211f",
+                        "on-primary-fixed-variant": "#005313",
+                        "on-tertiary": "#203523",
+                        "on-secondary-fixed": "#281900",
+                        "primary-container": "#4caf50",
+                        "on-primary-fixed": "#002204",
+                        "surface-variant": "#313634",
+                        "tertiary-fixed": "#d0e9cf",
+                        "on-background": "#dfe3e1",
+                        "outline-variant": "#3f4a3c",
+                        "error": "#ffb4ab",
+                        "background": "#101413",
+                        "primary": "#78dc77",
+                        "surface-container-highest": "#313634",
+                        "on-secondary-fixed-variant": "#604100",
+                        "surface-tint": "#78dc77",
+                        "tertiary": "#b4cdb4",
+                        "surface-container-lowest": "#0a0f0e",
+                        "on-tertiary-fixed-variant": "#364c39"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "32px",
+                        "xl": "48px",
+                        "margin-desktop": "40px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "xs": "8px",
+                        "sm": "16px",
+                        "gutter": "20px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-md": ["Hanken Grotesk"],
+                        "body-md": ["Manrope"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Manrope"],
+                        "display-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(21, 46, 27, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0a0f0e 0%, #152E1B 100%);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden h-screen">
+<main class="flex flex-col md:flex-row h-full">
+<!-- Left Side: Hero Content (Climate/AI Narrative) -->
+<section class="hidden md:flex relative flex-1 hero-gradient overflow-hidden flex-col justify-between p-xl border-r border-outline-variant">
+<!-- Atmospheric WebGL / Animated Background -->
+<div class="absolute inset-0 opacity-40 pointer-events-none">
+
+</div>
+<!-- Brand Logo (Shared Component Integrity) -->
+<div class="relative z-10 flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">agriculture</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Kisan Alert AI</h1>
+</div>
+<!-- Content Area -->
+<div class="relative z-10 max-w-xl space-y-md">
+<div class="inline-flex items-center gap-xs px-sm py-xs bg-primary/10 border border-primary/20 rounded-full">
+<span class="material-symbols-outlined text-primary text-sm">satellite_alt</span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Satellite Powered Insights</span>
+</div>
+<h2 class="font-display-lg text-display-lg leading-tight text-on-surface">
+                    Master your harvest against <span class="text-secondary">climate uncertainty.</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                    Bridge the gap between traditional farming and precision technology. We leverage real-time satellite telemetry and enterprise-grade AI to provide 98% accurate crop health forecasting.
+                </p>
+<!-- Feature Bento Mini -->
+<div class="grid grid-cols-2 gap-sm pt-md">
+<div class="glass-card p-sm rounded-xl">
+<span class="material-symbols-outlined text-secondary mb-xs">cloud_sync</span>
+<h4 class="font-label-md text-label-md text-on-surface">Weather Resilience</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Hyper-local climate modeling for your specific soil grid.</p>
+</div>
+<div class="glass-card p-sm rounded-xl">
+<span class="material-symbols-outlined text-primary mb-xs">query_stats</span>
+<h4 class="font-label-md text-label-md text-on-surface">Disease Detection</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Instant AI diagnosis of pests and fungal outbreaks.</p>
+</div>
+</div>
+</div>
+<!-- Footer Quote/Social Proof -->
+<div class="relative z-10">
+<div class="flex items-center gap-md">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-surface-container object-cover" data-alt="Portrait of a successful female farmer in a high-tech greenhouse, soft morning sunlight, cinematic photography, professional agritech branding style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgouxxO3xzRda5y9dqMFrfFfZriY8CkvVC8jFnG5NoHVqffrY051Sok4ezUs69ECk9dRfVKtwR3acAvYMAq0D3gSE_MuITUpALoc11vu3nTvrrj7mlJoGA9Q2PSohF93bVOBmwX7NOF4Ci65vTEHrpBvukh6BtJNg76RgC5055RFxTNSrEEHKG3T2Bv0Ze-3xpCtR6fyRCwAytAfcJFmYOWGHR8O_C662K0WQC_uK85nQyG4B6g7SUjVkAkKtxVpQnP1034fSrrePi"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface-container object-cover" data-alt="Portrait of a male agricultural scientist holding a tablet, field setting, vibrant greens, deep blacks, high-tech agritech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_oe8B3ULTOfYhAF3ju7Pjz132yDH45i_l1mye051WVbD2iH1MzAOzks19GwdWD5SDdxWxrK2E4ee-v7vGATodoR6Rg5jimFIx37QVCrOYaDz-o26JbriL77_CRDkTFH_4yKN_K_7EuMfMFuI74qNIz-2oK_JWp1QnqXXcW1tDxeUzcR4M3bD3tYH8QuCmDScsy6paDKlv5S_EEQ417KuMgDPWsa9QM7Oj1JeHzVMHbZA09SNsFVmJJjzdq-Y3Gelc2MQ9SJLW1Rr6"/>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant italic">
+                        "Kisan Alert AI transformed our irrigation efficiency by 40%." — Dr. Aruna Singh, Lead Agronomist
+                    </p>
+</div>
+</div>
+</section>
+<!-- Right Side: Auth Card -->
+<section class="flex flex-1 flex-col justify-center items-center p-md bg-surface-container-lowest overflow-y-auto">
+<!-- Mobile Logo (Visible only on small screens) -->
+<div class="md:hidden mb-lg mt-md flex items-center gap-xs shrink-0">
+<span class="material-symbols-outlined text-primary text-3xl">agriculture</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Kisan Alert AI</h1>
+</div>
+<div class="w-full max-w-[420px] space-y-lg py-md my-auto">
+<header class="text-center md:text-left">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-xs mt-0">Welcome back</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Access your farm's digital twin and AI advisor.</p>
+</header>
+<!-- Auth Provider Buttons (Firebase Inspired) -->
+<div class="space-y-sm">
+<button class="w-full flex items-center justify-center gap-sm px-md py-sm bg-white text-on-background border border-outline-variant rounded-lg hover:bg-surface-bright transition-all font-label-md">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                        Continue with Google
+                    </button>
+<button class="w-full flex items-center justify-center gap-sm px-md py-sm bg-surface-container-high border border-outline-variant rounded-lg hover:bg-surface-variant transition-all font-label-md">
+<span class="material-symbols-outlined text-primary">smartphone</span>
+                        Continue with Phone
+                    </button>
+</div>
+<!-- Divider -->
+<div class="relative flex items-center">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="flex-shrink mx-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">or email</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<!-- Email Form -->
+<form class="space-y-md" onsubmit="return false;">
+<div class="space-y-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Work Email</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">mail</span>
+<input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline" placeholder="name@farm.com" type="email"/>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Password</label>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">Forgot?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">lock</span>
+<input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="w-full py-md bg-secondary-container text-on-secondary-fixed font-semibold rounded-lg hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-xs">
+                        Login to Dashboard
+                        <span class="material-symbols-outlined">trending_flat</span>
+</button>
+</form>
+<footer class="text-center pt-xl">
+<p class="font-label-md text-label-md text-on-surface-variant">
+                        New to Kisan Alert AI? 
+                        <a class="text-primary font-bold hover:underline ml-1" href="#">Create an account</a>
+</p>
+</footer>
+</div>
+</section>
+</main>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Subtle Mouse Movement Background Effect
+        const hero = document.querySelector('.hero-gradient');
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 768) return;
+            const x = (e.clientX / window.innerWidth) * 10;
+            const y = (e.clientY / window.innerHeight) * 10;
+            hero.style.backgroundPosition = `${x}% ${y}%`;
+        });
+
+        // Form Focus Visuals
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('.material-symbols-outlined').style.color = '#78dc77';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('.material-symbols-outlined').style.color = '#becab9';
+            });
+        });
+
+        // ═══════════════════════════════════════════════════════════════
+        // API INTEGRATION — Auth Landing → Location Setup redirect
+        // Firebase Authentication will be integrated in a future phase.
+        // ═══════════════════════════════════════════════════════════════
+
+        // Login form submission → redirect to location setup
+        const loginForm = document.querySelector('form');
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            window.location.href = '/location-setup';
+        });
+
+        // "Login to Dashboard" button (inside form) — handled by form submit above
+
+        // Google Sign-in button → redirect to location setup
+        const googleBtn = document.querySelector('button svg')?.closest('button');
+        if (googleBtn) {
+            googleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = '/location-setup';
+            });
+        }
+
+        // Phone Sign-in button → redirect to location setup
+        const phoneBtn = document.querySelectorAll('button')[1];
+        if (phoneBtn && phoneBtn.textContent.includes('Phone')) {
+            phoneBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = '/location-setup';
+            });
+        }
+
+        // "Create an account" link → redirect to location setup
+        const createAccountLink = document.querySelector('footer a');
+        if (createAccountLink) {
+            createAccountLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = '/location-setup';
+            });
+        }
+    </script>
+</body></html>

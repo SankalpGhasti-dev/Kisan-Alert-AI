@@ -1,0 +1,14 @@
+streamlit
+pandas
+scikit-learn
+joblib
+requests
+google-generativeai
+Pillow
+python-dotenv
+numpy
+fastapi
+uvicorn[standard]
+python-multipart
+faster-whisper
+edge-tts

@@ -1,0 +1,358 @@
+state,district,N,P,K,pH,soil_type
+Andhra Pradesh,Anantapur,242,31,171,7.0,Red
+Andhra Pradesh,Chittoor,234,19,197,6.8,Alluvial
+Andhra Pradesh,East Godavari,217,27,231,7.0,Black
+Andhra Pradesh,Guntur,205,33,202,7.6,Alluvial
+Andhra Pradesh,Kadapa,206,24,246,7.3,Red
+Andhra Pradesh,Krishna,243,30,168,7.7,Red
+Andhra Pradesh,Kurnool,221,34,249,6.5,Alluvial
+Andhra Pradesh,Nellore,231,19,212,7.1,Alluvial
+Andhra Pradesh,Ongole,200,26,223,6.3,Alluvial
+Andhra Pradesh,Prakasam,193,30,218,7.7,Red
+Andhra Pradesh,Srikakulam,220,26,220,7.6,Alluvial
+Andhra Pradesh,Vijayawada,219,20,178,6.4,Black
+Andhra Pradesh,Visakhapatnam,182,34,193,7.7,Black
+Andhra Pradesh,Vizianagaram,238,33,163,6.2,Red
+Andhra Pradesh,West Godavari,215,32,202,7.3,Black
+Bihar,Araria,235,35,181,7.8,Alluvial
+Bihar,Aurangabad,250,25,231,7.4,Alluvial
+Bihar,Begusarai,245,21,186,7.3,Alluvial
+Bihar,Bhagalpur,234,26,222,7.7,Alluvial
+Bihar,Darbhanga,219,29,192,7.9,Alluvial
+Bihar,East Champaran,225,23,180,7.7,Alluvial
+Bihar,Gaya,230,24,194,7.4,Alluvial
+Bihar,Gopalganj,238,32,189,7.0,Alluvial
+Bihar,Katihar,229,30,240,7.5,Alluvial
+Bihar,Kishanganj,247,28,192,7.0,Alluvial
+Bihar,Madhubani,233,20,240,7.4,Alluvial
+Bihar,Munger,239,25,234,7.4,Alluvial
+Bihar,Muzaffarpur,212,29,237,7.6,Alluvial
+Bihar,Nalanda,231,34,240,7.7,Alluvial
+Bihar,Nawada,230,20,183,7.4,Alluvial
+Bihar,Patna,238,23,220,7.8,Alluvial
+Bihar,Purnia,233,35,183,7.6,Alluvial
+Bihar,Rohtas,227,25,225,7.1,Alluvial
+Bihar,Samastipur,236,33,212,7.6,Alluvial
+Bihar,Saran,210,27,225,7.3,Alluvial
+Bihar,Sheikhpura,219,22,213,7.8,Alluvial
+Bihar,Sitamarhi,243,28,183,7.6,Alluvial
+Bihar,Siwan,247,33,226,7.2,Alluvial
+Bihar,Supaul,214,24,191,7.7,Alluvial
+Bihar,West Champaran,210,34,190,7.7,Alluvial
+Chhattisgarh,Ambikapur,217,26,250,7.4,Black
+Chhattisgarh,Balod,199,21,221,7.2,Red
+Chhattisgarh,Baloda Bazar,184,28,217,7.0,Black
+Chhattisgarh,Bemetara,180,27,244,7.0,Red
+Chhattisgarh,Bilaspur,201,26,233,7.3,Black
+Chhattisgarh,Dhamtari,188,18,245,7.4,Black
+Chhattisgarh,Durg,214,22,246,6.6,Red
+Chhattisgarh,Gariaband,196,20,226,6.5,Black
+Chhattisgarh,Jagdalpur,207,25,232,7.5,Red
+Chhattisgarh,Janjgir-Champa,219,21,203,6.9,Black
+Chhattisgarh,Korba,216,22,220,7.2,Black
+Chhattisgarh,Mahasamund,204,24,222,7.5,Red
+Chhattisgarh,Mungeli,188,20,226,7.3,Red
+Chhattisgarh,Raigarh,204,25,213,6.8,Black
+Chhattisgarh,Raipur,206,23,196,7.4,Red
+Chhattisgarh,Rajnandgaon,184,19,230,6.8,Red
+Gujarat,Ahmedabad,228,25,233,7.2,Alluvial
+Gujarat,Amreli,226,20,230,7.2,Black
+Gujarat,Anand,230,28,236,7.8,Alluvial
+Gujarat,Banaskantha,192,26,267,7.6,Alluvial
+Gujarat,Bhavnagar,211,24,258,7.5,Black
+Gujarat,Gandhinagar,239,27,244,7.6,Alluvial
+Gujarat,Jamnagar,195,23,269,7.3,Alluvial
+Gujarat,Junagadh,198,24,239,7.1,Alluvial
+Gujarat,Kheda,220,32,233,7.0,Alluvial
+Gujarat,Kutch,193,32,262,7.5,Black
+Gujarat,Mehsana,224,20,244,7.5,Alluvial
+Gujarat,Morbi,234,24,268,7.4,Alluvial
+Gujarat,Patan,237,32,256,7.7,Black
+Gujarat,Rajkot,224,29,231,7.5,Alluvial
+Gujarat,Sabarkantha,209,20,239,7.3,Alluvial
+Gujarat,Surat,217,31,269,7.3,Black
+Gujarat,Surendranagar,239,27,230,7.8,Black
+Gujarat,Vadodara,212,29,238,7.4,Black
+Haryana,Ambala,255,34,140,7.5,Alluvial
+Haryana,Bhiwani,250,32,164,7.6,Arid
+Haryana,Faridabad,251,29,143,8.1,Arid
+Haryana,Fatehabad,235,34,187,8.1,Alluvial
+Haryana,Gurugram,230,32,140,7.6,Arid
+Haryana,Hisar,240,28,180,8.1,Arid
+Haryana,Jhajjar,244,28,142,8.1,Arid
+Haryana,Jind,230,32,154,7.7,Alluvial
+Haryana,Kaithal,246,28,172,8.2,Alluvial
+Haryana,Karnal,260,35,150,7.6,Alluvial
+Haryana,Kurukshetra,240,28,178,7.8,Arid
+Haryana,Mahendragarh,245,26,175,8.2,Arid
+Haryana,Nuh,243,32,155,8.0,Arid
+Haryana,Palwal,256,26,176,7.6,Arid
+Haryana,Panipat,253,35,189,8.2,Arid
+Haryana,Rewari,235,33,176,7.8,Alluvial
+Haryana,Rohtak,250,32,160,7.7,Alluvial
+Haryana,Sirsa,235,25,190,8.2,Arid
+Haryana,Sonipat,259,32,190,7.7,Arid
+Haryana,Yamunanagar,233,30,189,7.5,Alluvial
+Jharkhand,Bokaro,193,22,203,6.2,Red
+Jharkhand,Chatra,172,14,159,5.6,Red
+Jharkhand,Deoghar,176,17,173,6.0,Laterite
+Jharkhand,Dhanbad,195,11,181,5.3,Laterite
+Jharkhand,Dumka,175,17,208,5.3,Red
+Jharkhand,East Singhbhum,177,12,178,5.7,Laterite
+Jharkhand,Garhwa,160,21,170,5.8,Red
+Jharkhand,Giridih,177,10,175,5.3,Red
+Jharkhand,Godda,183,11,165,6.2,Red
+Jharkhand,Gumla,169,19,187,6.0,Laterite
+Jharkhand,Hazaribagh,163,16,204,6.5,Laterite
+Jharkhand,Jamshedpur,151,16,154,6.3,Laterite
+Jharkhand,Jamtara,159,13,155,6.0,Red
+Jharkhand,Khunti,183,15,153,6.2,Red
+Jharkhand,Koderma,185,17,199,5.4,Laterite
+Jharkhand,Latehar,151,11,165,6.1,Laterite
+Jharkhand,Lohardaga,176,14,206,6.0,Laterite
+Jharkhand,Pakur,177,17,163,5.7,Red
+Jharkhand,Palamu,170,12,158,6.2,Red
+Jharkhand,Ramgarh,155,12,208,6.2,Laterite
+Jharkhand,Ranchi,173,13,196,6.1,Laterite
+Jharkhand,Sahibganj,171,13,151,5.7,Laterite
+Jharkhand,Saraikela,172,22,171,6.4,Laterite
+Jharkhand,Simdega,188,14,208,5.5,Red
+Jharkhand,West Singhbhum,157,12,165,6.5,Laterite
+Karnataka,Bagalkot,199,20,231,6.0,Laterite
+Karnataka,Ballari,210,22,219,6.6,Laterite
+Karnataka,Belagavi,204,22,230,6.7,Laterite
+Karnataka,Belgaum,215,25,230,7.4,Black
+Karnataka,Bengaluru Rural,160,16,189,7.0,Red
+Karnataka,Bengaluru Urban,162,21,185,5.9,Laterite
+Karnataka,Bidar,176,22,226,6.3,Red
+Karnataka,Chikkaballapura,197,17,226,6.0,Red
+Karnataka,Chikkamagaluru,165,20,221,6.3,Laterite
+Karnataka,Chitradurga,189,16,186,6.9,Laterite
+Karnataka,Dakshina Kannada,198,18,190,6.7,Red
+Karnataka,Davangere,172,16,222,6.7,Laterite
+Karnataka,Dharwad,179,15,205,6.9,Red
+Karnataka,Gadag,193,14,228,5.8,Red
+Karnataka,Gulbarga,205,26,255,7.6,Black
+Karnataka,Hassan,162,13,215,6.6,Red
+Karnataka,Haveri,160,14,186,6.7,Red
+Karnataka,Kalaburagi,203,17,230,6.4,Laterite
+Karnataka,Kodagu,183,21,184,6.1,Red
+Karnataka,Kolar,184,14,225,7.0,Laterite
+Karnataka,Koppal,160,14,201,6.1,Laterite
+Karnataka,Mandya,163,13,196,6.3,Laterite
+Karnataka,Mysore,200,20,160,6.8,Red
+Karnataka,Mysuru,168,14,201,5.9,Red
+Karnataka,Raichur,177,22,237,6.9,Laterite
+Karnataka,Ramanagara,170,15,206,6.7,Laterite
+Karnataka,Shivamogga,176,21,215,5.9,Red
+Karnataka,Tumkur,174,13,218,6.0,Red
+Karnataka,Udupi,173,20,212,6.5,Red
+Karnataka,Uttara Kannada,189,12,216,6.8,Red
+Karnataka,Vijayapura,185,18,184,6.3,Laterite
+Karnataka,Yadgir,165,19,194,5.9,Laterite
+Madhya Pradesh,Agar Malwa,230,29,229,7.5,Black
+Madhya Pradesh,Balaghat,212,29,221,7.2,Alluvial
+Madhya Pradesh,Betul,215,31,213,7.6,Alluvial
+Madhya Pradesh,Bhopal,215,28,250,7.3,Black
+Madhya Pradesh,Chhindwara,211,32,249,7.5,Alluvial
+Madhya Pradesh,Dewas,222,31,224,7.3,Alluvial
+Madhya Pradesh,Gwalior,211,26,251,7.2,Black
+Madhya Pradesh,Hoshangabad,213,32,228,7.5,Alluvial
+Madhya Pradesh,Indore,225,30,260,7.4,Black
+Madhya Pradesh,Jabalpur,210,25,240,7.1,Black
+Madhya Pradesh,Mandla,212,30,219,7.6,Black
+Madhya Pradesh,Mandsaur,227,29,255,7.4,Alluvial
+Madhya Pradesh,Neemuch,225,31,236,7.6,Alluvial
+Madhya Pradesh,Rajgarh,226,30,220,7.6,Black
+Madhya Pradesh,Ratlam,220,25,219,7.3,Alluvial
+Madhya Pradesh,Rewa,230,32,240,7.6,Alluvial
+Madhya Pradesh,Sagar,219,26,259,7.5,Black
+Madhya Pradesh,Satna,214,26,251,7.3,Black
+Madhya Pradesh,Sehore,228,32,216,7.4,Black
+Madhya Pradesh,Seoni,214,29,212,7.2,Black
+Madhya Pradesh,Shajapur,210,26,225,7.2,Alluvial
+Madhya Pradesh,Ujjain,224,29,241,7.1,Black
+Madhya Pradesh,Vidisha,223,30,203,7.4,Black
+Maharashtra,Ahmednagar,218,19,250,7.0,Black
+Maharashtra,Akola,229,18,242,7.7,Black
+Maharashtra,Amravati,219,23,257,7.6,Black
+Maharashtra,Aurangabad,208,24,234,7.7,Black
+Maharashtra,Beed,201,15,255,7.8,Black
+Maharashtra,Bhandara,222,24,260,7.1,Black
+Maharashtra,Buldhana,210,24,244,7.4,Black
+Maharashtra,Chandrapur,221,20,247,7.6,Black
+Maharashtra,Dhule,195,23,255,7.1,Black
+Maharashtra,Gadchiroli,230,22,259,7.6,Black
+Maharashtra,Gondia,218,19,263,7.7,Black
+Maharashtra,Hingoli,198,25,265,7.4,Black
+Maharashtra,Jalgaon,205,22,265,7.3,Black
+Maharashtra,Jalna,193,18,248,7.6,Black
+Maharashtra,Kolhapur,202,18,259,7.2,Black
+Maharashtra,Latur,188,24,246,7.6,Black
+Maharashtra,Nagpur,212,20,264,7.1,Black
+Maharashtra,Nanded,196,22,250,7.5,Black
+Maharashtra,Nandurbar,217,22,241,7.2,Black
+Maharashtra,Nashik,210,25,260,7.2,Black
+Maharashtra,Osmanabad,189,19,265,7.8,Black
+Maharashtra,Palghar,183,16,231,5.6,Laterite
+Maharashtra,Parbhani,187,16,241,7.3,Black
+Maharashtra,Pune,201,18,246,7.3,Black
+Maharashtra,Raigad,172,18,227,6.2,Laterite
+Maharashtra,Ratnagiri,195,16,206,6.4,Laterite
+Maharashtra,Sangli,198,21,261,7.6,Black
+Maharashtra,Satara,216,27,242,7.1,Black
+Maharashtra,Sindhudurg,185,15,215,5.7,Laterite
+Maharashtra,Solapur,195,18,240,7.5,Black
+Maharashtra,Thane,186,16,216,5.6,Laterite
+Maharashtra,Wardha,213,20,250,7.5,Black
+Maharashtra,Washim,219,19,250,7.2,Black
+Maharashtra,Yavatmal,219,25,252,7.8,Black
+Odisha,Angul,183,23,155,5.9,Red
+Odisha,Balasore,162,18,176,5.9,Red
+Odisha,Bargarh,188,13,205,6.4,Red
+Odisha,Berhampur,197,23,182,6.4,Laterite
+Odisha,Bhadrak,193,20,166,6.6,Laterite
+Odisha,Bhubaneswar,195,17,177,5.8,Laterite
+Odisha,Bolangir,183,22,140,5.9,Red
+Odisha,Cuttack,187,21,202,6.8,Laterite
+Odisha,Dhenkanal,169,17,140,6.2,Laterite
+Odisha,Gajapati,166,22,177,5.7,Red
+Odisha,Ganjam,179,21,158,6.4,Red
+Odisha,Jagatsinghpur,173,23,177,6.1,Red
+Odisha,Jajpur,192,15,158,5.7,Red
+Odisha,Kalahandi,161,14,151,6.0,Red
+Odisha,Kendrapara,161,18,176,6.3,Laterite
+Odisha,Khordha,165,12,200,5.8,Laterite
+Odisha,Koraput,176,23,160,6.4,Laterite
+Odisha,Malkangiri,196,19,180,5.7,Laterite
+Odisha,Nayagarh,164,16,164,5.8,Red
+Odisha,Nuapada,189,17,184,5.9,Red
+Odisha,Puri,187,17,160,6.1,Red
+Odisha,Rayagada,187,13,144,6.4,Laterite
+Odisha,Rourkela,164,16,148,5.6,Laterite
+Odisha,Sambalpur,184,14,210,6.3,Red
+Punjab,Amritsar,280,42,145,7.6,Alluvial
+Punjab,Bathinda,265,35,170,7.8,Alluvial
+Punjab,Faridkot,276,40,151,7.8,Alluvial
+Punjab,Fatehgarh Sahib,277,41,147,7.3,Alluvial
+Punjab,Fazilka,271,40,167,7.5,Alluvial
+Punjab,Firozpur,271,45,161,7.8,Alluvial
+Punjab,Gurdaspur,281,43,171,7.6,Alluvial
+Punjab,Hoshiarpur,280,44,173,7.6,Alluvial
+Punjab,Jalandhar,278,41,155,7.5,Alluvial
+Punjab,Kapurthala,277,38,156,7.6,Alluvial
+Punjab,Ludhiana,275,40,150,7.5,Alluvial
+Punjab,Mansa,274,45,151,7.6,Alluvial
+Punjab,Moga,276,37,166,7.6,Alluvial
+Punjab,Muktsar,268,41,146,7.6,Alluvial
+Punjab,Nawanshahr,276,43,147,7.3,Alluvial
+Punjab,Pathankot,278,41,167,7.7,Alluvial
+Punjab,Patiala,270,38,160,7.4,Alluvial
+Punjab,Rupnagar,281,40,141,7.5,Alluvial
+Punjab,SAS Nagar,270,35,144,7.4,Alluvial
+Punjab,Tarn Taran,274,39,170,7.8,Alluvial
+Rajasthan,Ajmer,201,24,217,8.2,Arid
+Rajasthan,Alwar,206,16,203,8.4,Arid
+Rajasthan,Banswara,203,21,213,8.4,Arid
+Rajasthan,Barmer,200,25,205,8.4,Arid
+Rajasthan,Bharatpur,205,18,217,7.6,Arid
+Rajasthan,Bhilwara,188,23,205,8.1,Arid
+Rajasthan,Bikaner,193,25,216,8.0,Arid
+Rajasthan,Chittorgarh,220,19,234,8.1,Arid
+Rajasthan,Dungarpur,193,25,205,8.1,Arid
+Rajasthan,Jaipur,216,21,227,8.2,Arid
+Rajasthan,Jalore,213,21,242,8.3,Arid
+Rajasthan,Jhunjhunu,214,16,233,8.3,Arid
+Rajasthan,Jodhpur,208,19,201,8.4,Arid
+Rajasthan,Kota,215,15,233,7.5,Arid
+Rajasthan,Nagaur,189,18,213,7.7,Arid
+Rajasthan,Pali,188,19,231,8.0,Arid
+Rajasthan,Sikar,210,15,220,7.7,Arid
+Rajasthan,Sirohi,181,23,227,8.0,Arid
+Rajasthan,Tonk,184,15,227,7.8,Arid
+Rajasthan,Udaipur,210,15,241,8.4,Arid
+Tamil Nadu,Chennai,208,21,193,6.1,Laterite
+Tamil Nadu,Coimbatore,201,24,223,6.5,Laterite
+Tamil Nadu,Cuddalore,200,35,208,6.4,Laterite
+Tamil Nadu,Dharmapuri,190,34,240,6.4,Alluvial
+Tamil Nadu,Dindigul,216,15,238,6.4,Laterite
+Tamil Nadu,Erode,212,19,222,6.5,Laterite
+Tamil Nadu,Kancheepuram,185,23,237,7.0,Laterite
+Tamil Nadu,Karur,220,19,213,6.7,Alluvial
+Tamil Nadu,Krishnagiri,190,15,170,7.1,Laterite
+Tamil Nadu,Madurai,206,15,181,7.1,Red
+Tamil Nadu,Nagapattinam,201,22,221,6.3,Red
+Tamil Nadu,Namakkal,202,31,236,6.3,Red
+Tamil Nadu,Salem,195,35,231,6.8,Alluvial
+Tamil Nadu,Sivaganga,217,19,184,6.0,Red
+Tamil Nadu,Thanjavur,199,17,247,7.4,Alluvial
+Tamil Nadu,Theni,210,26,198,6.9,Laterite
+Tamil Nadu,Tiruchirappalli,189,16,179,7.2,Red
+Tamil Nadu,Tirunelveli,203,17,231,7.2,Alluvial
+Tamil Nadu,Tiruvallur,195,29,173,7.4,Red
+Tamil Nadu,Tiruvarur,215,25,173,7.2,Red
+Tamil Nadu,Vellore,225,30,197,6.3,Laterite
+Tamil Nadu,Villupuram,226,22,243,7.5,Alluvial
+Tamil Nadu,Virudhunagar,211,33,186,7.0,Alluvial
+Telangana,Adilabad,214,27,230,7.2,Red
+Telangana,Bhadradri,206,20,211,7.4,Black
+Telangana,Hyderabad,215,28,180,6.6,Red
+Telangana,Jayashankar,193,21,214,7.0,Black
+Telangana,Karimnagar,209,25,204,6.6,Red
+Telangana,Khammam,199,27,187,7.2,Black
+Telangana,Mahbubnagar,215,21,225,6.7,Red
+Telangana,Mancherial,206,27,174,6.8,Black
+Telangana,Medchal,196,29,202,7.0,Red
+Telangana,Nalgonda,213,29,206,6.9,Red
+Telangana,Nizamabad,210,27,189,7.4,Black
+Telangana,Peddapalli,209,21,194,6.5,Black
+Telangana,Rangareddy,200,26,161,6.8,Black
+Telangana,Sangareddy,194,27,225,6.6,Red
+Telangana,Warangal,213,23,222,6.9,Black
+Uttar Pradesh,Agra,230,25,155,7.5,Alluvial
+Uttar Pradesh,Aligarh,246,29,158,7.4,Alluvial
+Uttar Pradesh,Allahabad,250,32,151,7.1,Alluvial
+Uttar Pradesh,Azamgarh,242,30,162,7.4,Alluvial
+Uttar Pradesh,Bahraich,231,27,145,7.2,Alluvial
+Uttar Pradesh,Ballia,243,32,148,7.1,Alluvial
+Uttar Pradesh,Banda,253,33,143,7.4,Alluvial
+Uttar Pradesh,Bareilly,250,30,142,7.3,Alluvial
+Uttar Pradesh,Chitrakoot,233,32,165,7.3,Alluvial
+Uttar Pradesh,Etawah,240,32,155,7.4,Alluvial
+Uttar Pradesh,Fatehpur,244,30,163,7.5,Alluvial
+Uttar Pradesh,Firozabad,258,33,143,7.4,Alluvial
+Uttar Pradesh,Gonda,252,30,147,7.4,Alluvial
+Uttar Pradesh,Gorakhpur,255,35,141,7.3,Alluvial
+Uttar Pradesh,Jaunpur,236,32,143,7.2,Alluvial
+Uttar Pradesh,Jhansi,236,30,145,7.2,Alluvial
+Uttar Pradesh,Kanpur,245,32,145,7.4,Alluvial
+Uttar Pradesh,Lakhimpur,230,27,156,7.1,Alluvial
+Uttar Pradesh,Lucknow,240,30,150,7.2,Alluvial
+Uttar Pradesh,Mathura,256,33,163,7.3,Alluvial
+Uttar Pradesh,Meerut,260,35,150,7.3,Alluvial
+Uttar Pradesh,Mirzapur,257,27,158,7.1,Alluvial
+Uttar Pradesh,Moradabad,255,25,159,7.3,Alluvial
+Uttar Pradesh,Muzaffarnagar,260,34,161,7.3,Alluvial
+Uttar Pradesh,Rae Bareli,238,33,145,7.2,Alluvial
+Uttar Pradesh,Saharanpur,242,25,159,7.5,Alluvial
+Uttar Pradesh,Sitapur,237,31,146,7.4,Alluvial
+Uttar Pradesh,Sonbhadra,253,34,145,7.5,Alluvial
+Uttar Pradesh,Varanasi,235,28,160,7.1,Alluvial
+West Bengal,Bankura,224,29,183,6.3,Red
+West Bengal,Bardhaman,212,33,166,7.0,Red
+West Bengal,Birbhum,228,28,167,5.9,Alluvial
+West Bengal,Burdwan,233,25,210,7.4,Red
+West Bengal,Cooch Behar,203,35,168,7.0,Red
+West Bengal,Darjeeling,222,25,163,6.1,Red
+West Bengal,Hooghly,228,29,179,6.7,Alluvial
+West Bengal,Howrah,222,25,176,6.5,Alluvial
+West Bengal,Jalpaiguri,217,25,152,6.0,Red
+West Bengal,Kolkata,216,26,181,6.9,Red
+West Bengal,Malda,219,34,208,6.4,Red
+West Bengal,Medinipur East,240,34,215,6.2,Alluvial
+West Bengal,Medinipur West,242,26,155,5.5,Red
+West Bengal,Murshidabad,200,30,187,7.3,Red
+West Bengal,Nadia,227,27,205,6.0,Alluvial
+West Bengal,North 24 Parganas,221,30,205,6.0,Alluvial
+West Bengal,Purulia,224,26,178,6.0,Red
+West Bengal,South 24 Parganas,203,34,202,7.3,Red

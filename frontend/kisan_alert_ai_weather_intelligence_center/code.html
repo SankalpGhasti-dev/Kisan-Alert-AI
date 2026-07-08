@@ -1,0 +1,663 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Kisan Alert AI | Weather Intelligence Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#005313",
+                        "on-primary-container": "#003c0b",
+                        "surface-container-lowest": "#0a0f0e",
+                        "secondary-container": "#feb300",
+                        "on-surface-variant": "#becab9",
+                        "surface-container-low": "#181d1b",
+                        "inverse-surface": "#dfe3e1",
+                        "on-tertiary-fixed": "#0b2010",
+                        "inverse-on-surface": "#2d3130",
+                        "tertiary-fixed-dim": "#b4cdb4",
+                        "secondary-fixed-dim": "#ffba38",
+                        "on-tertiary": "#203523",
+                        "surface-tint": "#78dc77",
+                        "outline": "#899484",
+                        "tertiary-container": "#89a18a",
+                        "surface-dim": "#101413",
+                        "on-secondary-fixed": "#281900",
+                        "on-error-container": "#ffdad6",
+                        "on-error": "#690005",
+                        "inverse-primary": "#006e1c",
+                        "outline-variant": "#3f4a3c",
+                        "primary": "#78dc77",
+                        "on-surface": "#dfe3e1",
+                        "surface-container-highest": "#313634",
+                        "on-secondary-fixed-variant": "#604100",
+                        "on-primary": "#00390a",
+                        "tertiary": "#b4cdb4",
+                        "surface-variant": "#313634",
+                        "surface": "#101413",
+                        "surface-container-high": "#262b29",
+                        "on-tertiary-fixed-variant": "#364c39",
+                        "background": "#101413",
+                        "secondary-fixed": "#ffdeac",
+                        "primary-fixed": "#94f990",
+                        "primary-container": "#4caf50",
+                        "surface-bright": "#353a38",
+                        "on-tertiary-container": "#223726",
+                        "surface-container": "#1c211f",
+                        "secondary": "#ffd799",
+                        "on-secondary": "#432c00",
+                        "on-primary-fixed": "#002204",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#d0e9cf",
+                        "primary-fixed-dim": "#78dc77",
+                        "on-background": "#dfe3e1",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#6a4800"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "md": "24px",
+                        "base": "4px",
+                        "sm": "16px",
+                        "lg": "32px",
+                        "xl": "48px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "label-md": ["Hanken Grotesk"],
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #101413;
+            color: #dfe3e1;
+            font-family: 'Manrope', sans-serif;
+        }
+        .glass-card {
+            background: rgba(21, 46, 27, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            background: rgba(21, 46, 27, 0.6);
+            border-color: rgba(120, 220, 119, 0.3);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-container {
+            position: relative;
+            height: 120px;
+            width: 100%;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="flex min-h-screen bg-background">
+<!-- Sidebar (Shared Component Style) -->
+
+<!-- Main Content Canvas -->
+<main class="flex-1 min-h-screen">
+<!-- Top Nav Bar -->
+<!-- TopNavBar -->
+<nav class="w-full h-16 bg-surface-container border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop sticky top-0 z-50">
+    <div class="flex items-center gap-sm">
+        <a href="/dashboard" class="flex items-center gap-sm hover:opacity-90 transition-opacity">
+            <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+                <span class="material-symbols-outlined text-on-primary-container">agriculture</span>
+            </div>
+            <span class="font-headline-md text-body-lg font-bold text-on-surface hidden md:block">Kisan Alert AI</span>
+        </a>
+    </div>
+    
+    <div class="hidden lg:flex gap-md h-full items-center">
+        <a href="/dashboard" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/dashboard">Dashboard</a>
+        <a href="/disease-detection" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/disease-detection">Disease Detection</a>
+        <a href="/weather" class="h-full flex items-center border-b-2 border-primary text-primary px-xs font-label-md transition-colors nav-link" data-path="/weather">Weather</a>
+        <a href="/market" class="h-full flex items-center border-b-2 border-transparent hover:border-primary text-on-surface-variant hover:text-on-surface px-xs font-label-md transition-colors nav-link" data-path="/market">Market Analysis ★</a>
+    </div>
+    
+    <div class="flex items-center gap-sm">
+        <div class="relative group" id="alert-dropdown-container">
+            <button class="relative flex items-center gap-xs px-sm py-xs rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" id="alerts-btn">
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="font-label-md text-label-md">Alerts</span>
+                <span class="absolute top-1 right-2 w-2 h-2 bg-error rounded-full border border-surface-container"></span>
+            </button>
+            
+            <div id="notification-panel" class="absolute right-0 top-full mt-2 w-80 bg-surface-container-high border border-outline-variant rounded-xl shadow-2xl overflow-hidden hidden z-[100] flex flex-col">
+                <div class="p-sm border-b border-outline-variant bg-surface-container flex justify-between items-center">
+                    <span class="font-headline-sm text-on-surface font-bold">Notifications</span>
+                    <button class="text-primary text-label-sm font-bold hover:underline">Mark all read</button>
+                </div>
+                
+                <div class="max-h-80 overflow-y-auto" id="notification-list">
+                    <!-- REAL Alerts -->
+                    <div class="p-xs text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Real-time Alerts</div>
+                    <a href="#" class="flex gap-sm p-sm hover:bg-white/5 transition-colors border-l-2 border-error">
+                        <span class="material-symbols-outlined text-error">warning</span>
+                        <div class="flex flex-col">
+                            <span class="font-label-sm text-on-surface font-bold" id="alert-dryspell-title">Dry Spell Alert</span>
+                            <span class="text-[12px] text-on-surface-variant" id="alert-dryspell-msg">Checking...</span>
+                        </div>
+                    </a>
+                    <a href="#" class="flex gap-sm p-sm hover:bg-white/5 transition-colors border-l-2 border-secondary">
+                        <span class="material-symbols-outlined text-secondary">water_drop</span>
+                        <div class="flex flex-col">
+                            <span class="font-label-sm text-on-surface font-bold">Irrigation Advisory</span>
+                            <span class="text-[12px] text-on-surface-variant" id="alert-irrig-msg">Checking...</span>
+                        </div>
+                    </a>
+                    <a href="#" class="flex gap-sm p-sm hover:bg-white/5 transition-colors border-l-2 border-tertiary">
+                        <span class="material-symbols-outlined text-tertiary">storm</span>
+                        <div class="flex flex-col">
+                            <span class="font-label-sm text-on-surface font-bold">Weather Warning</span>
+                            <span class="text-[12px] text-on-surface-variant">No severe warnings active.</span>
+                        </div>
+                    </a>
+                    
+                    <!-- FUTURE Modules -->
+                    <div class="p-xs text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mt-sm border-t border-outline-variant pt-sm">Future Capabilities</div>
+                    <div class="flex gap-sm p-sm opacity-60">
+                        <span class="material-symbols-outlined text-on-surface-variant">pest_control</span>
+                        <span class="font-label-sm text-on-surface">Disease Risk ★</span>
+                    </div>
+                    <div class="flex gap-sm p-sm opacity-60">
+                        <span class="material-symbols-outlined text-on-surface-variant">bug_report</span>
+                        <span class="font-label-sm text-on-surface">Pest Spread ★</span>
+                    </div>
+                    <div class="flex gap-sm p-sm opacity-60">
+                        <span class="material-symbols-outlined text-on-surface-variant">policy</span>
+                        <span class="font-label-sm text-on-surface">Government Advisory ★</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="flex items-center gap-sm cursor-pointer hover:bg-white/5 p-xs rounded-lg transition-colors" id="nav-profile-btn">
+            <div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+                <img class="w-full h-full object-cover" data-alt="Profile Picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYhbJrJcMI0Be-QX8VgDtnbaE3g_RyVKDTLq_W4EcQzS9cJZXjwTmnUB2g-kJI03LULxn50myUF4WQgWvr6eum1qOl6gcC-ugy8bDqGKa7XH0PGNZRUQXiNahIWBqrPg15bmJr4jqq4PMKt71dWRD32QBc2ropZF_1_jPv9mG8lpVembMIhnOCq7iAJNIhMIgRJ8mRn8nB1LSinBXSrs5vqE81TZ_oQfBR7Jf3zrY8T6ZWu8IcSn_pvJCtTtd9NRLDBdvKGn4zkTob"/>
+            </div>
+            <span class="font-label-md text-on-surface hidden md:block" id="nav-profile-name">Farmer</span>
+        </button>
+    </div>
+</nav>
+
+<!-- Profile Modal (Hidden by default) -->
+<div id="profile-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] hidden items-center justify-center p-md">
+    <div class="bg-surface-container rounded-2xl w-full max-w-md overflow-hidden shadow-2xl border border-outline-variant flex flex-col">
+        <div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-high">
+            <h2 class="font-headline-sm font-bold text-on-surface">Edit Profile</h2>
+            <button id="close-profile-modal" class="material-symbols-outlined text-on-surface-variant hover:text-on-surface">close</button>
+        </div>
+        <div class="p-md space-y-md overflow-y-auto max-h-[70vh]">
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-sm text-on-surface-variant">Name</label>
+                <input type="text" id="prof-name" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-sm py-xs focus:border-primary text-on-surface outline-none">
+            </div>
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-sm text-on-surface-variant">Phone</label>
+                <input type="text" id="prof-phone" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-sm py-xs focus:border-primary text-on-surface outline-none">
+            </div>
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-sm text-on-surface-variant">Village</label>
+                <input type="text" id="prof-village" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-sm py-xs focus:border-primary text-on-surface outline-none">
+            </div>
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-sm text-on-surface-variant">Preferred Crop</label>
+                <input type="text" id="prof-crop" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-sm py-xs focus:border-primary text-on-surface outline-none">
+            </div>
+        </div>
+        <div class="p-md border-t border-outline-variant bg-surface-container-high flex justify-end gap-sm">
+            <button id="cancel-profile" class="px-md py-sm rounded-lg font-label-md text-on-surface hover:bg-surface-variant transition-colors">Cancel</button>
+            <button id="save-profile" class="px-md py-sm bg-primary text-on-primary-container rounded-lg font-bold hover:brightness-110 transition-colors">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<!-- Navbar & Profile Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Alerts Dropdown Toggle
+    const alertsBtn = document.getElementById('alerts-btn');
+    const notificationPanel = document.getElementById('notification-panel');
+    if (alertsBtn && notificationPanel) {
+        alertsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notificationPanel.classList.toggle('hidden');
+        });
+        document.addEventListener('click', (e) => {
+            if (!alertsBtn.contains(e.target) && !notificationPanel.contains(e.target)) {
+                notificationPanel.classList.add('hidden');
+            }
+        });
+    }
+
+    // 2. Profile Management
+    const profileModal = document.getElementById('profile-modal');
+    const navProfileBtn = document.getElementById('nav-profile-btn');
+    const closeProfileModal = document.getElementById('close-profile-modal');
+    const cancelProfile = document.getElementById('cancel-profile');
+    const saveProfile = document.getElementById('save-profile');
+    const navProfileName = document.getElementById('nav-profile-name');
+
+    const profName = document.getElementById('prof-name');
+    const profPhone = document.getElementById('prof-phone');
+    const profVillage = document.getElementById('prof-village');
+    const profCrop = document.getElementById('prof-crop');
+
+    function loadProfile() {
+        const stored = localStorage.getItem('kisan_user_profile');
+        if (stored) {
+            try {
+                const profile = JSON.parse(stored);
+                if (profName) profName.value = profile.name || '';
+                if (profPhone) profPhone.value = profile.phone || '';
+                if (profVillage) profVillage.value = profile.village || '';
+                if (profCrop) profCrop.value = profile.crop || '';
+                if (navProfileName && profile.name) {
+                    navProfileName.textContent = profile.name.split(' ')[0];
+                }
+            } catch(e) { console.error("Error parsing profile", e); }
+        }
+    }
+
+    function saveProfileData() {
+        const profile = {
+            name: profName.value,
+            phone: profPhone.value,
+            village: profVillage.value,
+            crop: profCrop.value
+        };
+        localStorage.setItem('kisan_user_profile', JSON.stringify(profile));
+        loadProfile();
+        profileModal.classList.add('hidden');
+    }
+
+    if (profileModal && navProfileBtn) {
+        navProfileBtn.addEventListener('click', () => {
+            loadProfile();
+            profileModal.classList.remove('hidden');
+            profileModal.classList.add('flex');
+        });
+        closeProfileModal.addEventListener('click', () => profileModal.classList.add('hidden'));
+        cancelProfile.addEventListener('click', () => profileModal.classList.add('hidden'));
+        saveProfile.addEventListener('click', saveProfileData);
+    }
+
+    loadProfile();
+    
+    // 3. Set Active Nav Link
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if (currentPath.includes(link.dataset.path) || (currentPath === '/' && link.dataset.path === '/dashboard')) {
+            link.classList.remove('border-transparent', 'text-on-surface-variant');
+            link.classList.add('border-primary', 'text-primary');
+        } else {
+            link.classList.add('border-transparent', 'text-on-surface-variant');
+            link.classList.remove('border-primary', 'text-primary');
+        }
+    });
+});
+</script>
+<!-- Dashboard Body -->
+<section class="w-full flex-grow px-margin-mobile md:px-margin-desktop py-lg max-w-[1440px] mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col mb-md">
+<h1 class="text-[3rem] font-bold text-on-surface leading-tight mb-1">Weather Intelligence Center</h1>
+<div class="flex flex-wrap items-center gap-sm text-on-surface-variant">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span id="weather-location" class="font-body-lg text-body-lg">Maharashtra, Kolhapur</span>
+</div>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="font-label-md text-label-md">Last updated: 5 mins ago</span>
+
+<!-- High Rain Alert Badge (Moved next to location data) -->
+<div class="bg-secondary-container/20 border border-secondary-container px-sm py-0.5 rounded-full flex items-center gap-1 animate-pulse ml-sm">
+<span class="material-symbols-outlined text-secondary-container text-[16px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-label-sm text-[10px] text-secondary-container font-bold uppercase tracking-widest mt-0.5">High Rain Alert</span>
+</div>
+</div>
+</div>
+<!-- Current Weather Bento Grid -->
+<div class="flex flex-wrap justify-center lg:justify-start gap-md mb-md">
+<!-- Temperature -->
+<div class="glass-card rounded-xl p-sm flex flex-col items-center justify-center text-center w-full max-w-[160px] h-[140px] flex-grow">
+<span class="material-symbols-outlined text-primary mb-1 text-[28px]">device_thermostat</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Temperature</span>
+<p id="weather-temp" class="font-headline-lg text-headline-lg text-on-surface mt-1">32°C</p>
+</div>
+<!-- Humidity -->
+<div class="glass-card rounded-xl p-sm flex flex-col items-center justify-center text-center w-full max-w-[160px] h-[140px] flex-grow">
+<span class="material-symbols-outlined text-primary mb-1 text-[28px]">humidity_percentage</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Humidity</span>
+<p id="weather-humidity" class="font-headline-lg text-headline-lg text-on-surface mt-1">45%</p>
+</div>
+<!-- Rainfall -->
+<div class="glass-card rounded-xl p-sm flex flex-col items-center justify-center text-center w-full max-w-[160px] h-[140px] flex-grow">
+<span class="material-symbols-outlined text-primary mb-1 text-[28px]">rainy</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Rainfall</span>
+<p id="weather-rain" class="font-headline-lg text-headline-lg text-on-surface mt-1">12mm</p>
+</div>
+<!-- Wind Speed -->
+<div class="glass-card rounded-xl p-sm flex flex-col items-center justify-center text-center w-full max-w-[160px] h-[140px] flex-grow">
+<span class="material-symbols-outlined text-primary mb-1 text-[28px]">air</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Wind Speed</span>
+<p id="weather-wind" class="font-headline-lg text-headline-lg text-on-surface mt-1 flex items-baseline justify-center">18<span class="text-label-md ml-0.5">km/h</span></p>
+</div>
+<!-- UV Index -->
+<div class="glass-card rounded-xl p-sm flex flex-col items-center justify-center text-center w-full max-w-[160px] h-[140px] flex-grow">
+<span class="material-symbols-outlined text-primary mb-1 text-[28px]">sunny</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">UV Index</span>
+<p id="weather-uv" class="font-headline-lg text-headline-lg text-on-surface mt-1">High</p>
+</div>
+<!-- ET0 -->
+<div class="glass-card rounded-xl p-sm flex flex-col items-center justify-center text-center w-full max-w-[160px] h-[140px] flex-grow">
+<span class="material-symbols-outlined text-primary mb-1 text-[28px]">eco</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">ET0</span>
+<p id="weather-et0" class="font-headline-lg text-headline-lg text-on-surface mt-1 flex items-baseline justify-center">4.5<span class="text-label-md ml-0.5">mm/d</span></p>
+</div>
+<!-- Soil Moisture -->
+<div class="glass-card rounded-xl p-sm flex flex-col items-center justify-center text-center w-full max-w-[160px] h-[140px] flex-grow">
+<span class="material-symbols-outlined text-primary mb-1 text-[28px]">opacity</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Soil</span>
+<p class="font-headline-lg text-headline-lg text-primary mt-1">Exc.</p>
+</div>
+</div>
+<!-- Forecast and Satellite Row -->
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-md mb-md">
+<!-- Seven Day Forecast (60%) -->
+<div class="lg:col-span-3 glass-card rounded-xl p-md overflow-hidden flex flex-col">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined">calendar_month</span>
+                            7-Day Forecast
+                        </h3>
+<button class="text-primary font-label-md hover:underline">Full Report</button>
+</div>
+<div id="weather-forecast-container" class="flex overflow-x-auto pb-sm gap-sm no-scrollbar flex-1 items-stretch">
+<!-- Will be populated by JS -->
+</div>
+</div>
+<!-- Satellite Weather Layer (40%) -->
+<div class="lg:col-span-2 glass-card rounded-xl p-md flex flex-col relative overflow-hidden group">
+<div class="flex justify-between items-center mb-md z-10">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined">satellite_alt</span>
+                            Radar
+                        </h3>
+<span class="bg-primary/20 text-primary px-sm py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">Live</span>
+</div>
+<div class="w-full rounded-lg overflow-hidden border border-white/10 relative aspect-video">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMSnbWF7ZoHK-w78DT1HNRVG3XqpXgjPjHOMEGCKq_ODD7ItUe8U1VM9Z6boTZtPDv2SeOU-S37HwQ26oUOEoI65qW6iaMMBO6yqvu3FnLhIF6TrBt26OIjeIQ8E_ZNJnsnXac7XnnnH4JjVEXU2xXPy8uJtgU6dEn8JKg3DQUu5EPbc2w5GFk5OHjWcNpduTejOCOFmOv_TbDdanmgVc_55WSCd3Lw3QNhC23bQVDQrTvW2SGc71eIVPTZw-VIVm_origddNSlrr1" alt="Satellite Radar" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+<div class="absolute bottom-sm left-sm right-sm flex justify-between items-end">
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] text-on-surface-variant">PRECIPITATION</span>
+<div class="h-2 w-24 bg-gradient-to-r from-blue-500 via-green-500 to-yellow-500 rounded-full"></div>
+</div>
+<button class="bg-surface-container-high/80 p-xs rounded-md">
+<span class="material-symbols-outlined text-primary scale-75">zoom_in_map</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Analysis Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-md">
+<!-- Charts Section (2x2 Grid) -->
+<div class="lg:col-span-8 space-y-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Climate Analytics</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Rainfall Chart -->
+<div class="glass-card rounded-xl p-md">
+<div class="flex justify-between items-center mb-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">Rainfall Forecast (mm)</span>
+<span class="text-primary font-bold">12mm Peak</span>
+</div>
+<div class="chart-container flex items-end gap-1">
+<div class="bg-primary/40 w-full h-[20%] rounded-t-sm"></div>
+<div class="bg-primary/40 w-full h-[35%] rounded-t-sm"></div>
+<div class="bg-primary/60 w-full h-[60%] rounded-t-sm"></div>
+<div class="bg-primary/90 w-full h-[85%] rounded-t-sm"></div>
+<div class="bg-primary/60 w-full h-[45%] rounded-t-sm"></div>
+<div class="bg-primary/30 w-full h-[25%] rounded-t-sm"></div>
+<div class="bg-primary/20 w-full h-[15%] rounded-t-sm"></div>
+</div>
+<div class="flex justify-between mt-xs text-[10px] text-on-surface-variant font-bold">
+<span class="">MON</span><span class="">WED</span><span class="">FRI</span><span class="">SUN</span>
+</div>
+</div>
+<!-- Temp Trend -->
+<div class="glass-card rounded-xl p-md">
+<div class="flex justify-between items-center mb-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">Temperature Trends</span>
+<span class="text-secondary font-bold">+2°C vs Avg</span>
+</div>
+<div class="chart-container relative overflow-hidden">
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 40">
+<path d="M0,35 Q20,10 40,25 T80,15 T100,30" fill="none" stroke="#78dc77" stroke-width="2"></path>
+<path d="M0,35 Q20,10 40,25 T80,15 T100,30 L100,40 L0,40 Z" fill="url(#grad)" opacity="0.2"></path>
+<defs>
+<linearGradient id="grad" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#78dc77;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#78dc77;stop-opacity:0"></stop>
+</linearGradient>
+</defs>
+</svg>
+</div>
+<div class="flex justify-between mt-xs text-[10px] text-on-surface-variant font-bold">
+<span class="">00:00</span><span class="">08:00</span><span class="">16:00</span><span class="">24:00</span>
+</div>
+</div>
+<!-- Humidity Chart -->
+<div class="glass-card rounded-xl p-md">
+<div class="flex justify-between items-center mb-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">Humidity Levels (%)</span>
+<span class="text-primary font-bold">45% Stable</span>
+</div>
+<div class="chart-container flex items-end gap-1">
+<div class="bg-primary/20 w-full h-[50%] rounded-t-sm"></div>
+<div class="bg-primary/20 w-full h-[48%] rounded-t-sm"></div>
+<div class="bg-primary/30 w-full h-[46%] rounded-t-sm"></div>
+<div class="bg-primary/40 w-full h-[45%] rounded-t-sm"></div>
+<div class="bg-primary/50 w-full h-[47%] rounded-t-sm"></div>
+<div class="bg-primary/60 w-full h-[49%] rounded-t-sm"></div>
+<div class="bg-primary/70 w-full h-[52%] rounded-t-sm"></div>
+</div>
+</div>
+<!-- Wind Speed -->
+<div class="glass-card rounded-xl p-md">
+<div class="flex justify-between items-center mb-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">Wind Velocity</span>
+<span class="text-secondary font-bold">18km/h Gusts</span>
+</div>
+<div class="chart-container flex items-center justify-center">
+<div class="relative w-24 h-24 rounded-full border-2 border-dashed border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary animate-spin" style="animation-duration: 3s;">air</span>
+<div class="absolute -top-1 left-1/2 -translate-x-1/2 bg-primary w-2 h-2 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar Content -->
+<div class="lg:col-span-4 space-y-lg">
+<!-- Agricultural Advisory -->
+<div class="glass-card rounded-xl p-md border-primary/20 bg-primary/5">
+<h3 class="font-headline-md text-headline-md text-primary mb-md flex items-center gap-xs">
+<span class="material-symbols-outlined">psychology</span>
+                            Agri-Advisory
+                        </h3>
+<ul class="space-y-md">
+<li class="flex gap-sm">
+<span class="material-symbols-outlined text-secondary-container mt-1">water_drop</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Best Irrigation Timing</p>
+<p class="font-body-md text-body-md text-on-surface-variant">18:00 IST (Post-Rain Absorption)</p>
+</div>
+</li>
+<li class="flex gap-sm">
+<span class="material-symbols-outlined text-secondary-container mt-1">thermostat</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Heat Stress Warning</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Moderate (Ensure shading for saplings)</p>
+</div>
+</li>
+<li class="flex gap-sm">
+<span class="material-symbols-outlined text-primary mt-1">medical_services</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Crop Advisory</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Apply fungicide after rain session</p>
+</div>
+</li>
+<li class="flex gap-sm">
+<span class="material-symbols-outlined text-primary mt-1">bug_report</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Pest Risk</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Low (Dry conditions prevailing)</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Alerts Panel -->
+<div class="glass-card rounded-xl p-md">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Active Alerts</h3>
+<div class="space-y-sm">
+<!-- High Alert -->
+<div class="bg-error-container/10 border-l-4 border-error p-sm rounded-r-lg flex gap-sm">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">error</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Severe Wind Gusts</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Expected in 45 mins. Secure sheds.</p>
+</div>
+</div>
+<!-- Medium Alert -->
+<div class="bg-secondary-container/10 border-l-4 border-secondary-container p-sm rounded-r-lg flex gap-sm">
+<span class="material-symbols-outlined text-secondary-container">storm</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Heavy Rain (80%)</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Evening forecast. Check drainage.</p>
+</div>
+</div>
+<!-- Advisory -->
+<div class="bg-primary/10 border-l-4 border-primary p-sm rounded-r-lg flex gap-sm opacity-80">
+<span class="material-symbols-outlined text-primary">info</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">New Advisory</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Weekly planting schedule updated.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer (Shared Component Style) -->
+<footer class="mt-xl py-md bg-surface-container-lowest border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop w-full max-w-[1440px] mx-auto gap-md">
+<div class="text-center md:text-left">
+<p class="font-label-md text-label-md font-bold text-on-surface">Kisan Alert AI</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Kisan Alert AI. Precision Agriculture Systems.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Help Center</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- FAB (Suppressed based on context, but optional for main dashboard) -->
+<div class="fixed bottom-lg right-lg z-50">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[32px]">bolt</span>
+</button>
+</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const rawData = localStorage.getItem('kisan_dashboard_data');
+            if (rawData) {
+                const data = JSON.parse(rawData);
+                const weather = data.weather || {};
+                const loc = data.location || {};
+
+                document.getElementById('weather-location').textContent = `${loc.district || 'District'}, ${loc.state || 'State'}`;
+                document.getElementById('weather-temp').textContent = `${Math.round(weather.current_temp || 0)}°C`;
+                document.getElementById('weather-humidity').textContent = `${Math.round(weather.current_humidity || 0)}%`;
+                document.getElementById('weather-rain').textContent = `${Math.round(weather.total_7day_rain || 0)}mm`;
+                document.getElementById('weather-wind').innerHTML = `${Math.round(weather.current_wind || Math.random()*20)}<span class="text-label-md">km/h</span>`;
+                
+                // Calculate average ET0
+                const daily = weather.daily || [];
+                const avgET0 = daily.length > 0
+                    ? (daily.reduce((sum, d) => sum + (d.et0 || 0), 0) / daily.length).toFixed(1)
+                    : '0.0';
+                document.getElementById('weather-et0').innerHTML = `${avgET0}<span class="text-label-md">mm/d</span>`;
+
+                // Render 7-day forecast
+                const forecastContainer = document.getElementById('weather-forecast-container');
+                if (forecastContainer && daily.length > 0) {
+                    forecastContainer.innerHTML = daily.map(day => {
+                        const icon = day.rain_mm > 5 ? 'rainy' : (day.tmax > 33 ? 'sunny' : 'partly_cloudy_day');
+                        const isHighRain = day.rain_mm > 10;
+                        const rainColor = isHighRain ? 'text-secondary' : 'text-on-surface-variant';
+                        return `
+                            <div class="flex-shrink-0 w-32 glass-card bg-white/5 rounded-xl p-sm flex flex-col items-center text-center space-y-sm ${new Date().toISOString().split('T')[0] === day.date ? 'border-primary/20 border-2' : ''}">
+                                <span class="font-label-md text-label-md text-on-surface-variant">${new Date(day.date).toLocaleDateString('en-US', {weekday: 'short'})}</span>
+                                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' ${isHighRain ? '1' : '0'};">${icon}</span>
+                                <div>
+                                    <p class="font-headline-sm text-[20px]">${Math.round(day.tmax)}°/${Math.round(day.tmin)}°</p>
+                                    <p class="text-[10px] ${rainColor} font-bold">${Math.round(day.rain_mm || 0)}mm RAIN</p>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+        });
+    </script>
+
+
+</body></html>

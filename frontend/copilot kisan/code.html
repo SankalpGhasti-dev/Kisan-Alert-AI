@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Kisan Alert AI | Copilot Workspace</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#00390a",
+                        "tertiary": "#b4cdb4",
+                        "primary": "#78dc77",
+                        "background": "#101413",
+                        "primary-container": "#4caf50",
+                        "surface-container": "#1c211f",
+                        "on-surface": "#dfe3e1",
+                        "secondary": "#ffd799",
+                        "on-surface-variant": "#becab9",
+                        "secondary-container": "#feb300",
+                        "surface-container-lowest": "#0a0f0e"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "mono": ["JetBrains Mono"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #101413; color: #dfe3e1; overflow-x: hidden; }
+        .glass-card {
+            background: rgba(21, 46, 27, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .mic-breathe {
+            animation: breathe 3s ease-in-out infinite;
+            box-shadow: 0 0 0 0 rgba(120, 220, 119, 0.4);
+        }
+        .mic-recording {
+            animation: fastBreathe 1s ease-in-out infinite;
+            box-shadow: 0 0 0 0 rgba(254, 179, 0, 0.6);
+            background-color: #feb300 !important;
+        }
+        .mic-speaking {
+            animation: pulseWave 1.5s ease-in-out infinite;
+            box-shadow: 0 0 0 0 rgba(120, 220, 119, 0.6);
+        }
+        @keyframes breathe {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(120, 220, 119, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px 10px rgba(120, 220, 119, 0.2); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(120, 220, 119, 0.4); }
+        }
+        @keyframes fastBreathe {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(254, 179, 0, 0.6); }
+            50% { transform: scale(1.1); box-shadow: 0 0 50px 15px rgba(254, 179, 0, 0.3); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(254, 179, 0, 0.6); }
+        }
+        @keyframes pulseWave {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(120, 220, 119, 0.8); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 30px rgba(120, 220, 119, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(120, 220, 119, 0); }
+        }
+        .terminal-cursor {
+            display: inline-block; width: 8px; height: 16px; background: #78dc77;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .chat-markdown b, .chat-markdown strong { color: #78dc77; }
+        .chat-markdown p { margin-bottom: 1rem; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+    <!-- Background Shader -->
+    <div class="fixed inset-0 w-full h-full opacity-30 pointer-events-none z-0">
+        <canvas id="shader-canvas-ANIMATION_24" style="width:100%;height:100%"></canvas>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-[1440px] mx-auto px-6 py-4 flex justify-between items-center">
+            <a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="/dashboard">
+                <span class="material-symbols-outlined">arrow_back</span>
+                <span>Back to Dashboard</span>
+            </a>
+            <h1 class="font-headline-md text-2xl font-bold text-primary tracking-tight">Kisan AI Copilot</h1>
+            <div class="flex items-center gap-4">
+                <button id="settingsBtn" class="text-on-surface-variant hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">settings</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div class="glass-card p-6 rounded-2xl w-full max-w-sm border border-primary/20 relative">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-primary">Voice Settings</h2>
+                <button id="closeSettingsBtn" class="text-on-surface-variant hover:text-white">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                    <label>Voice Output</label>
+                    <input type="checkbox" id="voiceToggle" checked class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary">
+                </div>
+                <div>
+                    <label class="block text-sm text-on-surface-variant mb-1">Language</label>
+                    <select id="voiceLang" class="w-full bg-surface-container border border-white/10 rounded p-2 text-on-surface">
+                        <option value="Auto Detect" selected>Auto Detect</option>
+                        <option value="English">English</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Marathi">Marathi</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm text-on-surface-variant mb-1">Voice</label>
+                    <select id="voiceGender" class="w-full bg-surface-container border border-white/10 rounded p-2 text-on-surface">
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm text-on-surface-variant mb-1">Playback Speed</label>
+                    <select id="voiceSpeed" class="w-full bg-surface-container border border-white/10 rounded p-2 text-on-surface">
+                        <option value="0.8">0.8x (Slow)</option>
+                        <option value="1.0" selected>1.0x (Normal)</option>
+                        <option value="1.2">1.2x (Fast)</option>
+                        <option value="1.5">1.5x (Faster)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="relative z-10 pt-32 pb-32 px-4 md:px-0">
+        <div class="max-w-3xl mx-auto flex flex-col items-center text-center">
+            
+            <section class="mb-8 fade-in-up">
+                <h2 class="text-4xl font-bold text-on-surface mb-2">Good Morning, Rajesh.</h2>
+                <p class="text-lg text-on-surface-variant">I am your agricultural expert. How can I help today?</p>
+            </section>
+
+            <!-- Centerpiece Microphone -->
+            <div class="relative mb-8 fade-in-up delay-1 flex flex-col items-center w-full">
+                <button class="w-[160px] h-[160px] bg-primary-container rounded-full flex items-center justify-center mic-breathe cursor-pointer transition-transform hover:scale-105 active:scale-95 group" id="micBtn">
+                    <span id="micIcon" class="material-symbols-outlined text-[64px] text-[#00390a]" style="font-variation-settings: 'FILL' 1;">mic</span>
+                </button>
+                
+                <div class="mt-6 flex flex-col items-center gap-4 w-full max-w-md">
+                    <p id="micStatusText" class="text-secondary text-lg font-bold min-h-[28px]">Idle</p>
+                    
+                    <div class="flex items-center w-full bg-surface-container border border-white/10 rounded-full px-4 py-2">
+                        <input type="text" id="textInput" placeholder="Type or speak your question..." class="flex-1 bg-transparent border-none text-on-surface focus:ring-0 placeholder-on-surface-variant/50" />
+                        <button id="sendBtn" class="text-primary hover:text-white ml-2 transition-colors">
+                            <span class="material-symbols-outlined">send</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Activity Console -->
+            <section id="activityConsole" class="w-full mb-8 fade-in-up delay-3 hidden">
+                <div class="bg-surface-container-lowest border border-white/5 rounded-xl p-6 text-left w-full shadow-2xl">
+                    <div class="flex items-center justify-between mb-4 border-b border-white/5 pb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-[18px]">terminal</span>
+                            <h3 class="text-sm text-on-surface-variant uppercase tracking-widest">AI Activity Console</h3>
+                        </div>
+                    </div>
+                    <div class="font-mono text-primary text-sm space-y-1 h-20 overflow-y-auto" id="terminal-content">
+                        <div id="terminalLine">> Waiting... <span class="terminal-cursor"></span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat History -->
+            <section id="chatHistory" class="w-full space-y-6 text-left fade-in-up flex flex-col mb-12">
+                <!-- History items appended here -->
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Shader logic (same as original, shortened for brevity)
+        try {
+            const canvas = document.getElementById('shader-canvas-ANIMATION_24');
+            const gl = canvas.getContext('webgl');
+            if (gl) {
+                const vs = `attribute vec2 a_position; varying vec2 v_texCoord; void main() { v_texCoord = a_position * 0.5 + 0.5; gl_Position = vec4(a_position, 0.0, 1.0); }`;
+                const fs = `precision highp float; uniform float u_time; varying vec2 v_texCoord;
+                void main() {
+                    vec2 center = vec2(0.5, 0.6); float d = length(v_texCoord - center);
+                    vec3 color1 = vec3(0.062, 0.078, 0.074); vec3 color2 = vec3(0.12, 0.2, 0.15); vec3 accent = vec3(0.298, 0.686, 0.313);
+                    float pulse = (sin(u_time * 0.8) * 0.5 + 0.5) * 0.2; float glow = smoothstep(0.8, 0.0, d);
+                    vec3 finalColor = mix(color1, color2, glow * (0.5 + pulse)); finalColor += accent * pow(glow, 4.0) * 0.3;
+                    gl_FragColor = vec4(finalColor, 1.0);
+                }`;
+                const prog = gl.createProgram();
+                const vsS = gl.createShader(gl.VERTEX_SHADER); gl.shaderSource(vsS, vs); gl.compileShader(vsS); gl.attachShader(prog, vsS);
+                const fsS = gl.createShader(gl.FRAGMENT_SHADER); gl.shaderSource(fsS, fs); gl.compileShader(fsS); gl.attachShader(prog, fsS);
+                gl.linkProgram(prog); gl.useProgram(prog);
+                const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+                const pos = gl.getAttribLocation(prog, 'a_position'); gl.enableVertexAttribArray(pos); gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+                const uTime = gl.getUniformLocation(prog, 'u_time');
+                function render(t) { gl.uniform1f(uTime, t * 0.001); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); requestAnimationFrame(render); }
+                render(0);
+            }
+        } catch (e) {
+            console.error("WebGL Error:", e);
+        }
+
+        // --- Copilot Voice Layer Logic ---
+        
+        // UI Elements
+        const micBtn = document.getElementById('micBtn');
+        const micIcon = document.getElementById('micIcon');
+        const micStatusText = document.getElementById('micStatusText');
+        const textInput = document.getElementById('textInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const activityConsole = document.getElementById('activityConsole');
+        const terminalLine = document.getElementById('terminalLine');
+        const chatHistory = document.getElementById('chatHistory');
+        
+        // Debugging Error Handler
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            micStatusText.innerText = "🚨 UI JS Error: " + msg + " at " + lineNo;
+            micStatusText.style.color = "red";
+            return false;
+        };
+        
+        // Settings Elements
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsModal = document.getElementById('settingsModal');
+        const closeSettingsBtn = document.getElementById('closeSettingsBtn');
+        const voiceToggle = document.getElementById('voiceToggle');
+        const voiceLang = document.getElementById('voiceLang');
+        const voiceGender = document.getElementById('voiceGender');
+        const voiceSpeed = document.getElementById('voiceSpeed');
+
+        settingsBtn.onclick = () => settingsModal.classList.remove('hidden');
+        closeSettingsBtn.onclick = () => settingsModal.classList.add('hidden');
+        
+        // Close modal on click outside
+        settingsModal.addEventListener('click', (e) => {
+            if (e.target === settingsModal) {
+                settingsModal.classList.add('hidden');
+            }
+        });
+
+        // State
+        let isRecording = false;
+        let isSpeaking = false;
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let currentAudio = null;
+        
+        // Audio visualization state
+        let audioContext = null;
+        let analyser = null;
+        let dataArray = null;
+        let animationId = null;
+        
+        // Performance Timing variables
+        let t_mic_click = 0;
+        let t_record_start = 0;
+        let t_record_stop = 0;
+        let t_upload_start = 0;
+        let t_response_end = 0;
+        
+        // Location (Hardcoded or fetched from localStorage in real app)
+        const STATE = "Maharashtra";
+        const DISTRICT = "Pune";
+
+        function updateTerminal(text) {
+            terminalLine.innerHTML = `> ${text} <span class="terminal-cursor"></span>`;
+        }
+
+        function formatAIResponse(text) {
+            // Very simple markdown formatting specifically for Observation, Reason, Recommendation, Next Action
+            let formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            formatted = formatted.replace(/\n/g, '<br/>');
+            return formatted;
+        }
+
+        function appendToChat(role, content) {
+            const div = document.createElement('div');
+            if (role === 'user') {
+                div.className = 'self-end bg-surface-container border border-white/10 rounded-2xl px-6 py-4 max-w-[80%] ml-auto';
+                div.innerHTML = `<p class="text-on-surface">${content}</p>`;
+            } else {
+                div.className = 'glass-card rounded-2xl p-6 text-left border-primary/20 relative overflow-hidden';
+                div.innerHTML = `
+                    <div class="absolute top-0 left-0 w-1 h-full bg-primary shadow-[0_0_15px_rgba(120,220,119,0.5)]"></div>
+                    <div class="chat-markdown font-body-lg text-lg text-on-surface leading-relaxed">
+                        ${formatAIResponse(content)}
+                    </div>
+                `;
+            }
+            chatHistory.appendChild(div);
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        async function playAudio(base64Data) {
+            if (!base64Data) return;
+            const audioUrl = "data:audio/mp3;base64," + base64Data;
+            currentAudio = new Audio(audioUrl);
+            
+            // Visuals
+            micBtn.className = "w-[160px] h-[160px] rounded-full flex items-center justify-center cursor-pointer transition-transform mic-speaking";
+            micBtn.style.backgroundColor = "#1c211f";
+            micIcon.innerText = "volume_up";
+            micIcon.style.color = "#78dc77";
+            micStatusText.innerText = "🔊 Speaking...";
+            updateTerminal("Speaking response...");
+            
+            isSpeaking = true;
+            
+            currentAudio.onended = () => {
+                isSpeaking = false;
+                resetMicUI();
+            };
+            
+            try {
+                await currentAudio.play();
+            } catch (err) {
+                console.error("Audio play error:", err);
+                isSpeaking = false;
+                resetMicUI();
+            }
+        }
+
+        function resetMicUI() {
+            micBtn.className = "w-[160px] h-[160px] bg-primary-container rounded-full flex items-center justify-center mic-breathe cursor-pointer transition-transform hover:scale-105 active:scale-95 group";
+            micBtn.style.backgroundColor = "#4caf50";
+            micIcon.innerText = "mic";
+            micIcon.style.color = "#00390a";
+            micStatusText.innerText = "Idle";
+            textInput.disabled = false;
+            sendBtn.disabled = false;
+            updateTerminal("Waiting for input...");
+        }
+
+        async function handleAudioUpload(blob) {
+            activityConsole.classList.remove('hidden');
+            updateTerminal("Uploading audio for transcription...");
+            micStatusText.innerText = "⏳ Processing...";
+
+            const formData = new FormData();
+            formData.append('audio', blob, 'recording.webm');
+            formData.append('state', STATE);
+            formData.append('district', DISTRICT);
+            formData.append('language', voiceLang.value);
+            formData.append('current_page', "Dashboard");
+            formData.append('response_mode', "voice");
+            formData.append('gender', voiceGender.value);
+            formData.append('speed', voiceSpeed.value);
+            formData.append('voice_on', voiceToggle.checked);
+
+            t_upload_start = performance.now();
+            console.log(`[FRONTEND METRIC] Record Stop -> Upload Start: ${(t_upload_start - t_record_stop).toFixed(0)} ms`);
+
+            try {
+                const response = await fetch('/api/voice/stream', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!response.ok) {
+                    micStatusText.innerText = "❌ Server error.";
+                    setTimeout(resetMicUI, 3000);
+                    return;
+                }
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder("utf-8");
+                let buffer = "";
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    
+                    buffer += decoder.decode(value, { stream: true });
+                    const lines = buffer.split('\n\n');
+                    
+                    // Leave the last incomplete chunk in the buffer
+                    buffer = lines.pop();
+
+                    for (const line of lines) {
+                        if (!line.trim()) continue;
+                        let jsonStr = line.replace(/^data: /, "").trim();
+                        try {
+                            const data = JSON.parse(jsonStr);
+                            
+                            // Handle Stream Events dynamically
+                            if (data.stage === "stt_started") {
+                                micStatusText.innerText = "📝 Understanding your question...";
+                                updateTerminal("Running Speech-to-Text (Faster-Whisper)...");
+                            } 
+                            else if (data.stage === "error") {
+                                micStatusText.innerText = "❌ " + data.message;
+                                updateTerminal(`Error: ${data.message}`);
+                                setTimeout(resetMicUI, 3000);
+                            }
+                            else if (data.stage === "stt_completed") {
+                                micStatusText.innerText = "✓ Voice Captured";
+                                updateTerminal(`Recognized [${data.language_detected}]: "${data.user_text}"`);
+                                appendToChat('user', data.user_text);
+                            }
+                            else if (data.stage === "context_started") {
+                                micStatusText.innerText = "🔍 Gathering Context...";
+                                updateTerminal("Initializing Copilot Context Engine...");
+                            }
+                            else if (data.stage === "modules_identified") {
+                                const mods = data.modules.join(', ') || "none";
+                                updateTerminal(`Identified required modules: [${mods}]`);
+                                if (data.modules.includes('weather')) updateTerminal("🌤 Reading weather profile...");
+                                if (data.modules.includes('soil')) updateTerminal("🌱 Reading soil profile...");
+                                if (data.modules.includes('irrigation')) updateTerminal("💧 Reading irrigation limits...");
+                                if (data.modules.includes('disease')) updateTerminal("🦠 Checking disease risk...");
+                            }
+                            else if (data.stage === "generating_advice") {
+                                micStatusText.innerText = "🧠 Generating advice...";
+                                updateTerminal("Prompting Gemini Flash with farm context...");
+                            }
+                            else if (data.stage === "copilot_completed") {
+                                updateTerminal("✓ AI advice generated successfully.");
+                                appendToChat('ai', data.answer);
+                            }
+                            else if (data.stage === "tts_started") {
+                                micStatusText.innerText = "🔊 Generating Speech...";
+                                updateTerminal("Synthesizing audio via Edge-TTS...");
+                            }
+                            else if (data.stage === "completed") {
+                                t_response_end = performance.now();
+                                console.log(`[FRONTEND METRIC] Total Backend Stream (Upload -> Completed): ${(t_response_end - t_upload_start).toFixed(0)} ms`);
+                                updateTerminal("Pipeline finished successfully.");
+                                if (data.audio_base64 && voiceToggle.checked) {
+                                    let t_playback_start = performance.now();
+                                    console.log(`[FRONTEND METRIC] Response End -> Playback Start: ${(t_playback_start - t_response_end).toFixed(0)} ms`);
+                                    await playAudio(data.audio_base64);
+                                } else {
+                                    resetMicUI();
+                                }
+                            }
+
+                        } catch (e) {
+                            console.error("Error parsing SSE chunk:", jsonStr, e);
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+                micStatusText.innerText = "❌ Connection error.";
+                setTimeout(resetMicUI, 3000);
+            }
+        }
+
+        async function handleTextSubmit() {
+            const text = textInput.value.trim();
+            if (!text) return;
+            
+            textInput.value = '';
+            textInput.disabled = true;
+            sendBtn.disabled = true;
+            activityConsole.classList.remove('hidden');
+            micStatusText.innerText = "🧠 Analyzing farm data...";
+            updateTerminal("Sending text query to Copilot...");
+            
+            appendToChat('user', text);
+            
+            try {
+                // First call copilot
+                const chatRes = await fetch('/api/copilot/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        response_mode: "text",
+                        language: voiceLang.value,
+                        user_message: text, 
+                        current_page: "Dashboard",
+                        selected_state: STATE, 
+                        selected_district: DISTRICT 
+                    })
+                });
+                const chatData = await chatRes.json();
+                
+                if (chatData.success) {
+                    appendToChat('ai', chatData.answer);
+                    
+                    if (voiceToggle.checked) {
+                        micStatusText.innerText = "🔊 Generating Speech...";
+                        updateTerminal("Calling Edge-TTS...");
+                        
+                        const synthData = new URLSearchParams();
+                        synthData.append('text', chatData.answer);
+                        synthData.append('language', voiceLang.value);
+                        synthData.append('gender', voiceGender.value);
+                        synthData.append('speed', voiceSpeed.value);
+
+                        const synthRes = await fetch('/api/voice/synthesize', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                            body: synthData
+                        });
+                        const synthJson = await synthRes.json();
+                        if (synthJson.success && synthJson.audio_base64) {
+                            await playAudio(synthJson.audio_base64);
+                        } else {
+                            resetMicUI();
+                        }
+                    } else {
+                        resetMicUI();
+                    }
+                } else {
+                    micStatusText.innerText = "❌ Copilot Error.";
+                    setTimeout(resetMicUI, 3000);
+                }
+            } catch (error) {
+                console.error(error);
+                micStatusText.innerText = "❌ Connection error.";
+                setTimeout(resetMicUI, 3000);
+            }
+        }
+
+        // --- Listeners ---
+        
+        micBtn.addEventListener('click', async () => {
+            t_mic_click = performance.now();
+            // Handle Interruption
+            if (isSpeaking) {
+                currentAudio.pause();
+                isSpeaking = false;
+                resetMicUI();
+                
+                // User requirement: "If AI is currently speaking and the microphone is pressed again: Immediately stop playback. Start recording."
+                // I paused it. Now continue to start recording!
+            } else if (isRecording) {
+                mediaRecorder.stop();
+                return;
+            }
+
+            // Start Recording
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+                
+                // --- Audio Waveform ---
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {
+                    audioContext = new AudioContext();
+                    const source = audioContext.createMediaStreamSource(stream);
+                    analyser = audioContext.createAnalyser();
+                    analyser.fftSize = 256;
+                    source.connect(analyser);
+                    dataArray = new Uint8Array(analyser.frequencyBinCount);
+                    
+                    const drawWaveform = () => {
+                        if (!isRecording) return;
+                        animationId = requestAnimationFrame(drawWaveform);
+                        analyser.getByteFrequencyData(dataArray);
+                        let sum = 0;
+                        for (let i = 0; i < dataArray.length; i++) {
+                            sum += dataArray[i];
+                        }
+                        let average = sum / dataArray.length;
+                        
+                        let scale = 1 + (average / 255) * 0.4;
+                        let blur = 20 + average;
+                        let spread = 5 + average / 2;
+                        
+                        micBtn.style.transform = `scale(${scale})`;
+                        micBtn.style.boxShadow = `0 0 ${blur}px ${spread}px rgba(254, 179, 0, 0.4)`;
+                    };
+                    drawWaveform();
+                }
+
+                mediaRecorder.ondataavailable = e => {
+                    if (e.data.size > 0) audioChunks.push(e.data);
+                };
+
+                mediaRecorder.onstop = () => {
+                    t_record_stop = performance.now();
+                    console.log(`[FRONTEND METRIC] Recording Duration: ${(t_record_stop - t_record_start).toFixed(0)} ms`);
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    stream.getTracks().forEach(track => track.stop()); // release mic
+                    isRecording = false;
+                    
+                    if (audioContext) {
+                        audioContext.close();
+                        audioContext = null;
+                    }
+                    if (animationId) {
+                        cancelAnimationFrame(animationId);
+                        animationId = null;
+                    }
+                    micBtn.style.transform = "";
+                    micBtn.style.boxShadow = "";
+                    
+                    handleAudioUpload(audioBlob);
+                };
+
+                mediaRecorder.start();
+                t_record_start = performance.now();
+                console.log(`[FRONTEND METRIC] Mic Click -> Recording Starts: ${(t_record_start - t_mic_click).toFixed(0)} ms`);
+                isRecording = true;
+                
+                // Visuals for recording
+                micBtn.className = "w-[160px] h-[160px] rounded-full flex items-center justify-center cursor-pointer group";
+                micBtn.style.backgroundColor = "transparent";
+                micIcon.style.color = "#fff";
+                micStatusText.innerText = "🎤 Listening...";
+                textInput.disabled = true;
+                sendBtn.disabled = true;
+                updateTerminal("Microphone active, listening to user...");
+
+            } catch (err) {
+                console.error("Mic permission denied", err);
+                micStatusText.innerText = "⚠️ Microphone permission denied.";
+                setTimeout(resetMicUI, 3000);
+            }
+        });
+
+        sendBtn.addEventListener('click', handleTextSubmit);
+        textInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleTextSubmit();
+        });
+
+    </script>
+</body>
+</html>

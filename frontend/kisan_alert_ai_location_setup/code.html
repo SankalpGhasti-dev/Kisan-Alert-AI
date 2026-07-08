@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Hanken+Grotesk:wght@500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: #152E1B;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+        }
+        .inner-glow:focus-within {
+            box-shadow: inset 0 0 8px rgba(76, 175, 80, 0.15);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#262b29",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#003c0b",
+                        "tertiary-container": "#89a18a",
+                        "on-tertiary-fixed": "#0b2010",
+                        "on-secondary": "#432c00",
+                        "tertiary-fixed-dim": "#b4cdb4",
+                        "on-secondary-container": "#6a4800",
+                        "on-surface": "#dfe3e1",
+                        "secondary": "#ffd799",
+                        "secondary-fixed-dim": "#ffba38",
+                        "primary-fixed": "#94f990",
+                        "inverse-surface": "#dfe3e1",
+                        "secondary-fixed": "#ffdeac",
+                        "inverse-on-surface": "#2d3130",
+                        "surface-dim": "#101413",
+                        "secondary-container": "#feb300",
+                        "surface": "#101413",
+                        "on-primary": "#00390a",
+                        "on-tertiary-container": "#223726",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#181d1b",
+                        "outline": "#899484",
+                        "on-surface-variant": "#becab9",
+                        "surface-bright": "#353a38",
+                        "primary-fixed-dim": "#78dc77",
+                        "on-error": "#690005",
+                        "inverse-primary": "#006e1c",
+                        "surface-container": "#1c211f",
+                        "on-primary-fixed-variant": "#005313",
+                        "on-tertiary": "#203523",
+                        "on-secondary-fixed": "#281900",
+                        "primary-container": "#4caf50",
+                        "on-primary-fixed": "#002204",
+                        "surface-variant": "#313634",
+                        "tertiary-fixed": "#d0e9cf",
+                        "on-background": "#dfe3e1",
+                        "outline-variant": "#3f4a3c",
+                        "error": "#ffb4ab",
+                        "background": "#101413",
+                        "primary": "#78dc77",
+                        "surface-container-highest": "#313634",
+                        "on-secondary-fixed-variant": "#604100",
+                        "surface-tint": "#78dc77",
+                        "tertiary": "#b4cdb4",
+                        "surface-container-lowest": "#0a0f0e",
+                        "on-tertiary-fixed-variant": "#364c39"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "32px",
+                        "xl": "48px",
+                        "margin-desktop": "40px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "xs": "8px",
+                        "sm": "16px",
+                        "gutter": "20px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-md": ["Hanken Grotesk"],
+                        "body-md": ["Manrope"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Manrope"],
+                        "display-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col items-center">
+<!-- Subtle Background Shader -->
+<div class="fixed inset-0 -z-10 opacity-30">
+
+</div>
+<!-- Main Content Container -->
+<main class="w-full max-w-[560px] px-margin-mobile md:px-0 py-xl flex flex-col gap-lg">
+<!-- Header & Branding -->
+<header class="flex flex-col items-center text-center gap-sm">
+<div class="w-16 h-16 rounded-xl bg-primary-container flex items-center justify-center mb-base shadow-[0_0_20px_rgba(76,175,80,0.3)]">
+<span class="material-symbols-outlined text-on-primary-container text-[32px]">agriculture</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Kisan Alert AI</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[400px]">
+                Precision monitoring for your crops. Set your location to receive localized weather patterns, pest alerts, and soil health insights powered by AI.
+            </p>
+</header>
+<!-- Location Selection Card -->
+<section class="glass-card rounded-xl p-md flex flex-col gap-md">
+<h2 class="font-headline-sm text-[20px] font-bold text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined">location_on</span>
+                Select Your Region
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- State Selector -->
+<div class="flex flex-col gap-xs inner-glow">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-base" for="state">STATE / REGION</label>
+<div class="relative">
+<select class="w-full bg-surface-dim border border-outline-variant rounded-lg px-md py-sm appearance-none focus:outline-none focus:border-primary text-on-surface" id="state">
+<option disabled="" selected="" value="">Select State</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- District Selector -->
+<div class="flex flex-col gap-xs inner-glow">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-base" for="district">DISTRICT / TALUKA</label>
+<div class="relative">
+<select class="w-full bg-surface-dim border border-outline-variant rounded-lg px-md py-sm appearance-none focus:outline-none focus:border-primary text-on-surface" id="district">
+<option disabled="" selected="" value="">Select District</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- Village Input -->
+<div class="flex flex-col gap-xs inner-glow">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-base" for="village">VILLAGE</label>
+<input type="text" id="village" placeholder="Enter Village" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-md py-sm focus:outline-none focus:border-primary text-on-surface">
+</div>
+<!-- Soil Type Selector -->
+<div class="flex flex-col gap-xs inner-glow">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-base" for="soil_type">SOIL TYPE</label>
+<div class="relative">
+<select class="w-full bg-surface-dim border border-outline-variant rounded-lg px-md py-sm appearance-none focus:outline-none focus:border-primary text-on-surface" id="soil_type">
+<option disabled="" selected="" value="">Select Soil Type</option>
+<option value="Alluvial">Alluvial</option>
+<option value="Black">Black</option>
+<option value="Red">Red</option>
+<option value="Laterite">Laterite</option>
+<option value="Sandy">Sandy</option>
+<option value="Clay">Clay</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- Farm Size Input -->
+<div class="flex flex-col gap-xs inner-glow">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-base" for="farm_size">FARM SIZE (ACRES)</label>
+<input type="number" step="0.1" id="farm_size" placeholder="e.g. 5.5" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-md py-sm focus:outline-none focus:border-primary text-on-surface">
+</div>
+<!-- Preferred Crop Input -->
+<div class="flex flex-col gap-xs inner-glow">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-base" for="preferred_crop">PREFERRED CROP</label>
+<input type="text" id="preferred_crop" placeholder="e.g. Wheat" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-md py-sm focus:outline-none focus:border-primary text-on-surface">
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-secondary-container hover:bg-[#ffb300] text-[#0b2010] font-semibold py-md rounded-lg transition-all duration-200 active:scale-[0.98] mt-base shadow-lg shadow-amber-900/20">
+                Save Location &amp; Continue
+            </button>
+</section>
+<!-- Notification Prompt Card -->
+<section class="glass-card rounded-xl overflow-hidden">
+<div class="flex flex-col md:flex-row">
+<div class="relative h-48 md:h-auto md:w-1/3">
+<div class="w-full h-full bg-cover bg-center" data-alt="A macro close-up of a vibrant green crop leaf in a dark, atmospheric field at twilight. Soft amber lighting highlights the textures of the leaf, representing technological precision and plant health monitoring. The background is a deep forest green, consistent with a professional agritech dashboard aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDzl_gfA-SrYWpxvRZX1h3vkT9UvzR3m7WcxhQVt8IUqG4WErj_JMyWFDFxLfkv_lDnl9mm-wiDM9M9Vk5R8qK1mNc8QYwQYqe63Y986mQKm4JBWDZwETB1OIw_8ypD4lBAcKYZEsdZF1zs9UWdrvvE6LIqaDzjYmgn5imjR5KFFvPoWK1Z-ql92TXDEoAqeQ9E-QplCejjstzbNLnyt7HzagEvP3iIcMRWYFWuJqvRd_feAawPtlMmhNIphAhYhe5v3QpcrqWMGvxF')"></div>
+<div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-surface-container via-transparent to-transparent"></div>
+</div>
+<div class="p-md md:w-2/3 flex flex-col gap-sm">
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[20px]">notifications_active</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Stay Protected</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Enable Smart Notifications</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">
+                        Our AI monitors satellite data 24/7. Get instant alerts about localized frost, pest outbreaks in neighboring districts, and optimal harvest windows.
+                    </p>
+<div class="flex items-center gap-md mt-base">
+<button class="text-primary font-semibold hover:underline flex items-center gap-xs">
+                            Enable Now
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface font-medium">
+                            Maybe Later
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Help Link -->
+<footer class="flex justify-center mt-sm">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs" href="#">
+<span class="material-symbols-outlined text-[16px]">help_outline</span>
+                Why do we need your location?
+            </a>
+</footer>
+</main>
+<!-- Success Toast (Hidden by default) -->
+<div class="fixed bottom-lg left-1/2 -translate-x-1/2 glass-card px-md py-sm rounded-full flex items-center gap-sm opacity-0 translate-y-4 transition-all duration-300 pointer-events-none" id="toast">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-label-md text-label-md">Location updated successfully</span>
+</div>
+<script>
+        // Micro-interaction for Select Focus
+        const selects = document.querySelectorAll('select');
+        selects.forEach(select => {
+            select.addEventListener('focus', () => {
+                select.parentElement.parentElement.classList.add('border-primary/50');
+            });
+            select.addEventListener('blur', () => {
+                select.parentElement.parentElement.classList.remove('border-primary/50');
+            });
+        });
+
+        // Toast helper
+        const toast = document.getElementById('toast');
+        function showToast(message) {
+            toast.querySelector('span:last-child').textContent = message;
+            toast.classList.remove('opacity-0', 'translate-y-4');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 3000);
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // API INTEGRATION — Location Setup
+        // ═══════════════════════════════════════════════════════════════
+
+        const stateSelect = document.getElementById('state');
+        const districtSelect = document.getElementById('district');
+        const villageInput = document.getElementById('village');
+        const soilTypeSelect = document.getElementById('soil_type');
+        const farmSizeInput = document.getElementById('farm_size');
+        const preferredCropInput = document.getElementById('preferred_crop');
+        const saveBtn = document.querySelector('button.bg-secondary-container');
+
+        // 1. Fetch states on page load
+        async function loadStates() {
+            try {
+                const resp = await fetch('/api/dashboard/states');
+                const data = await resp.json();
+                if (data.success && data.states) {
+                    // Clear existing hardcoded options
+                    stateSelect.innerHTML = '<option disabled selected value="">Select State</option>';
+                    data.states.forEach(s => {
+                        const opt = document.createElement('option');
+                        opt.value = s;
+                        opt.textContent = s;
+                        stateSelect.appendChild(opt);
+                    });
+                }
+            } catch (err) {
+                console.error('Failed to load states:', err);
+            }
+        }
+
+        // 2. Fetch districts when state changes
+        stateSelect.addEventListener('change', async () => {
+            const state = stateSelect.value;
+            districtSelect.innerHTML = '<option disabled selected value="">Loading...</option>';
+            try {
+                const resp = await fetch(`/api/dashboard/districts?state=${encodeURIComponent(state)}`);
+                const data = await resp.json();
+                if (data.success && data.districts) {
+                    districtSelect.innerHTML = '<option disabled selected value="">Select District</option>';
+                    data.districts.forEach(d => {
+                        const opt = document.createElement('option');
+                        opt.value = d;
+                        opt.textContent = d;
+                        districtSelect.appendChild(opt);
+                    });
+                }
+            } catch (err) {
+                console.error('Failed to load districts:', err);
+                districtSelect.innerHTML = '<option disabled selected value="">Error loading</option>';
+            }
+        });
+
+        // 3. Save Location & Generate Dashboard
+        saveBtn.addEventListener('click', async () => {
+            const state = stateSelect.value;
+            const district = districtSelect.value;
+
+            if (!state || !district) {
+                showToast('Please select both State and District');
+                return;
+            }
+
+            // Update button to loading state
+            const originalText = saveBtn.textContent;
+            saveBtn.textContent = '🛰️ Generating Dashboard...';
+            saveBtn.disabled = true;
+            saveBtn.style.opacity = '0.7';
+
+            try {
+                const resp = await fetch('/api/dashboard/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ state, district }),
+                });
+                const data = await resp.json();
+
+                if (data.success) {
+                    // Store dashboard data in localStorage for the dashboard page
+                    localStorage.setItem('kisan_dashboard_data', JSON.stringify(data));
+                    localStorage.setItem('kisan_user_state', state);
+                    localStorage.setItem('kisan_user_district', district);
+                    
+                    // Create and store user profile
+                    const userProfile = {
+                        name: "Kisan User", // Default until edited
+                        email: "user@example.com",
+                        phone: "+91 0000000000",
+                        state: state,
+                        district: district,
+                        village: villageInput.value || "Unknown",
+                        soil_type: soilTypeSelect.value || "Unknown",
+                        farm_size: farmSizeInput.value || "0",
+                        preferred_crop: preferredCropInput.value || "Unknown"
+                    };
+                    localStorage.setItem('kisan_user_profile', JSON.stringify(userProfile));
+
+                    showToast('Location updated successfully');
+
+                    // Redirect to main dashboard after brief delay
+                    setTimeout(() => {
+                        window.location.href = '/dashboard';
+                    }, 800);
+                } else {
+                    showToast('Error: ' + (data.detail || 'Failed to generate dashboard'));
+                    saveBtn.textContent = originalText;
+                    saveBtn.disabled = false;
+                    saveBtn.style.opacity = '1';
+                }
+            } catch (err) {
+                console.error('Dashboard generation failed:', err);
+                showToast('Network error — please try again');
+                saveBtn.textContent = originalText;
+                saveBtn.disabled = false;
+                saveBtn.style.opacity = '1';
+            }
+        });
+
+        // Load states on page ready
+        loadStates();
+    </script>
+</body></html>
