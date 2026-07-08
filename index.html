@@ -241,6 +241,9 @@
                         Login to Dashboard
                         <span class="material-symbols-outlined">trending_flat</span>
 </button>
+<button id="demo-mode-btn" type="button" class="w-full py-md bg-primary-container text-on-primary-container mt-4 font-semibold rounded-lg hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-xs">
+    🚜 Continue Demo
+</button>
 </form>
 <footer class="text-center pt-xl">
 <p class="font-label-md text-label-md text-on-surface-variant">
@@ -256,7 +259,7 @@
 
     <!-- Firebase Auth Logic -->
     <script type="module">
-        import { auth, db, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, doc, setDoc, getDoc, updateDoc, serverTimestamp } from 'assets/js/firebase-auth.js';
+        import { auth, db, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, doc, setDoc, getDoc, updateDoc, serverTimestamp, DEMO_MODE } from './assets/js/firebase-auth.js';
 
         // State to track if we're in login or signup mode
         let isLoginMode = true;
@@ -264,6 +267,7 @@
         const authTitle = document.getElementById('auth-title');
         const authSubtitle = document.getElementById('auth-subtitle');
         const authSubmitBtn = document.getElementById('auth-submit-btn');
+        const demoModeBtn = document.getElementById('demo-mode-btn');
         const toggleText = document.getElementById('toggle-text');
         const toggleBtn = document.getElementById('toggle-btn');
         const authForm = document.getElementById('auth-form');
@@ -271,13 +275,27 @@
         const passwordInput = document.getElementById('password-input');
         const errorDiv = document.getElementById('auth-error');
 
-        // Check if user is already logged in
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // Redirect if authenticated
+        if (DEMO_MODE) {
+            if (localStorage.getItem("demoMode") === "true") {
                 window.location.href = 'dashboard.html';
             }
-        });
+            demoModeBtn.addEventListener('click', () => {
+                localStorage.setItem("demoMode", "true");
+                localStorage.setItem("userName", "Demo Farmer");
+                localStorage.setItem("userEmail", "demo@kisan.ai");
+                localStorage.setItem("authenticated", "true");
+                window.location.href = 'location-setup.html';
+            });
+        } else {
+            demoModeBtn.style.display = 'none';
+            // Check if user is already logged in
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // Redirect if authenticated
+                    window.location.href = 'dashboard.html';
+                }
+            });
+        }
 
         const showError = (msg) => {
             errorDiv.textContent = msg;
@@ -288,6 +306,31 @@
             errorDiv.classList.add('hidden');
             errorDiv.textContent = '';
         };
+
+        // Google Login
+        document.getElementById('google-btn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            if (DEMO_MODE) {
+                showError("Google Sign-In is disabled. Please use Demo Mode.");
+                return;
+            }
+            try {
+                const provider = new GoogleAuthProvider();
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+                const userRef = doc(db, 'users', user.uid);
+                const docSnap = await getDoc(userRef);
+                if (docSnap.exists()) {
+                    await updateDoc(userRef, { lastLogin: serverTimestamp() }).catch(err => console.log(err));
+                    window.location.href = 'dashboard.html';
+                } else {
+                    await setDoc(userRef, { uid: user.uid, name: user.displayName, email: user.email, createdAt: serverTimestamp(), lastLogin: serverTimestamp() });
+                    window.location.href = 'location-setup.html';
+                }
+            } catch (error) {
+                showError("Google Sign-In failed.");
+            }
+        });
 
         // Toggle Login / Sign Up modes
         toggleBtn.addEventListener('click', (e) => {
@@ -309,8 +352,13 @@
             }
         });
 
+        // Auth form submit
         authForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            if (DEMO_MODE) {
+                showError("Authentication is currently disabled. Please use Demo Mode.");
+                return;
+            }
             hideError();
             const email = emailInput.value.trim();
             const password = passwordInput.value;
